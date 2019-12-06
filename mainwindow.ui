@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1122</width>
+    <height>809</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget_main">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1121</width>
+      <height>751</height>
+     </rect>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::West</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_dict">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="title">
+      <string>词典</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_dict">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1101</width>
+        <height>711</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_dict_bFind">
+       <attribute name="title">
+        <string>one</string>
+       </attribute>
+       <widget class="QPushButton" name="dict_shot">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>280</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>截屏翻译</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="dict_label_eng">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>610</y>
+          <width>711</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>always be true!</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="dict_find">
+        <property name="geometry">
+         <rect>
+          <x>840</x>
+          <y>280</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>查询</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="dict_label_chin">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>545</y>
+          <width>531</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>永远坚持真理！</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="dict_doc">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>280</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>文档翻译</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="dict_edit">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>911</width>
+          <height>221</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>请输入您要查询的单词</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="dict_label_date">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>580</y>
+          <width>72</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>日期</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="dict_label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>72</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>日汉互译</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_dict_aFind">
+       <attribute name="title">
+        <string>two</string>
+       </attribute>
+       <widget class="QTabWidget" name="tabWidget_dict_dict">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>230</y>
+          <width>911</width>
+          <height>271</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tab_dict_simp">
+         <attribute name="title">
+          <string>简明</string>
+         </attribute>
+         <widget class="QScrollArea" name="scrollArea_simp">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>911</width>
+            <height>251</height>
+           </rect>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>909</width>
+             <height>249</height>
+            </rect>
+           </property>
+           <widget class="QLabel" name="label_10">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>110</y>
+              <width>331</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>【英】test；&lt;教育&gt;试验，测验，考试，检验。</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_9">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>60</y>
+              <width>191</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>名・他动词・サ变/三类</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pushButton_8">
+            <property name="geometry">
+             <rect>
+              <x>160</x>
+              <y>20</y>
+              <width>93</width>
+              <height>28</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>发音</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_6">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>91</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>せんたー①</string>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="tab_dict_web">
+         <attribute name="title">
+          <string>网络释义</string>
+         </attribute>
+         <widget class="QLabel" name="label_11">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>72</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>1.测验</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_12">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>50</y>
+            <width>221</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>中文:测验;日语:テスト</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_13">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>80</y>
+            <width>72</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>2.评价</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_14">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>110</y>
+            <width>751</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>☆ 自分のペースで 知識の評価（テスト）ができます。 ☆ 料金は$190 USドル(2017年5月時点)です。</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="tab_dict_phrase">
+         <attribute name="title">
+          <string>短语</string>
+         </attribute>
+         <widget class="QLabel" name="label_15">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>10</y>
+            <width>291</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>テスト 测验试験评価検证</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_16">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>40</y>
+            <width>291</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>テスト 测验试験评価検证</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_17">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>100</y>
+            <width>291</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>テスト 测验试験评価検证</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_18">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>70</y>
+            <width>291</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>テスト 测验试験评価検证</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_19">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>130</y>
+            <width>291</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>テスト 测验试験评価検证</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="tab_dict_example">
+         <attribute name="title">
+          <string>例句</string>
+         </attribute>
+         <widget class="QLabel" name="label_20">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>901</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>展示会は一般的に贩路开拓、贩売促进、テストマーケティング、调査、情报入手など幅広い活动が効率的にできることが最大のメリットである</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_21">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>60</y>
+            <width>901</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>一般来说，展会最大的优点是能够有效率地开展开拓销路、促进销售、试营销、调查和收集信息等各种活动。</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="dict_button_add">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>150</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>加入生词本</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="dict_button_find">
+        <property name="geometry">
+         <rect>
+          <x>820</x>
+          <y>70</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>查询</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="dict_title">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>130</y>
+          <width>191</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>センター</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="dict_edit_find">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>60</y>
+          <width>911</width>
+          <height>41</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="dict_button_back">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string> 返回</string>
+        </property>
+       </widget>
+       <zorder>tabWidget_dict_dict</zorder>
+       <zorder>dict_button_add</zorder>
+       <zorder>dict_title</zorder>
+       <zorder>dict_edit_find</zorder>
+       <zorder>dict_button_find</zorder>
+       <zorder>dict_button_back</zorder>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_tran">
+     <attribute name="title">
+      <string>翻译</string>
+     </attribute>
+     <widget class="QTextEdit" name="tran_edit_from">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>911</width>
+        <height>311</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>请输入要翻译的文字或网址</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tran_button_tran">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>290</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>翻译</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tran_button_person">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>290</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>人工翻译</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="tran_edit_to">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>370</y>
+        <width>911</width>
+        <height>311</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_note">
+     <attribute name="title">
+      <string>单词本</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_doc">
+     <attribute name="title">
+      <string>文档翻译</string>
+     </attribute>
+     <widget class="QTextEdit" name="doc_edit">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>911</width>
+        <height>241</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="doc_label">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>90</y>
+        <width>321</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>将文档拖曳到区域上传(.pdf/.doc/.docx)</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="doc_label2">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>120</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>或</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="doc_button">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>150</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>选择文档</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_interpret">
+     <attribute name="title">
+      <string>同传</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_person">
+     <attribute name="title">
+      <string>人工翻译</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_class">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="title">
+      <string>精品课</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1122</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
