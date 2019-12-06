@@ -9,8 +9,13 @@ class dict_exampleBean
 {
 public:
     dict_exampleBean();
+
+
+    QMap<QString, QString> getMap() const;
+    void setMap(const QMap<QString, QString> &value);
+
 private:
-    QList<QMap<QString,QString>>list;
+    QMap<QString,QString>map;
 };
 
 #endif // DICT_EXAMPLEBEAN_H

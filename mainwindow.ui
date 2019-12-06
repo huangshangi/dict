@@ -49,7 +49,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_dict_bFind">
        <attribute name="title">
@@ -187,9 +187,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>60</y>
             <width>911</width>
-            <height>251</height>
+            <height>191</height>
            </rect>
           </property>
           <property name="widgetResizable">
@@ -201,62 +201,36 @@
              <x>0</x>
              <y>0</y>
              <width>909</width>
-             <height>249</height>
+             <height>189</height>
             </rect>
            </property>
-           <widget class="QLabel" name="label_10">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>110</y>
-              <width>331</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>【英】test；&lt;教育&gt;试验，测验，考试，检验。</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_9">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>60</y>
-              <width>191</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>名・他动词・サ变/三类</string>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="pushButton_8">
-            <property name="geometry">
-             <rect>
-              <x>160</x>
-              <y>20</y>
-              <width>93</width>
-              <height>28</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>发音</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_6">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>20</y>
-              <width>91</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>せんたー①</string>
-            </property>
-           </widget>
           </widget>
+         </widget>
+         <widget class="QPushButton" name="dict_button_pron">
+          <property name="geometry">
+           <rect>
+            <x>150</x>
+            <y>20</y>
+            <width>93</width>
+            <height>28</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>发音</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="dict_label_keyword">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>91</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>せんたー①</string>
+          </property>
          </widget>
         </widget>
         <widget class="QWidget" name="tab_dict_web">

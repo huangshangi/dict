@@ -11,10 +11,16 @@
 #include <QJsonParseError>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QVBoxLayout>
 #include "NetworkController.h"
 #include "dict_tran.h"
 #include "dict.h"
 #include "capture.h"
+#include "dictbean.h"
+#include "dict_simpbean.h"
+#include "dict_webbean.h"
+#include "dict_phrasebean.h"
+#include "dict_examplebean.h"
 namespace Ui {
 class MainWindow;
 }
@@ -26,6 +32,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void updateDict(dictBean bean);
 
 private:
     Ui::MainWindow *ui;

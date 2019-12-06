@@ -9,8 +9,13 @@ class dict_phraseBean
 {
 public:
     dict_phraseBean();
+
+
+    QMap<QString, QString> getMap() const;
+    void setMap(const QMap<QString, QString> &value);
+
 private:
-    QList<QMap<QString,QString>>list;
+    QMap<QString,QString>map;
 };
 
 #endif // DICT_PHRASEBEAN_H
