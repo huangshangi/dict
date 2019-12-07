@@ -10,9 +10,6 @@ public:
     dict_webBean();
 
 
-
-
-
     QMap<QString, QString> getMap() const;
     void setMap(const QMap<QString, QString> &value);
 

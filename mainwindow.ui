@@ -30,7 +30,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_dict">
      <property name="enabled">
@@ -177,7 +177,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tab_dict_simp">
          <attribute name="title">
@@ -246,8 +246,17 @@
             <height>421</height>
            </rect>
           </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="widgetResizable">
            <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
           </property>
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
@@ -258,58 +267,6 @@
              <height>419</height>
             </rect>
            </property>
-           <widget class="QLabel" name="label_12">
-            <property name="geometry">
-             <rect>
-              <x>30</x>
-              <y>50</y>
-              <width>221</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>中文:测验;日语:テスト</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_11">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>20</y>
-              <width>72</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>1.测验</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_14">
-            <property name="geometry">
-             <rect>
-              <x>30</x>
-              <y>110</y>
-              <width>751</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>☆ 自分のペースで 知識の評価（テスト）ができます。 ☆ 料金は$190 USドル(2017年5月時点)です。</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_13">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>80</y>
-              <width>72</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>2.评价</string>
-            </property>
-           </widget>
           </widget>
          </widget>
         </widget>
@@ -338,71 +295,6 @@
              <height>419</height>
             </rect>
            </property>
-           <widget class="QLabel" name="label_16">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>50</y>
-              <width>291</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>テスト 测验试験评価検证</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_19">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>140</y>
-              <width>291</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>テスト 测验试験评価検证</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_18">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>80</y>
-              <width>291</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>テスト 测验试験评価検证</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_15">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>20</y>
-              <width>291</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>テスト 测验试験评価検证</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_17">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>110</y>
-              <width>291</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>テスト 测验试験评価検证</string>
-            </property>
-           </widget>
           </widget>
          </widget>
         </widget>
@@ -431,32 +323,6 @@
              <height>419</height>
             </rect>
            </property>
-           <widget class="QLabel" name="label_21">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>70</y>
-              <width>901</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>一般来说，展会最大的优点是能够有效率地开展开拓销路、促进销售、试营销、调查和收集信息等各种活动。</string>
-            </property>
-           </widget>
-           <widget class="QLabel" name="label_20">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>20</y>
-              <width>901</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>展示会は一般的に贩路开拓、贩売促进、テストマーケティング、调査、情报入手など幅広い活动が効率的にできることが最大のメリットである</string>
-            </property>
-           </widget>
           </widget>
          </widget>
         </widget>
@@ -596,6 +462,71 @@
       </property>
       <property name="placeholderText">
        <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tran_label_word">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>300</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1/5000</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tran_button_clear">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>290</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string> 清空</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tran_button_copy">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>640</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>  复制</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tran_button_pron">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>640</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>发音</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="tran_checkbox">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>640</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>逐句对照</string>
       </property>
      </widget>
     </widget>

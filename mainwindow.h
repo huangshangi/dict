@@ -22,6 +22,9 @@
 #include "dict_webbean.h"
 #include "dict_phrasebean.h"
 #include "dict_examplebean.h"
+
+#define TRAN_FROM_MAX_LENGTH 5000
+
 namespace Ui {
 class MainWindow;
 }
@@ -49,6 +52,9 @@ private slots:
     void on_dict_doc_clicked();
     void on_dict_shot_clicked();
     void on_dict_button_pron_clicked();
+    void on_dict_button_find_clicked();
+    void on_tran_edit_from_textChanged();
+    void on_tran_button_clear_clicked();
 };
 
 #endif // MAINWINDOW_H

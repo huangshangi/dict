@@ -29,9 +29,10 @@ void MainWindow::updateDict(dictBean bean)
         label->setText(bean.getVoc_pro());
         layout->addWidget(label);
         QList<QMap<QString,QString> >ll=bean.getList();
-        qDebug()<<ll.size();
+
         for(int j=0;j<ll.size();j++){
             QMap<QString,QString>map=ll.at(j);
+
             QLabel*labelTitle=new QLabel;
             QMap<QString,QString>::const_iterator iteratorTitle=map.find("sense-title");
 
@@ -48,13 +49,102 @@ void MainWindow::updateDict(dictBean bean)
                 QString ss=iteratorContent.value();
                 labelContent->setText(ss);
                 layout->addWidget(labelContent);
-                qDebug()<<ss;
+
             }
 
 
         }
     }
+    layout->addStretch();
     ui->scrollArea_simp->widget()->setLayout(layout);
+
+    //对网络释义进行更新
+    QVBoxLayout *layout_web=new QVBoxLayout;
+    QList<dict_webBean>list_web=bean.getList_web();
+    for(int i=0;i<list_web.size();i++){
+        dict_webBean bean=list_web.at(i);
+        QMap<QString,QString> map=bean.getMap();
+
+        QMap<QString,QString>::const_iterator iteratorTitle=map.find("title");
+        QMap<QString,QString>::const_iterator iteratorContent=map.find("content");
+        QLabel *labelTitle=new QLabel;
+        QLabel *labelContent=new QLabel;
+
+        if(iteratorTitle!=map.end()){
+            labelTitle->setText(iteratorTitle.value());
+            layout_web->addWidget(labelTitle);
+        }
+
+        if(iteratorContent!=map.end()){
+            labelContent->setText(iteratorContent.value());
+
+            layout_web->addWidget(labelContent);
+        }
+
+    }
+    layout_web->addStretch();
+    ui->scrollArea_web->widget()->setLayout(layout_web);
+
+
+    //对短语进行更新
+    QVBoxLayout *layout_phrase=new QVBoxLayout;
+    QList<dict_phraseBean>list_phrase=bean.getList_phrase();
+
+    for(int i=0;i<list_phrase.size();i++){
+        dict_phraseBean bean=list_phrase.at(i);
+        QMap<QString,QString> map=bean.getMap();
+
+        QMap<QString,QString>::const_iterator iteratorTitle=map.find("title");
+        QMap<QString,QString>::const_iterator iteratorContent=map.find("content");
+        QLabel *labelTitle=new QLabel;
+        QLabel *labelContent=new QLabel;
+
+        if(iteratorTitle!=map.end()){
+            labelTitle->setText(iteratorTitle.value());
+
+            layout_phrase->addWidget(labelTitle);
+        }
+
+        if(iteratorContent!=map.end()){
+            labelContent->setText(iteratorContent.value());
+            layout_phrase->addWidget(labelContent);
+        }
+
+    }
+    layout_phrase->addStretch();
+    ui->scrollArea_phrase->widget()->setLayout(layout_phrase);
+
+
+    //对例句进行更新
+    QVBoxLayout *layout_example=new QVBoxLayout;
+    QList<dict_exampleBean>list_example=bean.getList_example();
+
+    for(int i=0;i<list_example.size();i++){
+        dict_exampleBean bean=list_example.at(i);
+        QMap<QString,QString> map=bean.getMap();
+
+        QMap<QString,QString>::const_iterator iteratorTitle=map.find("title");
+        QMap<QString,QString>::const_iterator iteratorContent=map.find("content");
+        QLabel *labelTitle=new QLabel;
+        QLabel *labelContent=new QLabel;
+
+        if(iteratorTitle!=map.end()){
+            labelTitle->setText(iteratorTitle.value());
+            labelTitle->setGeometry(10,10,91,31);
+            layout_example->addWidget(labelTitle);
+        }
+
+        if(iteratorContent!=map.end()){
+            labelContent->setText(iteratorContent.value());
+            labelContent->setGeometry(10,10,91,31);
+            layout_example->addWidget(labelContent);
+
+        }
+
+    }
+    layout_example->addStretch();
+   ui->scrollArea_example->widget()->setLayout(layout_example);
+
 }
 
 void MainWindow::playAudio(QNetworkReply *reply)
@@ -75,7 +165,7 @@ void MainWindow::playAudio(QNetworkReply *reply)
     player->setVolume(30);
     player->play();
 
-    file.remove();
+    
 }
 
 
@@ -120,4 +210,34 @@ void MainWindow::on_dict_button_pron_clicked()
     QNetworkAccessManager*manger=networkController->getUrl("https://dict.youdao.com/dictvoice?audio=%E3%83%86%E3%82%B9%E3%83%88&le=jap");
     connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(playAudio(QNetworkReply*)));
 
+}
+
+void MainWindow::on_dict_button_find_clicked()
+{
+
+}
+
+void MainWindow::on_tran_edit_from_textChanged()
+{
+    //设置文字字数变化
+    QString s=ui->tran_edit_from->toPlainText();
+    int length=s.length();
+    QString lengthS=QString::number(length);
+    ui->tran_label_word->setText(lengthS+"/"+QString::number(TRAN_FROM_MAX_LENGTH));
+
+    //最大字数限制
+    int maxLength=TRAN_FROM_MAX_LENGTH;
+    if(length>maxLength){
+        QTextCursor textCursor=ui->tran_edit_from->textCursor();
+        s.remove(maxLength,length-maxLength);
+        ui->tran_edit_from->setText(s);
+        textCursor.setPosition(maxLength);
+        ui->tran_edit_from->setTextCursor(textCursor);
+    }
+}
+
+void MainWindow::on_tran_button_clear_clicked()
+{
+    //清空翻译框
+    ui->tran_edit_from->setText("");
 }

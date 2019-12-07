@@ -7,6 +7,7 @@ dictBean::dictBean()
 
 dictBean dictBean::fromJson(QString &json)
 {
+
     QByteArray data=json.toUtf8();
     QJsonParseError parseError;
     dictBean bean;
@@ -50,24 +51,25 @@ dictBean dictBean::fromJson(QString &json)
                 bean.setList(list);
             }
         }
-
+        std::cout<<"ceshiwenjian";
         if(rootObj.contains("list_web")){
             QJsonArray array=rootObj.value("list_web").toArray();
             QList<dict_webBean>list;
 
 
             for(int i=0;i<array.size();i++){
-                dict_webBean bean;
+                dict_webBean webBean;
+                QMap<QString,QString> map;
                 QJsonObject obj=array[i].toObject();
                 if(obj.contains("title"))
-                    bean.getMap().insert("title",obj.value("title").toString());
+                    map.insert("title",obj.value("title").toString());
 
                 if(obj.contains("content"))
-                    bean.getMap().insert("content",obj.value("content").toString());
+                    map.insert("content",obj.value("content").toString());
 
-                list.append(bean);
+                webBean.setMap(map);
+                list.append(webBean);
             }
-
             bean.setList_web(list);
         }
 
@@ -77,15 +79,16 @@ dictBean dictBean::fromJson(QString &json)
 
 
             for(int i=0;i<array.size();i++){
-                dict_phraseBean bean;
+                dict_phraseBean phraseBean;
+                QMap<QString,QString> map;
                 QJsonObject obj=array[i].toObject();
                 if(obj.contains("title"))
-                    bean.getMap().insert("title",obj.value("title").toString());
+                    map.insert("title",obj.value("title").toString());
 
                 if(obj.contains("content"))
-                    bean.getMap().insert("content",obj.value("content").toString());
-
-                list.append(bean);
+                    map.insert("content",obj.value("content").toString());
+                phraseBean.setMap(map);
+                list.append(phraseBean);
             }
 
             bean.setList_phrase(list);
@@ -93,17 +96,18 @@ dictBean dictBean::fromJson(QString &json)
         if(rootObj.contains("list_example")){
             QJsonArray array=rootObj.value("list_example").toArray();
             QList<dict_exampleBean>list;
-
+            QMap<QString,QString> map;
 
             for(int i=0;i<array.size();i++){
                 dict_exampleBean bean;
                 QJsonObject obj=array[i].toObject();
                 if(obj.contains("title"))
-                    bean.getMap().insert("title",obj.value("title").toString());
+                    map.insert("title",obj.value("title").toString());
 
                 if(obj.contains("content"))
-                    bean.getMap().insert("content",obj.value("content").toString());
+                    map.insert("content",obj.value("content").toString());
 
+                bean.setMap(map);
                 list.append(bean);
             }
 

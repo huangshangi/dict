@@ -6,6 +6,7 @@
 #include <QJsonParseError>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <iostream>
 #include "dict_simpbean.h"
 #include "dict_webbean.h"
 #include "dict_phrasebean.h"
