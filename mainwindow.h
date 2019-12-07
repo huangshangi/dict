@@ -18,6 +18,7 @@
 #include "dict.h"
 #include "capture.h"
 #include "dictbean.h"
+#include "tranbean.h"
 #include "dict_simpbean.h"
 #include "dict_webbean.h"
 #include "dict_phrasebean.h"
@@ -37,10 +38,16 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void updateDict(dictBean bean);
+    void updateTran(tranBean bean);
+
+    void hideTranWidget();
+    void showTranWidget();
+
 
 private:
     Ui::MainWindow *ui;
-
+    tranBean tranbean;
+    dictBean dictbean;
 public slots:
 
 
@@ -55,6 +62,9 @@ private slots:
     void on_dict_button_find_clicked();
     void on_tran_edit_from_textChanged();
     void on_tran_button_clear_clicked();
+    void on_tran_button_tran_clicked();
+    void on_tran_checkbox_clicked(bool checked);
+    void on_tran_button_pron_clicked();
 };
 
 #endif // MAINWINDOW_H

@@ -51,7 +51,7 @@ dictBean dictBean::fromJson(QString &json)
                 bean.setList(list);
             }
         }
-        std::cout<<"ceshiwenjian";
+
         if(rootObj.contains("list_web")){
             QJsonArray array=rootObj.value("list_web").toArray();
             QList<dict_webBean>list;

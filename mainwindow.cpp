@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tabWidget_main->tabBar()->setStyle(new CustomTabStyle);
     ui->tabWidget_dict->tabBar()->hide();
 
+    hideTranWidget();
+
 
 }
 
@@ -20,6 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::updateDict(dictBean bean)
 {
+
    //对简明翻译进行更新
     QVBoxLayout *layout=new QVBoxLayout;
     QList<dict_simpBean>list=bean.getList();
@@ -147,8 +150,41 @@ void MainWindow::updateDict(dictBean bean)
 
 }
 
+void MainWindow::updateTran(tranBean bean)
+{
+
+    if(ui->tran_checkbox->isChecked()){
+        ui->tran_edit_to->setText(bean.getSrc()+"\n"+bean.getContent());
+    }else{
+        ui->tran_edit_to->setText(bean.getContent());
+    }
+
+
+}
+
+//在输入框无内容时隐藏组件
+void MainWindow::hideTranWidget()
+{
+    ui->tran_label_word->hide();
+    ui->tran_button_clear->hide();
+    ui->tran_button_copy->hide();
+    ui->tran_button_pron->hide();
+    ui->tran_checkbox->hide();
+}
+
+//在输入框有内容时展示组价
+void MainWindow::showTranWidget()
+{
+    ui->tran_label_word->show();
+    ui->tran_button_clear->show();
+    ui->tran_button_copy->show();
+    ui->tran_button_pron->show();
+    ui->tran_checkbox->show();
+}
+
 void MainWindow::playAudio(QNetworkReply *reply)
 {
+
 
     QByteArray array=reply->readAll();
 
@@ -183,8 +219,8 @@ void MainWindow::on_dict_find_clicked()
     //进行网络操作,查询到数据
     QByteArray data=QByteArray("{\"keyword\": \"あいさつ\", \"title\": \"あいさつ①【挨拶】\", \"list\": [{\"voc_pro\": \"[名·自サ]\", \"list\": [{\"sense-title\": \"问候，打招呼，致意\", \"sense-ex\": \"例证:\nあいさつを交わす\n互相致意\"}, {\"sense-title\": \"(初次见面)自我介绍\"}, {\"sense-title\": \"致词，讲话\"}, {\"sense-title\": \"(书信的首尾)问候，祝愿\"}, {\"sense-title\": \"拜访，告别，问候\"}]}], \"list_web\": [{\"title\": \"あいさつ\", \"content\": \"居然用“妖猫”打招呼，白哉小子，难得我说要来陪你玩呢。 解说：挨拶（あいさつ）：寒暄语。与人见面或分别等时的寒暄及其礼貌动作。\"}], \"list_phrase\": [{\"title\": \"ご挨拶\", \"content\": \"讲话\"}, {\"title\": \"开演挨拶\", \"content\": \"フリオ・キリコ\"}, {\"title\": \"舞台挨拶\", \"content\": \"ボクたちの交换日记\"}, {\"title\": \"闭会挨拶\", \"content\": \"神戸会場より中継\"}, {\"title\": \"舞台挨拶映像集\", \"content\": \"プレミア上映会・初日舞台挨拶\"}, {\"title\": \"舞台挨拶のみ\", \"content\": \"田中美佐子\"}, {\"title\": \"管理者挨拶\", \"content\": \"リハビリ室見学・仕事内容説明\"}], \"list_example\": [{\"title\": \"初日舞台挨拶决定！！\", \"content\": \"※初日舞台挨拶は満席となりました。\"}, {\"title\": \"映画『白夜行』公开初日舞台挨拶（ 堀北真希...\", \"content\": \"それにしても、堀北真希さんもよく、この映画の ...\"}, {\"title\": \"校长挨拶、行事予定、概要、学级の活动绍介等。\", \"content\": \"学校のキャッチフレーズ、各学级の活动、学校の最新ニュース等。\"}]}");
     QString s=data;
-    dictBean bean=dictBean::fromJson(s);
-    updateDict(bean);
+    dictbean=dictBean::fromJson(s);
+    updateDict(dictbean);
 
 }
 
@@ -207,7 +243,8 @@ void MainWindow::on_dict_shot_clicked()
 void MainWindow::on_dict_button_pron_clicked()
 {
     NetworkController *networkController=new NetworkController;
-    QNetworkAccessManager*manger=networkController->getUrl("https://dict.youdao.com/dictvoice?audio=%E3%83%86%E3%82%B9%E3%83%88&le=jap");
+    QNetworkAccessManager*manger=networkController->getUrl(dictbean.getAudio().toUtf8().data());
+    qDebug()<<dictbean.getAudio();
     connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(playAudio(QNetworkReply*)));
 
 }
@@ -222,6 +259,13 @@ void MainWindow::on_tran_edit_from_textChanged()
     //设置文字字数变化
     QString s=ui->tran_edit_from->toPlainText();
     int length=s.length();
+    if(length==0){
+        hideTranWidget();
+        return;
+    }else{
+        showTranWidget();
+    }
+
     QString lengthS=QString::number(length);
     ui->tran_label_word->setText(lengthS+"/"+QString::number(TRAN_FROM_MAX_LENGTH));
 
@@ -240,4 +284,30 @@ void MainWindow::on_tran_button_clear_clicked()
 {
     //清空翻译框
     ui->tran_edit_from->setText("");
+}
+
+void MainWindow::on_tran_button_tran_clicked()
+{
+    //进行翻译
+    QString value=ui->tran_edit_from->toPlainText();
+    //将翻译内容进行翻译
+    QString res="{\"src\": \"私は七瀬です\", \"content\": \"我是七濑\", \"audio\": \"https://dict.youdao.com/dictvoice?audio=私は七瀬です&le=jap\"}";
+    //connect(updateTran())
+    tranbean=tranBean::fromJson(res);
+
+    updateTran(tranbean);
+
+}
+
+void MainWindow::on_tran_checkbox_clicked(bool checked)
+{
+    updateTran(tranbean);
+}
+
+void MainWindow::on_tran_button_pron_clicked()
+{
+    NetworkController *networkController=new NetworkController;
+    QNetworkAccessManager*manger=networkController->getUrl("https://dict.youdao.com/dictvoice?audio=%E7%A7%81%E3%81%AF%E4%B8%83%E7%80%AC%E3%81%A7%E3%81%99&le=jap");
+    qDebug()<<tranbean.getAudio();
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(playAudio(QNetworkReply*)));
 }

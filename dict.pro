@@ -39,7 +39,8 @@ SOURCES += \
     dict_simpbean.cpp \
     dict_webbean.cpp \
     dict_phrasebean.cpp \
-    dict_examplebean.cpp
+    dict_examplebean.cpp \
+    tranbean.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -54,7 +55,8 @@ HEADERS += \
     dict_simpbean.h \
     dict_webbean.h \
     dict_phrasebean.h \
-    dict_examplebean.h
+    dict_examplebean.h \
+    tranbean.h
 
 FORMS += \
         mainwindow.ui \
