@@ -12,6 +12,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QVBoxLayout>
+#include <QMediaPlayer>
 #include "NetworkController.h"
 #include "dict_tran.h"
 #include "dict.h"
@@ -36,17 +37,18 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    dict*dictTab;
+
 public slots:
 
 
 private slots:
 
-
+    void playAudio(QNetworkReply*reply);
     void on_dict_button_back_clicked();
     void on_dict_find_clicked();
     void on_dict_doc_clicked();
     void on_dict_shot_clicked();
+    void on_dict_button_pron_clicked();
 };
 
 #endif // MAINWINDOW_H

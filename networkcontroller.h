@@ -21,6 +21,8 @@ public:
     QNetworkReply* reply;
 
     QNetworkAccessManager* getUrl(char* url);
+
+
 };
 
 #endif // NETWORKCONTROLLER_H

@@ -13,8 +13,9 @@ QNetworkAccessManager* NetworkController::getUrl(char* u)
 
     request.setUrl(QUrl(codec->toUnicode(u)));
 
-    QNetworkReply* reply = manger->get(request);
-
+    manger->get(request);
 
     return manger;
 }
+
+

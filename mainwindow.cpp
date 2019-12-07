@@ -10,10 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tabWidget_main->tabBar()->setStyle(new CustomTabStyle);
     ui->tabWidget_dict->tabBar()->hide();
 
-    NetworkController *networkController=new NetworkController;
-    QNetworkAccessManager*manger=networkController->getUrl("https://www.youdao.com/w/jap/テスト");
-    QMetaObject::Connection con = QObject::connect(manger,
-            SIGNAL(finished(QNetworkReply*)), dictTab, SLOT(requestFinished(QNetworkReply*)));
+
 }
 
 MainWindow::~MainWindow()
@@ -60,6 +57,27 @@ void MainWindow::updateDict(dictBean bean)
     ui->scrollArea_simp->widget()->setLayout(layout);
 }
 
+void MainWindow::playAudio(QNetworkReply *reply)
+{
+
+    QByteArray array=reply->readAll();
+
+    QFile file("C:\\Users\\hzh17\\Desktop\\temp.mp3");
+    if(file.open(QIODevice::WriteOnly)){
+        QDataStream stream(&file);
+        stream<<array;
+    }
+
+    file.close();
+    QMediaPlayer* player = new QMediaPlayer;
+
+    player->setMedia(QUrl::fromLocalFile(file.fileName()));
+    player->setVolume(30);
+    player->play();
+
+    file.remove();
+}
+
 
 
 void MainWindow::on_dict_button_back_clicked()
@@ -77,6 +95,7 @@ void MainWindow::on_dict_find_clicked()
     QString s=data;
     dictBean bean=dictBean::fromJson(s);
     updateDict(bean);
+
 }
 
 void MainWindow::on_dict_doc_clicked()
@@ -92,4 +111,13 @@ void MainWindow::on_dict_shot_clicked()
 {
     Capture* capture=new Capture;
     capture->show();
+}
+
+//播放音频
+void MainWindow::on_dict_button_pron_clicked()
+{
+    NetworkController *networkController=new NetworkController;
+    QNetworkAccessManager*manger=networkController->getUrl("https://dict.youdao.com/dictvoice?audio=%E3%83%86%E3%82%B9%E3%83%88&le=jap");
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(playAudio(QNetworkReply*)));
+
 }
