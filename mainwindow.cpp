@@ -307,7 +307,35 @@ void MainWindow::on_tran_checkbox_clicked(bool checked)
 void MainWindow::on_tran_button_pron_clicked()
 {
     NetworkController *networkController=new NetworkController;
-    QNetworkAccessManager*manger=networkController->getUrl("https://dict.youdao.com/dictvoice?audio=%E7%A7%81%E3%81%AF%E4%B8%83%E7%80%AC%E3%81%A7%E3%81%99&le=jap");
-    qDebug()<<tranbean.getAudio();
+    QNetworkAccessManager*manger=networkController->getUrl(tranbean.getAudio().toUtf8().data());
+
     connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(playAudio(QNetworkReply*)));
+}
+
+void MainWindow::on_dict_button_add_clicked()
+{
+    //将单词加入生词本
+    QSqlDatabase database=ConnectPool::openConnection();
+
+
+    databaseController controller=databaseController::getInstance(database);
+    newWordBean bean;
+
+    QObjectList list=ui->scrollAreaWidgetContents->children();
+    QString explain;
+    for(int i=1;i<list.size();i++){
+        QLabel*label=(QLabel*)list.at(i);
+        explain+=label->text()+"\n";
+    }
+    bean.setName(ui->dict_title->text());
+    bean.setGroupName("");
+    bean.setSoundMark("");
+    bean.setExplain(explain);
+    bean.setDateAdd("2019-12-08");
+
+
+    controller.insertNewWord(bean);
+
+
+    ConnectPool::closeConnection(database);
 }

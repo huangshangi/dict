@@ -23,7 +23,8 @@
 #include "dict_webbean.h"
 #include "dict_phrasebean.h"
 #include "dict_examplebean.h"
-
+#include "databasecontroller.h"
+#include "ConnectPool.h"
 #define TRAN_FROM_MAX_LENGTH 5000
 
 namespace Ui {
@@ -65,6 +66,7 @@ private slots:
     void on_tran_button_tran_clicked();
     void on_tran_checkbox_clicked(bool checked);
     void on_tran_button_pron_clicked();
+    void on_dict_button_add_clicked();
 };
 
 #endif // MAINWINDOW_H

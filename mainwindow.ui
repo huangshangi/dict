@@ -30,7 +30,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_dict">
      <property name="enabled">
@@ -177,7 +177,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_dict_simp">
          <attribute name="title">
@@ -534,6 +534,197 @@
      <attribute name="title">
       <string>单词本</string>
      </attribute>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>1091</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="tab_note_list">
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1091</width>
+          <height>741</height>
+         </rect>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents_5">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>1089</width>
+           <height>739</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_note_card"/>
+      <widget class="QWidget" name="tab_note_review"/>
+     </widget>
+     <widget class="QComboBox" name="tab_note_button_group">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>111</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>所有分组</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>未分组单词</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>未分组</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="tab_note_button_card">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>20</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>卡片</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tab_note_button_list">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>20</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string> 列表</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tab_note_button_review">
+      <property name="geometry">
+       <rect>
+        <x>910</x>
+        <y>20</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>复习</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tab_note_button_flush">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>20</y>
+        <width>41</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>刷新</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tab_note_button_setting">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>20</y>
+        <width>51</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>设置</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tab_note_button_find">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>20</y>
+        <width>51</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>搜索</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="tab_note_button_sort">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>20</y>
+        <width>87</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>新旧排序</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>旧新排序</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>字母A-Z排序</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>字母Z-A排序</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>复习进度快-慢排序</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>复习进度慢-快排序</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>随机排序</string>
+       </property>
+      </item>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_doc">
      <attribute name="title">

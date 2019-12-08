@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 QT       += network
 QT       += widgets
 QT       += multimedia
@@ -40,7 +41,10 @@ SOURCES += \
     dict_webbean.cpp \
     dict_phrasebean.cpp \
     dict_examplebean.cpp \
-    tranbean.cpp
+    tranbean.cpp \
+    connectpool.cpp \
+    newwordbean.cpp \
+    databasecontroller.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -56,7 +60,10 @@ HEADERS += \
     dict_webbean.h \
     dict_phrasebean.h \
     dict_examplebean.h \
-    tranbean.h
+    tranbean.h \
+    connectpool.h \
+    newwordbean.h \
+    databasecontroller.h
 
 FORMS += \
         mainwindow.ui \
