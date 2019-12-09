@@ -13,6 +13,7 @@
 #include <QJsonObject>
 #include <QVBoxLayout>
 #include <QMediaPlayer>
+#include <QMessageBox>
 #include "NetworkController.h"
 #include "dict_tran.h"
 #include "dict.h"
@@ -53,7 +54,7 @@ public slots:
 
 
 private slots:
-
+    void test();
     void playAudio(QNetworkReply*reply);
     void on_dict_button_back_clicked();
     void on_dict_find_clicked();
@@ -67,6 +68,10 @@ private slots:
     void on_tran_checkbox_clicked(bool checked);
     void on_tran_button_pron_clicked();
     void on_dict_button_add_clicked();
+    void on_tabWidget_main_tabBarClicked(int index);
+    void on_tab_note_button_card_clicked();
+    void on_tab_note_button_list_clicked();
+    void on_tab_note_button_review_clicked();
 };
 
 #endif // MAINWINDOW_H

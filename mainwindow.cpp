@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     hideTranWidget();
 
-
+    ui->tab_note_list_listwidget->setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
 MainWindow::~MainWindow()
@@ -182,6 +182,27 @@ void MainWindow::showTranWidget()
     ui->tran_checkbox->show();
 }
 
+void MainWindow::test()
+{
+    QSqlDatabase database=ConnectPool::openConnection();
+
+
+    databaseController controller=databaseController::getInstance(database);
+
+    int result=QMessageBox::question(this,"提示","确定删除该单词吗?","确定","取消");
+    if(result)
+        return;
+    QList<QListWidgetItem*>items=ui->tab_note_list_listwidget->selectedItems();
+    foreach (QListWidgetItem* item, items) {
+        QWidget*widget=ui->tab_note_list_listwidget->itemWidget(item);
+        QLabel*label=(QLabel*)widget->children().at(2);
+        QString s=label->text();
+        controller.deleteNewWord(s);
+        qDebug()<<"结束";
+
+    }
+}
+
 void MainWindow::playAudio(QNetworkReply *reply)
 {
 
@@ -338,4 +359,82 @@ void MainWindow::on_dict_button_add_clicked()
 
 
     ConnectPool::closeConnection(database);
+}
+
+void MainWindow::on_tabWidget_main_tabBarClicked(int index)
+{
+    //点击单词本
+    if(index==2){
+        QSqlDatabase database=ConnectPool::openConnection();
+        databaseController controller=databaseController::getInstance(database);
+        QList<newWordBean>list=controller.getListOrderDatedesc();
+        ui->tab_note_list_listwidget->clear();
+        for(int i=0;i<list.size();i++){
+            QListWidgetItem *item=new QListWidgetItem;
+
+            QWidget*widget=new QWidget;
+            QHBoxLayout*hLayout=new QHBoxLayout;
+            newWordBean bean=list.at(i);
+            QLabel*label_id=new QLabel;
+            QLabel*label_title=new QLabel;
+            QLabel*label_content=new QLabel;
+            label_id->setText(QString::number(i+1));
+            label_title->setText(bean.getName());
+            label_content->setText(bean.getExplain().replace("\n",""));
+            hLayout->addWidget(label_id,1,Qt::AlignLeft);
+            hLayout->addWidget(label_title,1,Qt::AlignLeft);
+            hLayout->addWidget(label_content,12,Qt::AlignLeft);
+
+            hLayout->addStretch();
+            widget->setLayout(hLayout);
+            QSize size=item->sizeHint();
+            item->setSizeHint(QSize(size.width(),56));
+            ui->tab_note_list_listwidget->addItem(item);
+            widget->setSizeIncrement(size.width(),56);
+            ui->tab_note_list_listwidget->setItemWidget(item,widget);
+
+        }
+
+
+
+
+        //添加 列表 右键菜单
+        QMenu*menu=new QMenu(this);
+        QAction*action_dele=new QAction("删除单词",this);
+        QAction*action_edit=new QAction("编辑单词",this);
+        QAction*action_move=new QAction("移动到",this);
+        QAction*action_noreview=new QAction("不再复习",this);
+        menu->addAction(action_dele);
+        menu->addAction(action_edit);
+        menu->addAction(action_move);
+        menu->addAction(action_noreview);
+
+        connect(ui->tab_note_list_listwidget,&QWidget::customContextMenuRequested,[=](const QPoint &pos)
+           {
+               menu->exec(QCursor::pos());
+           });
+
+        // 为动作设置信号槽
+
+        connect(action_dele, SIGNAL(triggered()),this,SLOT(test()));
+
+
+
+
+    }
+}
+
+void MainWindow::on_tab_note_button_list_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_tab_note_button_card_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_tab_note_button_review_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
 }

@@ -30,7 +30,7 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_dict">
      <property name="enabled">
@@ -177,7 +177,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="tab_dict_simp">
          <attribute name="title">
@@ -544,31 +544,18 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_note_list">
-       <widget class="QScrollArea" name="scrollArea">
+       <widget class="QListWidget" name="tab_note_list_listwidget">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
           <width>1091</width>
-          <height>741</height>
+          <height>671</height>
          </rect>
         </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents_5">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>1089</width>
-           <height>739</height>
-          </rect>
-         </property>
-        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_note_card"/>
