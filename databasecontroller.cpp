@@ -107,6 +107,36 @@ int databaseController::changeExplain(QString &name, QString &explain)
     return sqlQuery.exec();
 }
 
+int databaseController::updateNewword(newWordBean bean)
+{
+
+    QSqlQuery sqlQuery=getSqlQuery();
+
+    QString sql="update newWord set groupName=?,soundMark=?,explain=?  where name=?;";
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(bean.getGroupName());
+    sqlQuery.addBindValue(bean.getSoundMark());
+    sqlQuery.addBindValue(bean.getExplain());
+    sqlQuery.addBindValue(bean.getName());
+
+
+    return sqlQuery.exec();
+}
+
+newWordBean databaseController::getNewWordByName(QString &name)
+{
+
+    QString sql=QString("select * from newWord where name='%1';").arg(name);
+
+
+    QList<newWordBean>list=getList(sql);
+    if(list.size()>0)
+        return list.at(0);
+    else
+        return newWordBean();
+
+}
+
 QList<newWordBean> databaseController::getListOrderDatedesc()
 {
 
@@ -134,7 +164,7 @@ QList<newWordBean> databaseController::getListOrderWordZA()
 
 QList<newWordBean> databaseController::getListOrderRandom()
 {
-    QString sql="select *from newWord order by rand();";
+    QString sql="select *from newWord order by random();";
     return getList(sql);
 }
 

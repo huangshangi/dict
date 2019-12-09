@@ -558,8 +558,294 @@
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_note_card"/>
-      <widget class="QWidget" name="tab_note_review"/>
+      <widget class="QWidget" name="tab_note_card">
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>90</y>
+          <width>771</width>
+          <height>461</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="tab_note_card_Vlayout" stretch="1,1,1,1,1">
+         <item>
+          <layout class="QHBoxLayout" name="tab_note_card_HlayoutTitle" stretch="1,10,1">
+           <item>
+            <widget class="QLabel" name="tab_note_card_count">
+             <property name="text">
+              <string>1/19</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="tab_note_card_more">
+             <property name="text">
+              <string> 更多释义&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="tab_note_card_title">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="tab_note_card_expalin">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="tab_note_card_HlayoutMid" stretch="0,0,0">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="tab_note_card_button">
+             <property name="text">
+              <string>查看释义</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="tab_note_card_HlayoutEnd" stretch="1,10,1">
+           <item>
+            <widget class="QLabel" name="tab_note_card_review">
+             <property name="text">
+              <string> 还没有 复习过</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="tab_note_card_edit">
+             <property name="text">
+              <string>编辑单词 </string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="tab_note_card_pre">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>240</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string> 上一个</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="tab_note_card_next">
+        <property name="geometry">
+         <rect>
+          <x>860</x>
+          <y>240</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string> 下一个</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_note_review">
+       <widget class="QWidget" name="verticalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>90</y>
+          <width>771</width>
+          <height>461</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="tab_note_review_Vlayout" stretch="1,1,1,1,1">
+         <item>
+          <layout class="QHBoxLayout" name="tab_note_card_HlayoutTitle_4" stretch="1,10,1">
+           <item>
+            <widget class="QLabel" name="tab_note_review_count">
+             <property name="text">
+              <string>1/19</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="tab_note_review_more">
+             <property name="text">
+              <string> 更多释义&gt;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="tab_note_review_title">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="tab_note_review_expalin">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="tab_note_review_HlayoutMid" stretch="0,0,0">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="tab_note_review_button">
+             <property name="text">
+              <string>查看释义</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="tab_note_review_HlayoutEnd" stretch="1,10,1">
+           <item>
+            <widget class="QLabel" name="tab_note_review_review">
+             <property name="text">
+              <string> 还没有 复习过</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="tab_note_review_edit">
+             <property name="text">
+              <string>编辑单词 </string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="tab_note_review_remember">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>570</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>也可以用左方向键哦</string>
+        </property>
+        <property name="text">
+         <string> 记得</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="tab_note_review_noremember">
+        <property name="geometry">
+         <rect>
+          <x>500</x>
+          <y>570</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>也可以用右方向键哦</string>
+        </property>
+        <property name="text">
+         <string> 不记得</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
      <widget class="QComboBox" name="tab_note_button_group">
       <property name="geometry">

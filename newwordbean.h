@@ -8,6 +8,8 @@ class newWordBean
 public:
     newWordBean();
 
+    newWordBean(QString name,QString groupName,QString soundMark,QString explain);
+
     newWordBean(QString name,QString groupName,QString soundMark,QString explain,QString dateAdd);
 
     QString getName() const;

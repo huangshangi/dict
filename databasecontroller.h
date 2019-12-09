@@ -7,6 +7,7 @@
 #include <QMutex>
 #include <QMutexLocker>
 #include <QVariant>
+#include <QDebug>
 class databaseController
 {
 public:
@@ -27,6 +28,10 @@ public:
     int changeSoundMark(QString&name,QString&soundMark);
 
     int changeExplain(QString&name,QString&explain);
+
+    int updateNewword(newWordBean bean);
+
+    newWordBean getNewWordByName(QString &name);
 
     //按照时间降序排列
     QList<newWordBean> getListOrderDatedesc();

@@ -33,9 +33,7 @@ SOURCES += \
     networkcontroller.cpp \
     customtabstyle.cpp \
     youdaotranslator.cpp \
-    dict_tran.cpp \
     capture.cpp \
-    dict.cpp \
     dictbean.cpp \
     dict_simpbean.cpp \
     dict_webbean.cpp \
@@ -44,16 +42,15 @@ SOURCES += \
     tranbean.cpp \
     connectpool.cpp \
     newwordbean.cpp \
-    databasecontroller.cpp
+    databasecontroller.cpp \
+    dict_edit.cpp
 
 HEADERS += \
         mainwindow.h \
     settingwindow.h \
     networkcontroller.h \
     youdaotranslator.h \
-    dict_tran.h \
     capture.h \
-    dict.h \
     jsonpaser.h \
     dictbean.h \
     dict_simpbean.h \
@@ -63,11 +60,11 @@ HEADERS += \
     tranbean.h \
     connectpool.h \
     newwordbean.h \
-    databasecontroller.h
+    databasecontroller.h \
+    dict_edit.h
 
 FORMS += \
         mainwindow.ui \
     settingwindow.ui \
-    dict_tran.ui \
     capture.ui \
-    dict.ui
+    dict_edit.ui

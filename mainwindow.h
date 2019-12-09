@@ -15,8 +15,6 @@
 #include <QMediaPlayer>
 #include <QMessageBox>
 #include "NetworkController.h"
-#include "dict_tran.h"
-#include "dict.h"
 #include "capture.h"
 #include "dictbean.h"
 #include "tranbean.h"
@@ -26,6 +24,7 @@
 #include "dict_examplebean.h"
 #include "databasecontroller.h"
 #include "ConnectPool.h"
+#include "dict_edit.h"
 #define TRAN_FROM_MAX_LENGTH 5000
 
 namespace Ui {
@@ -54,7 +53,11 @@ public slots:
 
 
 private slots:
-    void test();
+    void tab_note_list_delete();//弹出菜单删除
+    void tab_note_list_edit();//弹出菜单编辑
+    void tab_note_list_move();//弹出菜单移动
+    void tab_note_list_noreview();//弹出菜单不在复习
+
     void playAudio(QNetworkReply*reply);
     void on_dict_button_back_clicked();
     void on_dict_find_clicked();
@@ -72,6 +75,9 @@ private slots:
     void on_tab_note_button_card_clicked();
     void on_tab_note_button_list_clicked();
     void on_tab_note_button_review_clicked();
+    void on_tab_note_card_pre_clicked();
+    void on_tab_note_card_button_clicked();
+    void on_tab_note_card_next_clicked();
 };
 
 #endif // MAINWINDOW_H

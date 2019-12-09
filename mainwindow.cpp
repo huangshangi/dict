@@ -182,7 +182,7 @@ void MainWindow::showTranWidget()
     ui->tran_checkbox->show();
 }
 
-void MainWindow::test()
+void MainWindow::tab_note_list_delete()
 {
     QSqlDatabase database=ConnectPool::openConnection();
 
@@ -198,9 +198,34 @@ void MainWindow::test()
         QLabel*label=(QLabel*)widget->children().at(2);
         QString s=label->text();
         controller.deleteNewWord(s);
-        qDebug()<<"结束";
 
     }
+    ConnectPool::closeConnection(database);
+}
+
+void MainWindow::tab_note_list_edit()
+{
+    QList<QListWidgetItem*>items=ui->tab_note_list_listwidget->selectedItems();
+
+    foreach (QListWidgetItem*item, items) {
+        QWidget*widget=ui->tab_note_list_listwidget->itemWidget(item);
+        QLabel*label=(QLabel*)widget->children().at(2);
+        dict_edit* bean=new dict_edit(this,label->text());
+
+        bean->show();
+    }
+
+
+}
+
+void MainWindow::tab_note_list_move()
+{
+
+}
+
+void MainWindow::tab_note_list_noreview()
+{
+
 }
 
 void MainWindow::playAudio(QNetworkReply *reply)
@@ -400,15 +425,17 @@ void MainWindow::on_tabWidget_main_tabBarClicked(int index)
 
         //添加 列表 右键菜单
         QMenu*menu=new QMenu(this);
+        QMenu*menuMove=new QMenu(this);
+        menuMove->setTitle("移动到");
         QAction*action_dele=new QAction("删除单词",this);
         QAction*action_edit=new QAction("编辑单词",this);
-        QAction*action_move=new QAction("移动到",this);
         QAction*action_noreview=new QAction("不再复习",this);
         menu->addAction(action_dele);
         menu->addAction(action_edit);
-        menu->addAction(action_move);
         menu->addAction(action_noreview);
-
+        menu->addMenu(menuMove);
+        QAction*action_move_1=new QAction("未分组",this);
+        menuMove->addAction(action_move_1);
         connect(ui->tab_note_list_listwidget,&QWidget::customContextMenuRequested,[=](const QPoint &pos)
            {
                menu->exec(QCursor::pos());
@@ -416,9 +443,13 @@ void MainWindow::on_tabWidget_main_tabBarClicked(int index)
 
         // 为动作设置信号槽
 
-        connect(action_dele, SIGNAL(triggered()),this,SLOT(test()));
+        connect(action_dele, SIGNAL(triggered()),this,SLOT(tab_note_list_delete()));
 
+        connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_edit()));
 
+        connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_move()));
+
+        connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_noreview()));
 
 
     }
@@ -432,9 +463,61 @@ void MainWindow::on_tab_note_button_list_clicked()
 void MainWindow::on_tab_note_button_card_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+
+    //进行数据的获取
+    int index=0;
+    QSqlDatabase database=ConnectPool::openConnection();
+    databaseController controller=databaseController::getInstance(database);
+
+    QList<newWordBean>list=controller.getListOrderRandom();
+    int size=list.size();
+
+    newWordBean bean=list.at(index);
+    ui->tab_note_card_count->setText(QString::number(index+1)+"/"+QString::number(size));
+    ui->tab_note_card_title->setText(bean.getName());
+    ui->tab_note_card_expalin->setText(bean.getExplain());
+    ui->tab_note_card_pre->show();
+    ui->tab_note_card_next->show();
+    ui->tab_note_card_button->show();
+    ui->tab_note_card_expalin->hide();
+    if(index+1==size)
+         ui->tab_note_card_next->hide();
+
+   if(index==0)
+         ui->tab_note_card_pre->hide();
+
+
+
+
+    ConnectPool::closeConnection(database);
 }
 
 void MainWindow::on_tab_note_button_review_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
+}
+
+
+
+void MainWindow::on_tab_note_card_pre_clicked()
+{
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt();
+    index-=1;
+
+    //判断未实现
+}
+
+void MainWindow::on_tab_note_card_button_clicked()
+{
+    ui->tab_note_card_button->hide();
+
+    ui->tab_note_card_expalin->show();
+}
+
+void MainWindow::on_tab_note_card_next_clicked()
+{
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt();
+    index+=1;
+
+    //判断未实现
 }

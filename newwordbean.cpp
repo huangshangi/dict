@@ -5,6 +5,14 @@ newWordBean::newWordBean()
 
 }
 
+newWordBean::newWordBean(QString name, QString groupName, QString soundMark, QString explain)
+{
+    this->name=name;
+    this->groupName=groupName;
+    this->soundMark=soundMark;
+    this->explain=explain;
+}
+
 newWordBean::newWordBean(QString name, QString groupName, QString soundMark, QString explain, QString dateAdd)
 {
     this->name=name;
