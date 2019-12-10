@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tabWidget_dict->tabBar()->hide();
 
     hideTranWidget();
-
+    showNoteTabbar(0);
     ui->tab_note_list_listwidget->setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
@@ -182,6 +182,14 @@ void MainWindow::showTranWidget()
     ui->tran_checkbox->show();
 }
 
+void MainWindow::showNoteTabbar(int index)
+{
+    //隐藏所有布局
+    ui->dict_tarbar_widgetedWidget->setCurrentIndex(index);
+
+
+}
+
 void MainWindow::tab_note_list_delete()
 {
     QSqlDatabase database=ConnectPool::openConnection();
@@ -224,6 +232,22 @@ void MainWindow::tab_note_list_move()
 }
 
 void MainWindow::tab_note_list_noreview()
+{
+
+}
+
+void MainWindow::tab_note_list_setting_group()
+{
+    groupmanagment *managment=new groupmanagment(this);
+    managment->show();
+}
+
+void MainWindow::tab_note_list_setting_add()
+{
+
+}
+
+void MainWindow::tab_note_list_setting_setting()
 {
 
 }
@@ -457,13 +481,14 @@ void MainWindow::on_tabWidget_main_tabBarClicked(int index)
 
 void MainWindow::on_tab_note_button_list_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->dict_stackedWidget->setCurrentIndex(0);
+    showNoteTabbar(0);
 }
 
 void MainWindow::on_tab_note_button_card_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-
+    ui->dict_stackedWidget->setCurrentIndex(1);
+    showNoteTabbar(1);
     //进行数据的获取
     int index=0;
     QSqlDatabase database=ConnectPool::openConnection();
@@ -494,7 +519,8 @@ void MainWindow::on_tab_note_button_card_clicked()
 
 void MainWindow::on_tab_note_button_review_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->dict_stackedWidget->setCurrentIndex(2);
+    showNoteTabbar(2);
 }
 
 
@@ -520,4 +546,26 @@ void MainWindow::on_tab_note_card_next_clicked()
     index+=1;
 
     //判断未实现
+}
+
+
+void MainWindow::on_tab_note_list_button_setting_clicked()
+{
+    QMenu*menu=new QMenu(this);
+
+    QAction*action_group=new QAction("分组管理",this);
+    QAction*action_add=new QAction("添加单词",this);
+    QAction*action_setting=new QAction("偏好设置",this);
+    menu->addAction(action_group);
+    menu->addAction(action_add);
+    menu->addAction(action_setting);
+
+    connect(action_group, SIGNAL(triggered()),this,SLOT(tab_note_list_setting_group()));
+    connect(action_add, SIGNAL(triggered()),this,SLOT(tab_note_list_setting_add()));
+    connect(action_setting, SIGNAL(triggered()),this,SLOT(tab_note_list_setting_setting()));
+
+    QPoint p=QPoint(ui->tab_note_list_button_setting->x(),
+                    ui->tab_note_list_button_setting->y()+ui->tab_note_list_button_setting->height());
+
+    menu->exec(ui->tab_note_list_button_setting->mapToGlobal(ui->tab_note_list_button_setting->mapFromParent(p)));
 }

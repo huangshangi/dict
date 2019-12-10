@@ -23,7 +23,7 @@ public:
 
     int deleteNewWord(QString&name);
 
-    int changeGroupName(QString&name,QString&groupName);
+    int changeGroupName(QString&oldname,QString&groupName);
 
     int changeSoundMark(QString&name,QString&soundMark);
 
@@ -31,7 +31,14 @@ public:
 
     int updateNewword(newWordBean bean);
 
+    int deleteGroup(QString&name);
+
+    int addGroup(QString&name);
+
     newWordBean getNewWordByName(QString &name);
+
+    //获取单词本组
+    QList<QString> getGroups();
 
     //按照时间降序排列
     QList<newWordBean> getListOrderDatedesc();

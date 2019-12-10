@@ -25,6 +25,7 @@
 #include "databasecontroller.h"
 #include "ConnectPool.h"
 #include "dict_edit.h"
+#include "groupmanagment.h"
 #define TRAN_FROM_MAX_LENGTH 5000
 
 namespace Ui {
@@ -43,7 +44,7 @@ public:
 
     void hideTranWidget();
     void showTranWidget();
-
+    void showNoteTabbar(int);
 
 private:
     Ui::MainWindow *ui;
@@ -57,6 +58,9 @@ private slots:
     void tab_note_list_edit();//弹出菜单编辑
     void tab_note_list_move();//弹出菜单移动
     void tab_note_list_noreview();//弹出菜单不在复习
+    void tab_note_list_setting_group();//添加组别
+    void tab_note_list_setting_add();//添加单词
+    void tab_note_list_setting_setting();//偏好设置
 
     void playAudio(QNetworkReply*reply);
     void on_dict_button_back_clicked();
@@ -78,6 +82,7 @@ private slots:
     void on_tab_note_card_pre_clicked();
     void on_tab_note_card_button_clicked();
     void on_tab_note_card_next_clicked();
+    void on_tab_note_list_button_setting_clicked();
 };
 
 #endif // MAINWINDOW_H

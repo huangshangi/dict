@@ -75,11 +75,16 @@ int databaseController::changeGroupName(QString &name, QString &groupName)
 {
     QSqlQuery sqlQuery=getSqlQuery();
 
-    QString sql="update newWord set groupName=? where name=?;";
+    QString sql="update newWord set groupName=? where groupName=?;";
     sqlQuery.prepare(sql);
     sqlQuery.addBindValue(groupName);
     sqlQuery.addBindValue(name);
+    sqlQuery.exec();
 
+    sql="update groups set groupName=? where groupName=?; ";
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(groupName);
+    sqlQuery.addBindValue(name);
     return sqlQuery.exec();
 }
 
@@ -123,6 +128,38 @@ int databaseController::updateNewword(newWordBean bean)
     return sqlQuery.exec();
 }
 
+//待优化
+int databaseController::deleteGroup(QString &name)
+{
+    QSqlQuery sqlQuery=getSqlQuery();
+
+
+
+    QString sql="update newWord set groupName='' where groupName=?;";
+
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(name);
+    sqlQuery.exec();
+
+    sql="delete from groups where groupName=?;";
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(name);
+
+
+
+    return sqlQuery.exec();
+}
+
+int databaseController::addGroup(QString &name)
+{
+    QString sql="insert into groups (groupName) values(?);";
+    QSqlQuery sqlQuery=getSqlQuery();
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(name);
+
+    return sqlQuery.exec();
+}
+
 newWordBean databaseController::getNewWordByName(QString &name)
 {
 
@@ -135,6 +172,19 @@ newWordBean databaseController::getNewWordByName(QString &name)
     else
         return newWordBean();
 
+}
+
+QList<QString> databaseController::getGroups()
+{
+    QList<QString>list;
+    QString sql="select distinct groupName from groups;";
+    QSqlQuery sqlQuery=getSqlQuery();
+    sqlQuery.prepare(sql);
+    sqlQuery.exec();
+    while(sqlQuery.next()){
+        list.append(sqlQuery.value(0).toString());
+    }
+    return list;
 }
 
 QList<newWordBean> databaseController::getListOrderDatedesc()

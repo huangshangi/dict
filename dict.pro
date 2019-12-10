@@ -43,7 +43,9 @@ SOURCES += \
     connectpool.cpp \
     newwordbean.cpp \
     databasecontroller.cpp \
-    dict_edit.cpp
+    dict_edit.cpp \
+    groupmanagment.cpp \
+    dict_note_add_window.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -61,10 +63,14 @@ HEADERS += \
     connectpool.h \
     newwordbean.h \
     databasecontroller.h \
-    dict_edit.h
+    dict_edit.h \
+    groupmanagment.h \
+    dict_note_add_window.h
 
 FORMS += \
         mainwindow.ui \
     settingwindow.ui \
     capture.ui \
-    dict_edit.ui
+    dict_edit.ui \
+    groupmanagment.ui \
+    dict_note_add_window.ui
