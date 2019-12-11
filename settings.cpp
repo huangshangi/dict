@@ -50,6 +50,11 @@ settings* settings::getInstance()
     return obj;
 }
 
+void settings::update()
+{
+    obj=new settings();
+}
+
 QString settings::getFrom() const
 {
     return from;

@@ -2,7 +2,8 @@
 #define DICT_PREFERENCE_WINDOW_H
 
 #include <QMainWindow>
-
+#include "config.h"
+#include "settings.h"
 namespace Ui {
 class dict_preference_window;
 }

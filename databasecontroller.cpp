@@ -88,6 +88,16 @@ int databaseController::changeGroupName(QString &name, QString &groupName)
     return sqlQuery.exec();
 }
 
+int databaseController::changeGroupNameByName(QString&groupName,QString &dictName)
+{
+    QSqlQuery sqlQuery=getSqlQuery();
+    QString sql="update newWord set groupName=? where name=?;";
+    sqlQuery.prepare(sql);
+    sqlQuery.addBindValue(groupName);
+    sqlQuery.addBindValue(dictName);
+    return sqlQuery.exec();
+}
+
 int databaseController::changeSoundMark(QString &name, QString &soundMark)
 {
     QSqlQuery sqlQuery=getSqlQuery();
@@ -187,34 +197,74 @@ QList<QString> databaseController::getGroups()
     return list;
 }
 
-QList<newWordBean> databaseController::getListOrderDatedesc()
-{
-
-    QString sql="select *from newWord order by dateAdd desc;";
+QList<newWordBean> databaseController::getListOrderDatedesc(QString group)
+{ 
+    QString add="";
+    if(!group.isEmpty())
+        add="where groupName='"+group+"'";
+    else if(!group.isNull())
+        add="where groupName is null or groupName==''";
+    QString sql=QString("select *from newWord %1 order by dateAdd desc;").arg(add);
     return getList(sql);
 }
 
-QList<newWordBean> databaseController::getListOrderDateasc()
+QList<newWordBean> databaseController::getListOrderDateasc(QString group)
 {
-    QString sql="select *from newWord order by dateAdd asc;";
+
+    QString add="";
+    if(!group.isEmpty())
+        add="where groupName='"+group+"'";
+    else if(!group.isNull())
+        add="where groupName is null or groupName==''";
+    QString sql=QString("select *from newWord %1 order by dateAdd asc;").arg(add);
+
     return getList(sql);
 }
 
-QList<newWordBean> databaseController::getListOrderWordAZ()
+QList<newWordBean> databaseController::getListOrderWordAZ(QString group)
 {
-    QString sql="select *from newWord order by name asc;";
+
+    QString add="";
+    if(!group.isEmpty())
+        add="where groupName='"+group+"'";
+    else if(!group.isNull())
+        add="where groupName is null or groupName==''";
+    QString sql=QString("select *from newWord %1 order by name asc;").arg(add);
     return getList(sql);
 }
 
-QList<newWordBean> databaseController::getListOrderWordZA()
+QList<newWordBean> databaseController::getListOrderWordZA(QString group)
 {
-    QString sql="select *from newWord order by name desc;";
+
+    QString add="";
+    if(!group.isEmpty())
+        add="where groupName='"+group+"'";
+    else if(!group.isNull())
+        add="where groupName is null or groupName==''";
+    QString sql=QString("select *from newWord %1 order by name desc;").arg(add);
     return getList(sql);
 }
 
-QList<newWordBean> databaseController::getListOrderRandom()
+QList<newWordBean> databaseController::getListOrderReviewFS(QString group)
 {
-    QString sql="select *from newWord order by random();";
+
+}
+
+QList<newWordBean> databaseController::getListOrderReviewSF(QString group)
+{
+
+}
+
+QList<newWordBean> databaseController::getListOrderRandom(QString group)
+{
+    QString add="";
+    if(!group.isEmpty())
+        add="where groupName='"+group+"'";
+    else if(!group.isNull())
+        add="where groupName is null or groupName==''";
+    QString sql=QString("select *from newWord %1 order by random();").arg(add);
+
+
     return getList(sql);
 }
 

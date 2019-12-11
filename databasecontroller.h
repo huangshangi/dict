@@ -25,6 +25,8 @@ public:
 
     int changeGroupName(QString&oldname,QString&groupName);
 
+    int changeGroupNameByName(QString&, QString&dictName);
+
     int changeSoundMark(QString&name,QString&soundMark);
 
     int changeExplain(QString&name,QString&explain);
@@ -41,19 +43,19 @@ public:
     QList<QString> getGroups();
 
     //按照时间降序排列
-    QList<newWordBean> getListOrderDatedesc();
+    QList<newWordBean> getListOrderDatedesc(QString group=NULL);
     //按照时间升序排序
-    QList<newWordBean> getListOrderDateasc();
+    QList<newWordBean> getListOrderDateasc(QString group=NULL);
     //按照字母A-Z排序
-    QList<newWordBean> getListOrderWordAZ();
+    QList<newWordBean> getListOrderWordAZ(QString group=NULL);
     //按照字母Z-A排序
-    QList<newWordBean> getListOrderWordZA();
+    QList<newWordBean> getListOrderWordZA(QString group=NULL);
     //按照复习进度快-慢
-    QList<newWordBean> getListOrderReviewFS();
+    QList<newWordBean> getListOrderReviewFS(QString group=NULL);
     //按照复习进度慢-快
-    QList<newWordBean> getListOrderReviewSF();
+    QList<newWordBean> getListOrderReviewSF(QString group=NULL);
     //随机排序
-    QList<newWordBean> getListOrderRandom();
+    QList<newWordBean> getListOrderRandom(QString group=NULL);
 
 private:
     static QMutex mutex;

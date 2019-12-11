@@ -12,6 +12,8 @@ public:
 
     static settings* getInstance();
 
+    static void update();
+
     QString getFrom() const;
     void setFrom(const QString &value);
 

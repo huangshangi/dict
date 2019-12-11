@@ -9,6 +9,7 @@
 #include "databasecontroller.h"
 #include "connectpool.h"
 #include "newwordbean.h"
+#include <QCloseEvent>
 namespace Ui {
 class dict_edit;
 }
@@ -16,7 +17,8 @@ class dict_edit;
 class dict_edit : public QMainWindow
 {
     Q_OBJECT
-
+signals:
+    void updateList();
 public:
     explicit dict_edit(QWidget *parent = 0);
     dict_edit(QWidget *parent ,QString name);
@@ -24,6 +26,8 @@ public:
 
     QString getName() const;
     void setName(const QString &value);
+
+    void closeEvent(QCloseEvent*closeEvent);
 
 private slots:
     void on_dict_edit_button_dict_clicked();

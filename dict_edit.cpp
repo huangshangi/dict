@@ -24,6 +24,12 @@ void dict_edit::setName(const QString &name)
     this->name=name;
 }
 
+void dict_edit::closeEvent(QCloseEvent *closeEvent)
+{
+
+    emit updateList();
+}
+
 dict_edit::dict_edit(QWidget *parent, QString name):
     QMainWindow(parent),
     ui(new Ui::dict_edit)
@@ -33,6 +39,7 @@ dict_edit::dict_edit(QWidget *parent, QString name):
     if(!name.isEmpty())
         ui->dict_edit_edit_dict->setText(name);
 
+    connect(this,SIGNAL(updateList()),parent,SLOT(updateList()));
 
     //获取单词本中单词
     QSqlDatabase database=ConnectPool::openConnection();

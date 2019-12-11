@@ -43,7 +43,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void init();//初始化
+    void noteInit();//初始化
     void updateDict(dictBean bean);
     void updateTran(tranBean bean);
 
@@ -57,6 +57,11 @@ private:
     Ui::MainWindow *ui;
     tranBean tranbean;
     dictBean dictbean;
+    QList<newWordBean>list_newWord;
+
+
+    QList<newWordBean>getNoteList();
+    void updateNoteList(QList<newWordBean>);
 public slots:
 
 
@@ -72,6 +77,7 @@ private slots:
     void playAudio(QNetworkReply*reply);
     void dictFind(QNetworkReply*reply);
     void tranFind(QNetworkReply*reply);
+    void updateList();
     void on_dict_button_back_clicked();
     void on_dict_find_clicked();
     void on_dict_doc_clicked();
@@ -97,6 +103,8 @@ private slots:
     void on_dict_edit_find_textChanged(const QString &arg1);
     void on_tab_note_card_button_setting_clicked();
     void on_tab_note_review_button_setting_clicked();
+    void on_tab_note_list_button_group_currentIndexChanged(const QString &arg1);
+    void on_tab_note_list_button_sort_currentIndexChanged(int index);
 };
 
 #endif // MAINWINDOW_H

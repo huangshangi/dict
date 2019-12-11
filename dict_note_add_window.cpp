@@ -6,11 +6,19 @@ dict_note_add_window::dict_note_add_window(QWidget *parent) :
     ui(new Ui::dict_note_add_window)
 {
     ui->setupUi(this);
+    connect(this,SIGNAL(updateList()),parent,SLOT(updateList()));
 }
 
 dict_note_add_window::~dict_note_add_window()
 {
     delete ui;
+}
+
+void dict_note_add_window::closeEvent(QCloseEvent *closeEvent)
+{
+
+
+    emit updateList();
 }
 
 void dict_note_add_window::on_button_sure_clicked()
@@ -34,7 +42,6 @@ void dict_note_add_window::on_button_sure_clicked()
     controller.insertNewWord(bean);
     ConnectPool::closeConnection(database);
 
-
     close();
 }
 
@@ -42,3 +49,5 @@ void dict_note_add_window::on_button_cancel_clicked()
 {
     close();
 }
+
+

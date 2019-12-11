@@ -20,45 +20,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::init()
+//待优化  只需要初始化一次
+void MainWindow::noteInit()
 {
+
     QSqlDatabase database=ConnectPool::openConnection();
     databaseController controller=databaseController::getInstance(database);
     //分组信息
     QList<QString>groups=controller.getGroups();
     ui->tab_note_list_button_group->clear();
+    //组装分组信息
+    ui->tab_note_list_button_group->addItem("所有分组");
+    ui->tab_note_list_button_group->addItem("未分组");
     ui->tab_note_list_button_group->addItems(QStringList(groups));
-    QList<newWordBean>list=controller.getListOrderDatedesc();
-    ui->tab_note_list_listwidget->clear();
-    for(int i=0;i<list.size();i++){
-        QListWidgetItem *item=new QListWidgetItem;
 
-        QWidget*widget=new QWidget;
-        QHBoxLayout*hLayout=new QHBoxLayout;
-        newWordBean bean=list.at(i);
-        QLabel*label_id=new QLabel;
-        QLabel*label_title=new QLabel;
-        QLabel*label_content=new QLabel;
-        label_id->setText(QString::number(i+1));
-        label_title->setText(bean.getName());
-        label_content->setText(bean.getExplain().replace("\n",""));
-        hLayout->addWidget(label_id,1,Qt::AlignLeft);
-        hLayout->addWidget(label_title,1,Qt::AlignLeft);
-        hLayout->addWidget(label_content,12,Qt::AlignLeft);
-
-        hLayout->addStretch();
-        widget->setLayout(hLayout);
-        QSize size=item->sizeHint();
-        item->setSizeHint(QSize(size.width(),56));
-        ui->tab_note_list_listwidget->addItem(item);
-        widget->setSizeIncrement(size.width(),56);
-        ui->tab_note_list_listwidget->setItemWidget(item,widget);
-
-    }
-
-
-
-
+    //单词列表初始化
+    list_newWord=controller.getListOrderRandom();
+    updateNoteList(list_newWord);
     //添加 列表 右键菜单
     QMenu*menu=new QMenu(this);
     QMenu*menuMove=new QMenu(this);
@@ -70,8 +48,14 @@ void MainWindow::init()
     menu->addAction(action_edit);
     menu->addAction(action_noreview);
     menu->addMenu(menuMove);
-    QAction*action_move_1=new QAction("未分组",this);
-    menuMove->addAction(action_move_1);
+    QList<QString>list=controller.getGroups();
+    for(int i=0;i<list.size();i++){
+        QAction*action_move=new QAction(list.at(i),this);
+        menuMove->addAction(action_move);
+        connect(action_move, SIGNAL(triggered()),this,SLOT(tab_note_list_move()));
+    }
+
+
     connect(ui->tab_note_list_listwidget,&QWidget::customContextMenuRequested,[=](const QPoint &pos)
        {
            menu->exec(QCursor::pos());
@@ -83,9 +67,7 @@ void MainWindow::init()
 
     connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_edit()));
 
-    connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_move()));
-
-    connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_noreview()));
+    connect(action_noreview,SIGNAL(triggered()),this,SLOT(tab_note_list_noreview()));
 
 }
 
@@ -273,6 +255,85 @@ QMap<QString, QString> MainWindow::packUrlTran(QString)
     return QMap<QString,QString>();
 }
 
+QList<newWordBean> MainWindow::getNoteList()
+{
+    QSqlDatabase database=ConnectPool::openConnection();
+    QString group=ui->tab_note_list_button_group->currentText();
+    int index=ui->tab_note_list_button_sort->currentIndex();
+
+    databaseController controller=databaseController::getInstance(database);
+    QString param=NULL;
+    if(!group.compare("未分组"))
+        param="";
+    else if(!group.compare("所有分组"))
+        param=nullptr;
+    else
+        param=group;
+
+    switch (index) {
+    case 0:
+        list_newWord=controller.getListOrderDatedesc(param);
+        break;
+    case 1:
+        list_newWord=controller.getListOrderDateasc(param);
+        break;
+    case 2:
+        list_newWord=controller.getListOrderWordAZ(param);
+        break;
+    case 3:
+        list_newWord=controller.getListOrderWordZA(param);
+        break;
+    case 4:
+        list_newWord=controller.getListOrderReviewFS(param);
+        break;
+    case 5:
+        list_newWord=controller.getListOrderReviewSF(param);
+        break;
+    case 6:
+        list_newWord=controller.getListOrderRandom(param);
+        break;
+    default:
+        break;
+    }
+    ConnectPool::closeConnection(database);
+
+    return list_newWord;
+
+}
+
+void MainWindow::updateNoteList(QList<newWordBean>list)
+{
+    ui->tab_note_list_listwidget->clear();
+
+    for(int i=0;i<list.size();i++){
+        QListWidgetItem *item=new QListWidgetItem;
+
+        QWidget*widget=new QWidget;
+        QHBoxLayout*hLayout=new QHBoxLayout;
+        newWordBean bean=list.at(i);
+        QLabel*label_id=new QLabel;
+        QLabel*label_title=new QLabel;
+        QLabel*label_content=new QLabel;
+        label_id->setText(QString::number(i+1));
+        label_title->setText(bean.getName());
+        label_content->setText(bean.getExplain().replace("\n",""));
+        hLayout->addWidget(label_id,1,Qt::AlignLeft);
+        hLayout->addWidget(label_title,1,Qt::AlignLeft);
+        hLayout->addWidget(label_content,12,Qt::AlignLeft);
+
+        hLayout->addStretch();
+        widget->setLayout(hLayout);
+        QSize size=item->sizeHint();
+        item->setSizeHint(QSize(size.width(),56));
+        ui->tab_note_list_listwidget->addItem(item);
+        widget->setSizeIncrement(size.width(),56);
+        ui->tab_note_list_listwidget->setItemWidget(item,widget);
+
+    }
+
+
+}
+
 void MainWindow::tab_note_list_delete()
 {
     QSqlDatabase database=ConnectPool::openConnection();
@@ -289,8 +350,8 @@ void MainWindow::tab_note_list_delete()
         QLabel*label=(QLabel*)widget->children().at(2);
         QString s=label->text();
         controller.deleteNewWord(s);
-
     }
+    updateNoteList(getNoteList());
     ConnectPool::closeConnection(database);
 }
 
@@ -311,7 +372,21 @@ void MainWindow::tab_note_list_edit()
 
 void MainWindow::tab_note_list_move()
 {
+    int result=QMessageBox::question(this,"提示","确定移动选中的单词到新的分组吗?","确定","取消");
+    if(result)
+        return;
+    QSqlDatabase database=ConnectPool::openConnection();
+    databaseController controller=databaseController::getInstance(database);
+    QAction* action=(QAction*)sender();
+    QLabel* label=(QLabel*)(ui->tab_note_list_listwidget->itemWidget(
+                ui->tab_note_list_listwidget->selectedItems()[0])->children().at(2));
+    QString group=QString(action->text());
+    QString name=QString(label->text());
 
+    controller.changeGroupNameByName(group,name);
+    QList<newWordBean>list=getNoteList();
+
+    updateNoteList(list);
 }
 
 void MainWindow::tab_note_list_noreview()
@@ -327,8 +402,10 @@ void MainWindow::tab_note_list_setting_group()
 
 void MainWindow::tab_note_list_setting_add()
 {
-    dict_note_add_window* window=new dict_note_add_window;
+    dict_note_add_window* window=new dict_note_add_window(this);
     window->show();
+
+
 }
 
 void MainWindow::tab_note_list_setting_setting()
@@ -375,6 +452,11 @@ void MainWindow::tranFind(QNetworkReply *reply)
     QString s=data;
     tranbean=tranBean::fromJson(s);
     updateTran(tranbean);
+}
+
+void MainWindow::updateList()
+{
+    updateNoteList(getNoteList());
 }
 
 
@@ -517,7 +599,7 @@ void MainWindow::on_dict_button_add_clicked()
     bean.setGroupName("");
     bean.setSoundMark("");
     bean.setExplain(explain);
-    bean.setDateAdd("2019-12-08");
+    bean.setDateAdd(QDate::currentDate().toString("yyyy-MM-dd"));
 
 
     controller.insertNewWord(bean);
@@ -530,7 +612,7 @@ void MainWindow::on_tabWidget_main_tabBarClicked(int index)
 {
     //点击单词本
     if(index==2){
-        init();
+        noteInit();
 
 
     }
@@ -660,4 +742,26 @@ void MainWindow::on_tab_note_review_button_setting_clicked()
 {
     dict_preference_window*window=new dict_preference_window;
     window->show();
+}
+
+//单词本界面 分组combox被点击 切换分组
+void MainWindow::on_tab_note_list_button_group_currentIndexChanged(const QString &arg1)
+{
+    QSqlDatabase database=ConnectPool::openConnection();
+    databaseController controller=databaseController::getInstance(database);
+
+    list_newWord=getNoteList();
+    updateNoteList(list_newWord);
+    ConnectPool::closeConnection(database);
+
+
+}
+
+void MainWindow::on_tab_note_list_button_sort_currentIndexChanged(int index)
+{
+    QSqlDatabase database=ConnectPool::openConnection();
+    databaseController controller=databaseController::getInstance(database);
+    list_newWord=getNoteList();
+    updateNoteList(list_newWord);
+    ConnectPool::closeConnection(database);
 }
