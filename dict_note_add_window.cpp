@@ -37,3 +37,8 @@ void dict_note_add_window::on_button_sure_clicked()
 
     close();
 }
+
+void dict_note_add_window::on_button_cancel_clicked()
+{
+    close();
+}

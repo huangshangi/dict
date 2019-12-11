@@ -4,7 +4,8 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QTextCodec>
-
+#include <QMap>
+#include <QUrlQuery>
 class NetworkController
 {
 
@@ -21,6 +22,8 @@ public:
     QNetworkReply* reply;
 
     QNetworkAccessManager* getUrl(char* url);
+
+    QNetworkAccessManager*postUrl(char*url,QMap<QString,QString>);
 
 
 };

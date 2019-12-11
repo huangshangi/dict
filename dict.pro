@@ -45,7 +45,11 @@ SOURCES += \
     databasecontroller.cpp \
     dict_edit.cpp \
     groupmanagment.cpp \
-    dict_note_add_window.cpp
+    dict_note_add_window.cpp \
+    dict_preference_window.cpp \
+    config.cpp \
+    languagewindow.cpp \
+    settings.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -65,7 +69,11 @@ HEADERS += \
     databasecontroller.h \
     dict_edit.h \
     groupmanagment.h \
-    dict_note_add_window.h
+    dict_note_add_window.h \
+    dict_preference_window.h \
+    config.h \
+    languagewindow.h \
+    settings.h
 
 FORMS += \
         mainwindow.ui \
@@ -73,4 +81,6 @@ FORMS += \
     capture.ui \
     dict_edit.ui \
     groupmanagment.ui \
-    dict_note_add_window.ui
+    dict_note_add_window.ui \
+    dict_preference_window.ui \
+    languagewindow.ui

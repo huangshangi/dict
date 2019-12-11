@@ -26,6 +26,9 @@
 #include "ConnectPool.h"
 #include "dict_edit.h"
 #include "groupmanagment.h"
+#include "dict_note_add_window.h"
+#include "settingwindow.h"
+#include "dict_preference_window.h"
 #define TRAN_FROM_MAX_LENGTH 5000
 
 namespace Ui {
@@ -39,6 +42,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    void init();//初始化
     void updateDict(dictBean bean);
     void updateTran(tranBean bean);
 
@@ -46,6 +51,8 @@ public:
     void showTranWidget();
     void showNoteTabbar(int);
 
+    QString packUrlDict(QString);
+    QMap<QString,QString> packUrlTran(QString);
 private:
     Ui::MainWindow *ui;
     tranBean tranbean;
@@ -63,6 +70,8 @@ private slots:
     void tab_note_list_setting_setting();//偏好设置
 
     void playAudio(QNetworkReply*reply);
+    void dictFind(QNetworkReply*reply);
+    void tranFind(QNetworkReply*reply);
     void on_dict_button_back_clicked();
     void on_dict_find_clicked();
     void on_dict_doc_clicked();
@@ -83,6 +92,11 @@ private slots:
     void on_tab_note_card_button_clicked();
     void on_tab_note_card_next_clicked();
     void on_tab_note_list_button_setting_clicked();
+    void on_tab_note_review_button_clicked();
+    void on_dict_edit_textChanged();
+    void on_dict_edit_find_textChanged(const QString &arg1);
+    void on_tab_note_card_button_setting_clicked();
+    void on_tab_note_review_button_setting_clicked();
 };
 
 #endif // MAINWINDOW_H

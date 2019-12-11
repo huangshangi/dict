@@ -23,6 +23,8 @@ public:
 private slots:
     void on_button_sure_clicked();
 
+    void on_button_cancel_clicked();
+
 private:
     Ui::dict_note_add_window *ui;
 };

@@ -20,8 +20,81 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::init()
+{
+    QSqlDatabase database=ConnectPool::openConnection();
+    databaseController controller=databaseController::getInstance(database);
+    //分组信息
+    QList<QString>groups=controller.getGroups();
+    ui->tab_note_list_button_group->clear();
+    ui->tab_note_list_button_group->addItems(QStringList(groups));
+    QList<newWordBean>list=controller.getListOrderDatedesc();
+    ui->tab_note_list_listwidget->clear();
+    for(int i=0;i<list.size();i++){
+        QListWidgetItem *item=new QListWidgetItem;
+
+        QWidget*widget=new QWidget;
+        QHBoxLayout*hLayout=new QHBoxLayout;
+        newWordBean bean=list.at(i);
+        QLabel*label_id=new QLabel;
+        QLabel*label_title=new QLabel;
+        QLabel*label_content=new QLabel;
+        label_id->setText(QString::number(i+1));
+        label_title->setText(bean.getName());
+        label_content->setText(bean.getExplain().replace("\n",""));
+        hLayout->addWidget(label_id,1,Qt::AlignLeft);
+        hLayout->addWidget(label_title,1,Qt::AlignLeft);
+        hLayout->addWidget(label_content,12,Qt::AlignLeft);
+
+        hLayout->addStretch();
+        widget->setLayout(hLayout);
+        QSize size=item->sizeHint();
+        item->setSizeHint(QSize(size.width(),56));
+        ui->tab_note_list_listwidget->addItem(item);
+        widget->setSizeIncrement(size.width(),56);
+        ui->tab_note_list_listwidget->setItemWidget(item,widget);
+
+    }
+
+
+
+
+    //添加 列表 右键菜单
+    QMenu*menu=new QMenu(this);
+    QMenu*menuMove=new QMenu(this);
+    menuMove->setTitle("移动到");
+    QAction*action_dele=new QAction("删除单词",this);
+    QAction*action_edit=new QAction("编辑单词",this);
+    QAction*action_noreview=new QAction("不再复习",this);
+    menu->addAction(action_dele);
+    menu->addAction(action_edit);
+    menu->addAction(action_noreview);
+    menu->addMenu(menuMove);
+    QAction*action_move_1=new QAction("未分组",this);
+    menuMove->addAction(action_move_1);
+    connect(ui->tab_note_list_listwidget,&QWidget::customContextMenuRequested,[=](const QPoint &pos)
+       {
+           menu->exec(QCursor::pos());
+       });
+
+    // 为动作设置信号槽
+
+    connect(action_dele, SIGNAL(triggered()),this,SLOT(tab_note_list_delete()));
+
+    connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_edit()));
+
+    connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_move()));
+
+    connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_noreview()));
+
+}
+
 void MainWindow::updateDict(dictBean bean)
 {
+
+    ui->dict_label_keyword->setText(bean.getKeyword());
+    ui->dict_label_title->setText(bean.getTitle());
+
 
    //对简明翻译进行更新
     QVBoxLayout *layout=new QVBoxLayout;
@@ -190,6 +263,16 @@ void MainWindow::showNoteTabbar(int index)
 
 }
 
+QString MainWindow::packUrlDict(QString k)
+{
+
+}
+
+QMap<QString, QString> MainWindow::packUrlTran(QString)
+{
+    return QMap<QString,QString>();
+}
+
 void MainWindow::tab_note_list_delete()
 {
     QSqlDatabase database=ConnectPool::openConnection();
@@ -244,12 +327,14 @@ void MainWindow::tab_note_list_setting_group()
 
 void MainWindow::tab_note_list_setting_add()
 {
-
+    dict_note_add_window* window=new dict_note_add_window;
+    window->show();
 }
 
 void MainWindow::tab_note_list_setting_setting()
 {
-
+    dict_preference_window* window=new dict_preference_window;
+    window->show();
 }
 
 void MainWindow::playAudio(QNetworkReply *reply)
@@ -274,6 +359,24 @@ void MainWindow::playAudio(QNetworkReply *reply)
     
 }
 
+void MainWindow::dictFind(QNetworkReply *reply)
+{
+    //进行网络操作,查询到数据
+    QByteArray data=reply->readAll();
+    QString s=data;
+    dictbean=dictBean::fromJson(s);
+    updateDict(dictbean);
+
+}
+
+void MainWindow::tranFind(QNetworkReply *reply)
+{
+    QByteArray data=reply->readAll();
+    QString s=data;
+    tranbean=tranBean::fromJson(s);
+    updateTran(tranbean);
+}
+
 
 
 void MainWindow::on_dict_button_back_clicked()
@@ -282,15 +385,18 @@ void MainWindow::on_dict_button_back_clicked()
 }
 
 
-//点击查询按钮
+//点击单词查询按钮
 void MainWindow::on_dict_find_clicked()
 {
+    if(ui->dict_edit->toPlainText().isEmpty())
+        return;
     ui->tabWidget_dict->setCurrentIndex(1);
-    //进行网络操作,查询到数据
-    QByteArray data=QByteArray("{\"keyword\": \"あいさつ\", \"title\": \"あいさつ①【挨拶】\", \"list\": [{\"voc_pro\": \"[名·自サ]\", \"list\": [{\"sense-title\": \"问候，打招呼，致意\", \"sense-ex\": \"例证:\nあいさつを交わす\n互相致意\"}, {\"sense-title\": \"(初次见面)自我介绍\"}, {\"sense-title\": \"致词，讲话\"}, {\"sense-title\": \"(书信的首尾)问候，祝愿\"}, {\"sense-title\": \"拜访，告别，问候\"}]}], \"list_web\": [{\"title\": \"あいさつ\", \"content\": \"居然用“妖猫”打招呼，白哉小子，难得我说要来陪你玩呢。 解说：挨拶（あいさつ）：寒暄语。与人见面或分别等时的寒暄及其礼貌动作。\"}], \"list_phrase\": [{\"title\": \"ご挨拶\", \"content\": \"讲话\"}, {\"title\": \"开演挨拶\", \"content\": \"フリオ・キリコ\"}, {\"title\": \"舞台挨拶\", \"content\": \"ボクたちの交换日记\"}, {\"title\": \"闭会挨拶\", \"content\": \"神戸会場より中継\"}, {\"title\": \"舞台挨拶映像集\", \"content\": \"プレミア上映会・初日舞台挨拶\"}, {\"title\": \"舞台挨拶のみ\", \"content\": \"田中美佐子\"}, {\"title\": \"管理者挨拶\", \"content\": \"リハビリ室見学・仕事内容説明\"}], \"list_example\": [{\"title\": \"初日舞台挨拶决定！！\", \"content\": \"※初日舞台挨拶は満席となりました。\"}, {\"title\": \"映画『白夜行』公开初日舞台挨拶（ 堀北真希...\", \"content\": \"それにしても、堀北真希さんもよく、この映画の ...\"}, {\"title\": \"校长挨拶、行事予定、概要、学级の活动绍介等。\", \"content\": \"学校のキャッチフレーズ、各学级の活动、学校の最新ニュース等。\"}]}");
-    QString s=data;
-    dictbean=dictBean::fromJson(s);
-    updateDict(dictbean);
+    NetworkController *networkController=new NetworkController;
+    QString url=packUrlDict(ui->dict_edit->toPlainText());
+    QNetworkAccessManager*manger=networkController->getUrl(url.toUtf8().data());
+
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
+
 
 }
 
@@ -314,13 +420,21 @@ void MainWindow::on_dict_button_pron_clicked()
 {
     NetworkController *networkController=new NetworkController;
     QNetworkAccessManager*manger=networkController->getUrl(dictbean.getAudio().toUtf8().data());
-    qDebug()<<dictbean.getAudio();
+
     connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(playAudio(QNetworkReply*)));
 
 }
 
+//dict界面tab2
 void MainWindow::on_dict_button_find_clicked()
 {
+    if(ui->dict_edit_find->text().isEmpty())
+        return;
+    NetworkController *networkController=new NetworkController;
+    QString url=packUrlDict(ui->dict_edit_find->text());
+    QNetworkAccessManager*manger=networkController->getUrl(url.toUtf8().data());
+
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
 
 }
 
@@ -361,11 +475,13 @@ void MainWindow::on_tran_button_tran_clicked()
     //进行翻译
     QString value=ui->tran_edit_from->toPlainText();
     //将翻译内容进行翻译
-    QString res="{\"src\": \"私は七瀬です\", \"content\": \"我是七濑\", \"audio\": \"https://dict.youdao.com/dictvoice?audio=私は七瀬です&le=jap\"}";
+    //QString res="{\"src\": \"私は七瀬です\", \"content\": \"我是七濑\", \"audio\": \"https://dict.youdao.com/dictvoice?audio=私は七瀬です&le=jap\"}";
     //connect(updateTran())
-    tranbean=tranBean::fromJson(res);
 
-    updateTran(tranbean);
+    NetworkController* controller=new NetworkController;
+    QNetworkAccessManager*manger=controller->postUrl("",packUrlTran(ui->tran_edit_from->toPlainText()));
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(tranFind(QNetworkReply*)));
+
 
 }
 
@@ -397,7 +513,7 @@ void MainWindow::on_dict_button_add_clicked()
         QLabel*label=(QLabel*)list.at(i);
         explain+=label->text()+"\n";
     }
-    bean.setName(ui->dict_title->text());
+    bean.setName(ui->dict_label_title->text());
     bean.setGroupName("");
     bean.setSoundMark("");
     bean.setExplain(explain);
@@ -414,66 +530,7 @@ void MainWindow::on_tabWidget_main_tabBarClicked(int index)
 {
     //点击单词本
     if(index==2){
-        QSqlDatabase database=ConnectPool::openConnection();
-        databaseController controller=databaseController::getInstance(database);
-        QList<newWordBean>list=controller.getListOrderDatedesc();
-        ui->tab_note_list_listwidget->clear();
-        for(int i=0;i<list.size();i++){
-            QListWidgetItem *item=new QListWidgetItem;
-
-            QWidget*widget=new QWidget;
-            QHBoxLayout*hLayout=new QHBoxLayout;
-            newWordBean bean=list.at(i);
-            QLabel*label_id=new QLabel;
-            QLabel*label_title=new QLabel;
-            QLabel*label_content=new QLabel;
-            label_id->setText(QString::number(i+1));
-            label_title->setText(bean.getName());
-            label_content->setText(bean.getExplain().replace("\n",""));
-            hLayout->addWidget(label_id,1,Qt::AlignLeft);
-            hLayout->addWidget(label_title,1,Qt::AlignLeft);
-            hLayout->addWidget(label_content,12,Qt::AlignLeft);
-
-            hLayout->addStretch();
-            widget->setLayout(hLayout);
-            QSize size=item->sizeHint();
-            item->setSizeHint(QSize(size.width(),56));
-            ui->tab_note_list_listwidget->addItem(item);
-            widget->setSizeIncrement(size.width(),56);
-            ui->tab_note_list_listwidget->setItemWidget(item,widget);
-
-        }
-
-
-
-
-        //添加 列表 右键菜单
-        QMenu*menu=new QMenu(this);
-        QMenu*menuMove=new QMenu(this);
-        menuMove->setTitle("移动到");
-        QAction*action_dele=new QAction("删除单词",this);
-        QAction*action_edit=new QAction("编辑单词",this);
-        QAction*action_noreview=new QAction("不再复习",this);
-        menu->addAction(action_dele);
-        menu->addAction(action_edit);
-        menu->addAction(action_noreview);
-        menu->addMenu(menuMove);
-        QAction*action_move_1=new QAction("未分组",this);
-        menuMove->addAction(action_move_1);
-        connect(ui->tab_note_list_listwidget,&QWidget::customContextMenuRequested,[=](const QPoint &pos)
-           {
-               menu->exec(QCursor::pos());
-           });
-
-        // 为动作设置信号槽
-
-        connect(action_dele, SIGNAL(triggered()),this,SLOT(tab_note_list_delete()));
-
-        connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_edit()));
-
-        connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_move()));
-
-        connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_noreview()));
+        init();
 
 
     }
@@ -568,4 +625,39 @@ void MainWindow::on_tab_note_list_button_setting_clicked()
                     ui->tab_note_list_button_setting->y()+ui->tab_note_list_button_setting->height());
 
     menu->exec(ui->tab_note_list_button_setting->mapToGlobal(ui->tab_note_list_button_setting->mapFromParent(p)));
+}
+
+void MainWindow::on_tab_note_review_button_clicked()
+{
+
+}
+
+void MainWindow::on_dict_edit_textChanged()
+{
+    if(ui->dict_edit->toPlainText().isEmpty())
+        return;
+    ui->tabWidget_dict->setCurrentIndex(1);
+    NetworkController *networkController=new NetworkController;
+    QString url=packUrlDict(ui->dict_edit->toPlainText());
+    QNetworkAccessManager*manger=networkController->getUrl(url.toUtf8().data());
+
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
+}
+
+void MainWindow::on_dict_edit_find_textChanged(const QString &arg)
+{
+    if(!strcmp(arg.toUtf8().data(),""))
+        ui->tabWidget_dict->setCurrentIndex(0);
+}
+
+void MainWindow::on_tab_note_card_button_setting_clicked()
+{
+    dict_preference_window*window=new dict_preference_window;
+    window->show();
+}
+
+void MainWindow::on_tab_note_review_button_setting_clicked()
+{
+    dict_preference_window*window=new dict_preference_window;
+    window->show();
 }

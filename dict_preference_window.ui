@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dict_preference_window</class>
+ <widget class="QMainWindow" name="dict_preference_window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>599</width>
+    <height>559</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QCheckBox" name="checkBox_remind">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>491</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>在系统任务栏（系统托盘）提醒复习</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_browse">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>80</y>
+      <width>491</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>单次浏览时发音</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_review">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>130</y>
+      <width>491</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>单词复习时自动发音</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_reviewadd">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>180</y>
+      <width>491</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>添加单词时默认加入复习计划</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_noteadd">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>230</y>
+      <width>491</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查过的词自动加入单词本（按下回车和点击&quot;查询&quot;按钮时有效）</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_showexplain">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>280</y>
+      <width>491</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>单词播放时直接显示释义</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_sure">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>470</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保存设置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_cancel">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>470</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>取消</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>410</y>
+      <width>171</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>添加单词时默认添加到：</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>410</y>
+      <width>301</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>380</y>
+      <width>241</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>每日进入复习流程的新单词上限：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>380</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>个</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>380</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>599</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

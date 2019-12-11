@@ -49,7 +49,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_dict_bFind">
        <attribute name="title">
@@ -177,7 +177,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_dict_simp">
          <attribute name="title">
@@ -219,7 +219,7 @@
            <string>发音</string>
           </property>
          </widget>
-         <widget class="QLabel" name="dict_label_keyword">
+         <widget class="QLabel" name="dict_label_title">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -353,7 +353,7 @@
          <string>查询</string>
         </property>
        </widget>
-       <widget class="QLabel" name="dict_title">
+       <widget class="QLabel" name="dict_label_keyword">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -401,7 +401,7 @@
        </widget>
        <zorder>tabWidget_dict_dict</zorder>
        <zorder>dict_button_add</zorder>
-       <zorder>dict_title</zorder>
+       <zorder>dict_label_keyword</zorder>
        <zorder>dict_edit_find</zorder>
        <zorder>dict_button_find</zorder>
        <zorder>dict_button_back</zorder>
@@ -544,7 +544,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_note_list">
        <widget class="QListWidget" name="tab_note_list_listwidget">
@@ -891,7 +891,7 @@
        <rect>
         <x>0</x>
         <y>-10</y>
-        <width>511</width>
+        <width>601</width>
         <height>81</height>
        </rect>
       </property>
@@ -904,7 +904,7 @@
          <rect>
           <x>10</x>
           <y>0</y>
-          <width>481</width>
+          <width>625</width>
           <height>80</height>
          </rect>
         </property>
