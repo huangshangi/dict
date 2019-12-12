@@ -28,15 +28,15 @@ void MainWindow::noteInit()
     databaseController controller=databaseController::getInstance(database);
     //分组信息
     QList<QString>groups=controller.getGroups();
-    ui->tab_note_list_button_group->clear();
+    ui->tab_note_combox_group->clear();
     //组装分组信息
-    ui->tab_note_list_button_group->addItem("所有分组");
-    ui->tab_note_list_button_group->addItem("未分组");
-    ui->tab_note_list_button_group->addItems(QStringList(groups));
+    ui->tab_note_combox_group->addItem("所有分组");
+    ui->tab_note_combox_group->addItem("未分组");
+    ui->tab_note_combox_group->addItems(QStringList(groups));
 
     //单词列表初始化
-    list_newWord=controller.getListOrderRandom();
-    updateNoteList(list_newWord);
+
+    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
     //添加 列表 右键菜单
     QMenu*menu=new QMenu(this);
     QMenu*menuMove=new QMenu(this);
@@ -255,11 +255,10 @@ QMap<QString, QString> MainWindow::packUrlTran(QString)
     return QMap<QString,QString>();
 }
 
-QList<newWordBean> MainWindow::getNoteList()
+QList<newWordBean> MainWindow::getNoteList(int index)
 {
     QSqlDatabase database=ConnectPool::openConnection();
-    QString group=ui->tab_note_list_button_group->currentText();
-    int index=ui->tab_note_list_button_sort->currentIndex();
+    QString group=ui->tab_note_combox_group->currentText();
 
     databaseController controller=databaseController::getInstance(database);
     QString param=NULL;
@@ -334,6 +333,53 @@ void MainWindow::updateNoteList(QList<newWordBean>list)
 
 }
 
+void MainWindow::updateNoteCard(int index)
+{
+    QSqlDatabase database=ConnectPool::openConnection();
+    databaseController controller=databaseController::getInstance(database);
+
+    QList<newWordBean>list=getNoteList();
+    int size=list.size();
+    if(index<0||index>=size)
+        return;
+    newWordBean bean=list.at(index);
+    ui->tab_note_card_count->setText(QString::number(index+1)+"/"+QString::number(size));
+    ui->tab_note_card_title->setText(bean.getName());
+    ui->tab_note_card_expalin->setText(bean.getExplain());
+    ui->tab_note_card_pre->show();
+    ui->tab_note_card_next->show();
+    ui->tab_note_card_button->show();
+    ui->tab_note_card_expalin->hide();
+    if(index+1==size)
+         ui->tab_note_card_next->hide();
+
+   if(index==0)
+         ui->tab_note_card_pre->hide();
+
+   ConnectPool::closeConnection(database);
+}
+
+void MainWindow::updateNoteReview(int index)
+{
+    QSqlDatabase database=ConnectPool::openConnection();
+    databaseController controller=databaseController::getInstance(database);
+
+    //获取应该被复习的单词
+    QList<newWordBean>list=getNoteList();
+    int size=list.size();
+    if(index<0||index>=size)
+        return;
+    newWordBean bean=list.at(index);
+    ui->tab_note_review_count->setText(QString::number(index+1)+"/"+QString::number(size));
+    ui->tab_note_review_title->setText(bean.getName());
+    ui->tab_note_review_expalin->setText(bean.getExplain());
+    ui->tab_note_review_remember->show();
+    ui->tab_note_review_noremember->show();
+    ui->tab_note_review_button->show();
+    ui->tab_note_review_expalin->hide();
+
+}
+
 void MainWindow::tab_note_list_delete()
 {
     QSqlDatabase database=ConnectPool::openConnection();
@@ -351,7 +397,7 @@ void MainWindow::tab_note_list_delete()
         QString s=label->text();
         controller.deleteNewWord(s);
     }
-    updateNoteList(getNoteList());
+    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
     ConnectPool::closeConnection(database);
 }
 
@@ -384,9 +430,9 @@ void MainWindow::tab_note_list_move()
     QString name=QString(label->text());
 
     controller.changeGroupNameByName(group,name);
-    QList<newWordBean>list=getNoteList();
 
-    updateNoteList(list);
+
+    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
 }
 
 void MainWindow::tab_note_list_noreview()
@@ -456,7 +502,7 @@ void MainWindow::tranFind(QNetworkReply *reply)
 
 void MainWindow::updateList()
 {
-    updateNoteList(getNoteList());
+    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
 }
 
 
@@ -622,54 +668,37 @@ void MainWindow::on_tab_note_button_list_clicked()
 {
     ui->dict_stackedWidget->setCurrentIndex(0);
     showNoteTabbar(0);
+
+    updateNoteList(getNoteList());
 }
 
+//点击单词本->卡片
 void MainWindow::on_tab_note_button_card_clicked()
 {
     ui->dict_stackedWidget->setCurrentIndex(1);
     showNoteTabbar(1);
     //进行数据的获取
-    int index=0;
-    QSqlDatabase database=ConnectPool::openConnection();
-    databaseController controller=databaseController::getInstance(database);
-
-    QList<newWordBean>list=controller.getListOrderRandom();
-    int size=list.size();
-
-    newWordBean bean=list.at(index);
-    ui->tab_note_card_count->setText(QString::number(index+1)+"/"+QString::number(size));
-    ui->tab_note_card_title->setText(bean.getName());
-    ui->tab_note_card_expalin->setText(bean.getExplain());
-    ui->tab_note_card_pre->show();
-    ui->tab_note_card_next->show();
-    ui->tab_note_card_button->show();
-    ui->tab_note_card_expalin->hide();
-    if(index+1==size)
-         ui->tab_note_card_next->hide();
-
-   if(index==0)
-         ui->tab_note_card_pre->hide();
+    updateNoteCard(0);
 
 
-
-
-    ConnectPool::closeConnection(database);
 }
 
 void MainWindow::on_tab_note_button_review_clicked()
 {
     ui->dict_stackedWidget->setCurrentIndex(2);
     showNoteTabbar(2);
+    updateNoteReview(0);
 }
 
 
 
 void MainWindow::on_tab_note_card_pre_clicked()
 {
-    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt();
-    index-=1;
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
 
     //判断未实现
+
+    updateNoteCard(index-1);
 }
 
 void MainWindow::on_tab_note_card_button_clicked()
@@ -681,10 +710,11 @@ void MainWindow::on_tab_note_card_button_clicked()
 
 void MainWindow::on_tab_note_card_next_clicked()
 {
-    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt();
-    index+=1;
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+
 
     //判断未实现
+    updateNoteCard(index+1);
 }
 
 
@@ -711,7 +741,9 @@ void MainWindow::on_tab_note_list_button_setting_clicked()
 
 void MainWindow::on_tab_note_review_button_clicked()
 {
+    ui->tab_note_review_button->hide();
 
+    ui->tab_note_review_expalin->show();
 }
 
 void MainWindow::on_dict_edit_textChanged()
@@ -744,24 +776,68 @@ void MainWindow::on_tab_note_review_button_setting_clicked()
     window->show();
 }
 
-//单词本界面 分组combox被点击 切换分组
-void MainWindow::on_tab_note_list_button_group_currentIndexChanged(const QString &arg1)
-{
-    QSqlDatabase database=ConnectPool::openConnection();
-    databaseController controller=databaseController::getInstance(database);
 
-    list_newWord=getNoteList();
-    updateNoteList(list_newWord);
-    ConnectPool::closeConnection(database);
-
-
-}
 
 void MainWindow::on_tab_note_list_button_sort_currentIndexChanged(int index)
 {
     QSqlDatabase database=ConnectPool::openConnection();
     databaseController controller=databaseController::getInstance(database);
-    list_newWord=getNoteList();
-    updateNoteList(list_newWord);
+
+    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
     ConnectPool::closeConnection(database);
+}
+
+void MainWindow::on_tab_note_combox_group_currentIndexChanged(const QString &arg1)
+{
+    QSqlDatabase database=ConnectPool::openConnection();
+    databaseController controller=databaseController::getInstance(database);
+    int index=ui->dict_stackedWidget->currentIndex();
+    if(index==0)
+        updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
+    else if(index==1)
+        updateNoteCard();
+    ConnectPool::closeConnection(database);
+
+}
+
+void MainWindow::on_tab_note_card_more_clicked()
+{
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+    newWordBean obj=list_newWord.at(index);
+    ui->tabWidget_dict->setCurrentIndex(1);
+    NetworkController *networkController=new NetworkController;
+    QString url=packUrlDict(obj.getName());
+    QNetworkAccessManager*manger=networkController->getUrl(url.toUtf8().data());
+
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
+}
+
+void MainWindow::on_tab_note_card_edit_clicked()
+{
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+    newWordBean obj=list_newWord.at(index);
+    dict_edit* bean=new dict_edit(this,obj.getName());
+
+    bean->show();
+}
+
+void MainWindow::on_tab_note_review_more_clicked()
+{
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+    newWordBean obj=list_newWord.at(index);
+    ui->tabWidget_dict->setCurrentIndex(1);
+    NetworkController *networkController=new NetworkController;
+    QString url=packUrlDict(obj.getName());
+    QNetworkAccessManager*manger=networkController->getUrl(url.toUtf8().data());
+
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
+}
+
+void MainWindow::on_tab_note_review_edit_clicked()
+{
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+    newWordBean obj=list_newWord.at(index);
+    dict_edit* bean=new dict_edit(this,obj.getName());
+
+    bean->show();
 }

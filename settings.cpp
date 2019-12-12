@@ -4,7 +4,7 @@ settings* settings::obj;
 QMutex settings::mutex;
 settings::settings()
 {
-    Config config;
+
     QString path="dict";
     setFrom(config.get(path,"from").toString());
     setTo(config.get(path,"to").toString());
@@ -48,6 +48,41 @@ settings* settings::getInstance()
     }
 
     return obj;
+}
+
+void settings::writeTo(settings *s)
+{
+    QString path="dict";
+    config.set(path,"from",s->getFrom());
+    config.set(path,"to",s->getTo());
+    config.set(path,"source",s->getSource());
+
+    path="normal";
+    config.set(path,"font",s->getFont());
+    config.set(path,"startup-bootup",s->getStartup_bootup());
+    config.set(path,"startup-min",s->getStartup_min());
+    config.set(path,"mainwindow-first",s->getMainwindow_first());
+    config.set(path,"mainwindow-min",s->getMainwindow_min());
+    config.set(path,"rightClick-add",s->getRightClick_add());
+
+
+
+    path="content";
+    config.set(path,"browse-audio",s->getBrowse_audio());
+    config.set(path,"history",s->getHistory());
+
+
+    path="note";
+    config.set(path,"review-remind",s->getReview_remind());
+    config.set(path,"review-audio",s->getReview_audio());
+    config.set(path,"review-add",s->getReview_add());
+    config.set(path,"find-add",s->getFind_add());
+    config.set(path,"play-show",s->getPlay_show());
+    config.set(path,"review-max",s->getReview_max());
+    config.set(path,"default-note",s->getDefault_note());
+
+
+
 }
 
 void settings::update()

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "config.h"
 #include "settings.h"
+#include <QIntValidator>
 namespace Ui {
 class dict_preference_window;
 }

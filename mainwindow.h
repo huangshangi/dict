@@ -60,8 +60,11 @@ private:
     QList<newWordBean>list_newWord;
 
 
-    QList<newWordBean>getNoteList();
+    QList<newWordBean>getNoteList(int index=0);
     void updateNoteList(QList<newWordBean>);
+
+    void updateNoteCard(int index=0);
+    void updateNoteReview(int index=0);
 public slots:
 
 
@@ -103,8 +106,13 @@ private slots:
     void on_dict_edit_find_textChanged(const QString &arg1);
     void on_tab_note_card_button_setting_clicked();
     void on_tab_note_review_button_setting_clicked();
-    void on_tab_note_list_button_group_currentIndexChanged(const QString &arg1);
+
     void on_tab_note_list_button_sort_currentIndexChanged(int index);
+    void on_tab_note_combox_group_currentIndexChanged(const QString &arg1);
+    void on_tab_note_card_more_clicked();
+    void on_tab_note_card_edit_clicked();
+    void on_tab_note_review_more_clicked();
+    void on_tab_note_review_edit_clicked();
 };
 
 #endif // MAINWINDOW_H

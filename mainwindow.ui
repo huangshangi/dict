@@ -49,7 +49,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_dict_bFind">
        <attribute name="title">
@@ -544,7 +544,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_note_list">
        <widget class="QListWidget" name="tab_note_list_listwidget">
@@ -568,9 +568,9 @@
           <height>461</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="tab_note_card_Vlayout" stretch="1,1,1,1,1">
+        <layout class="QVBoxLayout" name="tab_note_card_Vlayout" stretch="0,0,0,0,0">
          <item>
-          <layout class="QHBoxLayout" name="tab_note_card_HlayoutTitle" stretch="1,10,1">
+          <layout class="QHBoxLayout" name="tab_note_card_HlayoutTitle" stretch="1,0">
            <item>
             <widget class="QLabel" name="tab_note_card_count">
              <property name="text">
@@ -579,19 +579,9 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_5">
+            <widget class="QPushButton" name="tab_note_card_more">
              <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="tab_note_card_more">
-             <property name="text">
-              <string> 更多释义&gt;</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <string> 更多释义</string>
              </property>
             </widget>
            </item>
@@ -643,7 +633,7 @@
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="tab_note_card_HlayoutEnd" stretch="1,10,1">
+          <layout class="QHBoxLayout" name="tab_note_card_HlayoutEnd" stretch="1,0,0">
            <item>
             <widget class="QLabel" name="tab_note_card_review">
              <property name="text">
@@ -653,18 +643,21 @@
            </item>
            <item>
             <widget class="QLabel" name="label_12">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="tab_note_card_edit">
+            <widget class="QPushButton" name="tab_note_card_edit">
              <property name="text">
-              <string>编辑单词 </string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <string>  编辑 单词</string>
              </property>
             </widget>
            </item>
@@ -711,7 +704,7 @@
         </property>
         <layout class="QVBoxLayout" name="tab_note_review_Vlayout" stretch="1,1,1,1,1">
          <item>
-          <layout class="QHBoxLayout" name="tab_note_card_HlayoutTitle_4" stretch="1,10,1">
+          <layout class="QHBoxLayout" name="tab_note_card_HlayoutTitle_4" stretch="1,10,0">
            <item>
             <widget class="QLabel" name="tab_note_review_count">
              <property name="text">
@@ -727,12 +720,9 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="tab_note_review_more">
+            <widget class="QPushButton" name="tab_note_review_more">
              <property name="text">
-              <string> 更多释义&gt;</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <string>  更多释义&gt;</string>
              </property>
             </widget>
            </item>
@@ -784,7 +774,7 @@
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="tab_note_review_HlayoutEnd" stretch="1,10,1">
+          <layout class="QHBoxLayout" name="tab_note_review_HlayoutEnd" stretch="1,10,0">
            <item>
             <widget class="QLabel" name="tab_note_review_review">
              <property name="text">
@@ -800,12 +790,9 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="tab_note_review_edit">
+            <widget class="QPushButton" name="tab_note_review_edit">
              <property name="text">
-              <string>编辑单词 </string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <string>  编辑单词</string>
              </property>
             </widget>
            </item>
@@ -889,9 +876,9 @@
      <widget class="QStackedWidget" name="dict_tarbar_widgetedWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>140</x>
         <y>-10</y>
-        <width>601</width>
+        <width>461</width>
         <height>81</height>
        </rect>
       </property>
@@ -902,32 +889,13 @@
        <widget class="QWidget" name="horizontalLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>0</x>
           <y>0</y>
-          <width>625</width>
+          <width>521</width>
           <height>80</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="tab_note_list_horizontalLayout">
-         <item>
-          <widget class="QComboBox" name="tab_note_list_button_group">
-           <item>
-            <property name="text">
-             <string>所有分组</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>未分组单词</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>未分组</string>
-            </property>
-           </item>
-          </widget>
-         </item>
          <item>
           <widget class="QComboBox" name="tab_note_list_button_sort">
            <item>
@@ -1006,25 +974,6 @@
         </property>
         <layout class="QHBoxLayout" name="tab_note_card_horizontalLayout">
          <item>
-          <widget class="QComboBox" name="tab_note_card_button_group">
-           <item>
-            <property name="text">
-             <string>所有分组</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>分组一</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>分组二</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="tab_note_card_button_play">
            <property name="text">
             <string>播放</string>
@@ -1047,7 +996,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>331</width>
+          <width>311</width>
           <height>80</height>
          </rect>
         </property>
@@ -1056,26 +1005,7 @@
           <enum>QLayout::SetDefaultConstraint</enum>
          </property>
          <item>
-          <widget class="QComboBox" name="tab_note_review_combox_order">
-           <item>
-            <property name="text">
-             <string>所有分组</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>新建项目</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>新建项目</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="tab_note_review_checkbox_group">
+          <widget class="QCheckBox" name="tab_note_review_checkbox_order">
            <property name="text">
             <string>乱序显示</string>
            </property>
@@ -1091,6 +1021,21 @@
         </layout>
        </widget>
       </widget>
+     </widget>
+     <widget class="QComboBox" name="tab_note_combox_group">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>111</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>测试分组1</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_doc">
