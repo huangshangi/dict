@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dict_doc->installEventFilter(this);
     ui->dict_shot->installEventFilter(this);
     ui->tab_note_list_button_setting->installEventFilter(this);
+    ui->button_min->installEventFilter(this);
 }
 
 MainWindow::~MainWindow()
@@ -384,6 +385,12 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *e)
         else if(e->type()==QEvent::Leave)
             ui->tab_note_list_button_setting->setIcon(QIcon(":/images/wb-setting-normal.png"));
 
+    }else if(watched==ui->button_min){
+        if(e->type()==QEvent::Enter)
+            ui->button_min->setIcon(QIcon(":/images/minimum-hover.png"));
+        else if(e->type()==QEvent::Leave)
+            ui->button_min->setIcon(QIcon(":/images/minimum.png"));
+
     }
 
         return QWidget::eventFilter(watched, e);
@@ -512,6 +519,8 @@ void MainWindow::updateNoteCard(int index)
 
     QList<newWordBean>list=getNoteList();
     int size=list.size();
+    if(size==0)
+        return;
     if(index<0||index>=size)
         index=0;
     newWordBean bean=list.at(index);
@@ -539,6 +548,8 @@ void MainWindow::updateNoteReview(int index)
     //获取应该被复习的单词
     QList<newWordBean>list=getNoteList();
     int size=list.size();
+    if(size==0)
+        return;
     if(index<0||index>=size)
         index=0;
     newWordBean bean=list.at(index);
@@ -1047,14 +1058,6 @@ void MainWindow::on_tab_note_review_more_clicked()
     connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
 }
 
-void MainWindow::on_tab_note_review_edit_clicked()
-{
-    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
-    newWordBean obj=list_newWord.at(index);
-    dict_edit* bean=new dict_edit(this,obj.getName());
-
-    bean->show();
-}
 
 void MainWindow::on_tab_note_list_edit_find_textChanged(const QString &value)
 {
@@ -1112,4 +1115,9 @@ void MainWindow::on_button_class_clicked()
 {
     tabBarInit(6);
 
+}
+
+void MainWindow::on_button_logo_clicked()
+{
+    tabBarInit(0);
 }

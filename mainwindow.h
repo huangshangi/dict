@@ -123,7 +123,6 @@ private slots:
     void on_tab_note_card_more_clicked();
     void on_tab_note_card_edit_clicked();
     void on_tab_note_review_more_clicked();
-    void on_tab_note_review_edit_clicked();
     void on_tab_note_list_edit_find_textChanged(const QString &arg1);
     void on_tab_note_combox_group_currentIndexChanged(int index);
     void on_button_dict_clicked();
@@ -133,6 +132,7 @@ private slots:
     void on_button_interpret_clicked();
     void on_button_person_clicked();
     void on_button_class_clicked();
+    void on_button_logo_clicked();
 };
 
 #endif // MAINWINDOW_H

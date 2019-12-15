@@ -18,13 +18,23 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>0</y>
+      <y>50</y>
       <width>921</width>
-      <height>731</height>
+      <height>681</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
     </property>
     <widget class="QWidget" name="page_dict">
      <widget class="QTabWidget" name="tabWidget_dict">
@@ -219,7 +229,7 @@ border-radius:5px;</string>
          </rect>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_dict_simp">
          <attribute name="title">
@@ -251,14 +261,28 @@ border-radius:5px;</string>
          <widget class="QPushButton" name="dict_button_pron">
           <property name="geometry">
            <rect>
-            <x>150</x>
+            <x>130</x>
             <y>20</y>
-            <width>93</width>
+            <width>28</width>
             <height>28</height>
            </rect>
           </property>
+          <property name="styleSheet">
+           <string notr="true">#dict_button_pron{
+	
+	border-image: url(:/images/qcsound.png);
+}
+
+#dict_button_pron::hover{
+	
+	border-image: url(:/images/qcsound-hover.png);
+}</string>
+          </property>
           <property name="text">
-           <string>发音</string>
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
          <widget class="QLabel" name="dict_label_title">
@@ -374,15 +398,34 @@ border-radius:5px;</string>
          <rect>
           <x>220</x>
           <y>150</y>
-          <width>41</width>
+          <width>28</width>
           <height>28</height>
          </rect>
         </property>
         <property name="toolTip">
          <string>加入单词本</string>
         </property>
+        <property name="styleSheet">
+         <string notr="true">#dict_button_add{
+	border-image: url(:/images/qcstore.png);
+}
+#dict_button_add::hover{
+	border-image: url(:/images/qcstore-hover.png);
+}
+#dict_button_add::checked{
+	border-image: url(:/images/qcstore-clicked.png);
+}
+
+</string>
+        </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QPushButton" name="dict_button_find">
@@ -635,8 +678,17 @@ background-color: transparent;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);
-border:none;</string>
+       <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
       </property>
       <property name="insertPolicy">
        <enum>QComboBox::InsertAtTop</enum>
@@ -656,8 +708,21 @@ border:none;</string>
         <height>691</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+      </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_note_list">
        <widget class="QListWidget" name="tab_note_list_listwidget">
@@ -668,6 +733,19 @@ border:none;</string>
           <width>1091</width>
           <height>671</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
         </property>
        </widget>
       </widget>
@@ -1173,17 +1251,17 @@ QPushButton#tab_note_review_noremember::hover{
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#tab_note_button_review::checked{
-    border-image: url(:/images/wb-review-hover.png);
-    border:none;
+       <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
 }
 
-QPushButton#tab_note_button_review{
-    border-image: url(:/images/wb-review.png);
-
-    border:none;
-}
-</string>
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
       </property>
       <property name="text">
        <string>  复习</string>
@@ -1204,6 +1282,19 @@ QPushButton#tab_note_button_review{
         <height>51</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -1216,6 +1307,19 @@ QPushButton#tab_note_button_review{
           <width>461</width>
           <height>51</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
         </property>
         <layout class="QHBoxLayout" name="tab_note_list_horizontalLayout">
          <property name="spacing">
@@ -1242,8 +1346,17 @@ QPushButton#tab_note_button_review{
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 255);
-border:none;</string>
+            <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
            </property>
            <item>
             <property name="text">
@@ -1288,7 +1401,17 @@ border:none;</string>
             <string>更多功能</string>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: transparent;</string>
+            <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
            </property>
            <property name="text">
             <string/>
@@ -1304,7 +1427,21 @@ border:none;</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="tab_note_list_edit_find"/>
+          <widget class="QLineEdit" name="tab_note_list_edit_find">
+           <property name="styleSheet">
+            <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -1438,16 +1575,17 @@ border:none;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#tab_note_button_card::checked{
-    border-image: url(:/images/wb-card-hover.png);
-    border:none;
+       <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
 }
 
-QPushButton#tab_note_button_card{
-    border-image: url(:/images/wb-card-normal.png);
-    border:none;
-}
-</string>
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
       </property>
       <property name="text">
        <string>  卡片</string>
@@ -1469,16 +1607,17 @@ QPushButton#tab_note_button_card{
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#tab_note_button_list::checked{
-    border-image: url(:/images/wb-list-hover.png);
-    border:none;
+       <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
 }
 
-QPushButton#tab_note_button_list{
-    border-image: url(:/images/wb-list-normal.png);
-    border:none;
-}
-</string>
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
       </property>
       <property name="text">
        <string>   列表</string>
@@ -1580,10 +1719,23 @@ QPushButton#doc_button::hover{
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>80</y>
+      <y>140</y>
       <width>200</width>
       <height>451</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
     </property>
     <property name="title">
      <string/>
@@ -1599,6 +1751,19 @@ QPushButton#doc_button::hover{
      </property>
      <property name="autoFillBackground">
       <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
      </property>
      <property name="text">
       <string>词典</string>
@@ -1627,6 +1792,19 @@ QPushButton#doc_button::hover{
        <height>52</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+     </property>
      <property name="text">
       <string>同传</string>
      </property>
@@ -1648,6 +1826,19 @@ QPushButton#doc_button::hover{
        <width>200</width>
        <height>52</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
      </property>
      <property name="text">
       <string>文档翻译</string>
@@ -1672,7 +1863,17 @@ QPushButton#doc_button::hover{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
      </property>
      <property name="text">
       <string>翻译</string>
@@ -1696,6 +1897,19 @@ QPushButton#doc_button::hover{
        <height>52</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+     </property>
      <property name="text">
       <string>人工翻译</string>
      </property>
@@ -1717,6 +1931,19 @@ QPushButton#doc_button::hover{
        <width>200</width>
        <height>52</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
      </property>
      <property name="text">
       <string>单词本</string>
@@ -1740,6 +1967,19 @@ QPushButton#doc_button::hover{
        <height>52</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+     </property>
      <property name="text">
       <string>精品课</string>
      </property>
@@ -1753,6 +1993,432 @@ QPushButton#doc_button::hover{
       <bool>true</bool>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="button_logo">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>201</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>返回 首页</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="resource/res.qrc">
+      <normaloff>:/images/login-logo.png</normaloff>:/images/login-logo.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>110</width>
+      <height>110</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackwidget_title">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>0</y>
+      <width>601</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tarbar_page1">
+     <widget class="QComboBox" name="dict_from">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>87</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="dict_to">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>10</y>
+        <width>87</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tarbar_button_transfer">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tarbar_button_transfer{
+	
+	border-image: url(:/images/transfer.png);
+	border:none;
+}
+
+#tarbar_button_transfer::hover{
+	
+	border-image: url(:/images/transfer-hover.png);
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tarbar_button_doc">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>10</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tarbar_button_doc{
+	
+	border-image: url(:/images/doc-trans.png);
+	border:none;
+}
+
+#tarbar_button_doc::hover{
+	
+	border-image: url(:/images/doc-trans-hover.png);
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tarbar_button_shot">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>10</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tarbar_page2">
+     <widget class="QPushButton" name="tarbar_button_doc_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tarbar_button_doc_2{
+	
+	border-image: url(:/images/doc-trans.png);
+	border:none;
+}
+
+#tarbar_button_doc_2::hover{
+	
+	border-image: url(:/images/doc-trans-hover.png);
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tarbar_button_shot_2">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>10</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tarbar_button_shot_2{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot_2::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page">
+     <widget class="QPushButton" name="tabbar_button_contact">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>10</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>联系客服</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tabbar_button_contact{
+	
+	border-image: url(:/images/doctab-contact.png);
+	border:none;
+}
+
+#tabbar_button_contact::hover{
+	
+	border-image: url(:/images/doctab-contact-hover.png);
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="button_min">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>最小化</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <selectedoff>:/images/minimum.png</selectedoff>
+     </iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_max">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>最大化</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#button_max{
+	
+	border-image: url(:/images/maximum.png);
+	border:none;
+}
+
+#button_max::hover{
+	
+	border-image: url(:/images/maximum-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_close">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>关闭</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#button_close{
+	
+	border-image: url(:/images/close.png);
+	border:none;
+}
+
+#button_close::hover{
+	
+	border-image: url(:/images/close-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_mini">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>MINI 模式</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#button_mini{
+	
+	border-image: url(:/images/mini.png);
+	border:none;
+}
+
+#button_mini::hover{
+	
+	border-image: url(:/images/mini-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>10</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>#tarbar_button_shot{
+	
+	border-image: url(:/images/shot-trans.png);
+	border:none;
+}
+
+#tarbar_button_shot::hover{
+	
+	border-image: url(:/images/shot-trans-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string>  个人 信息</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
