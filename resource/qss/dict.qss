@@ -1,0 +1,219 @@
+QTextEdit{
+    border:none;
+    background-color:rgb(247,248,250);
+    border-radius:5px;
+
+}
+
+
+/*checkbox样式设置*/
+QCheckBox::indicator {
+    width: 26px;
+    height: 50px;
+}
+/*未选中*/
+QCheckBox#tran_checkbox::indicator::unchecked {
+    image: url(:/images/unchecked.png);
+}
+/*选中*/
+QCheckBox#tran_checkbox::indicator::checked {
+    image: url(:/images/checked.png);
+}
+
+
+/*未选中*/
+QCheckBox#tab_note_review_checkbox_order::indicator::unchecked {
+    image: url(:/images/unchecked.png);
+}
+/*选中*/
+QCheckBox#tab_note_review_checkbox_order::indicator::checked {
+    image: url(:/images/checked.png);
+}
+
+
+QPushButton#tran_button_tran{
+        background-color: rgb(242, 58, 58);
+        color:#fff;
+        border:none;
+        border-radius:5px;
+}
+
+QPushButton#tran_button_tran::hover{
+        background-color: rgb(247, 84, 84);
+        color:#fff;
+        border:none;
+        border-radius:5px;
+        }
+
+QPushButton#dict_find{
+        background-color: rgb(242, 58, 58);
+        color:#fff;
+        border:none;
+        border-radius:5px;
+}
+
+QPushButton#dict_find::hover{
+        background-color: rgb(247, 84, 84);
+        color:#fff;
+        border:none;
+        border-radius:5px;
+        }
+
+
+
+
+QPushButton{
+    background-color:transparent;
+
+}
+
+QPushButton#button_dict::unchecked{
+    color:#000;
+    border:none;
+    }
+
+QPushButton#button_dict::hover{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+    }
+
+QPushButton#button_dict::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_tran::unchecked{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_tran::hover{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+    }
+
+QPushButton#button_tran::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_note::unchecked{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_note::hover{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+    }
+
+QPushButton#button_note::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_doc::unchecked{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_doc::hover{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+    }
+
+QPushButton#button_doc::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_interpret::unchecked{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_interpret::hover{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+    }
+
+QPushButton#button_interpret::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_person::unchecked{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_person::hover{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+    }
+
+QPushButton#button_person::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+
+QPushButton#button_class::unchecked{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_class::hover{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+    }
+
+QPushButton#button_class::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+QPushButton#dict_button_add{
+    image: url(:/images/noteadd_unsele.png)
+    }
+
+QPushButton#tab_note_button_list::checked{
+    border-image: url(:/images/wb-list-hover.png);
+    border:none;
+}
+
+QPushButton#tab_note_button_list{
+    border-image: url(:/images/wb-list-normal.png);
+    border:none;
+}
+QPushButton#tab_note_button_card::checked{
+    border-image: url(:/images/wb-card-hover.png);
+    border:none;
+}
+
+QPushButton#tab_note_button_card{
+    border-image: url(:/images/wb-card-normal.png);
+    border:none;
+}
+QPushButton#tab_note_button_list::checked{
+    border-image: url(:/images/wb-list-hover.png);
+    border:none;
+}
+
+QPushButton#tab_note_button_list{
+    border-image: url(:/images/wb-list-normal.png);
+    border:none;
+}
+
+
+

@@ -5,14 +5,35 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     QTextCodec* codec = QTextCodec::codecForName("GB2312");
     ui->setupUi(this);
-    ui->tabWidget_main->tabBar()->setStyle(new CustomTabStyle);
+    //ui->tabWidget_main->tabBar()->setStyle(new CustomTabStyle);
     ui->tabWidget_dict->tabBar()->hide();
 
+   QFile file(":/qss/qss/dict.qss");
+   file.open(QFile::ReadOnly);
+   QString styleSheet = tr(file.readAll());
+   this->setStyleSheet(styleSheet);
+
+    file.close();
     hideTranWidget();
     showNoteTabbar(0);
     ui->tab_note_list_listwidget->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    initKey();
+
+    tabBarInit(0);
+    ui->button_dict->installEventFilter(this);
+    ui->button_class->installEventFilter(this);
+    ui->button_doc->installEventFilter(this);
+    ui->button_interpret->installEventFilter(this);
+    ui->button_note->installEventFilter(this);
+    ui->button_person->installEventFilter(this);
+    ui->button_tran->installEventFilter(this);
+    ui->dict_doc->installEventFilter(this);
+    ui->dict_shot->installEventFilter(this);
+    ui->tab_note_list_button_setting->installEventFilter(this);
 }
 
 MainWindow::~MainWindow()
@@ -68,6 +89,94 @@ void MainWindow::noteInit()
     connect(action_edit,SIGNAL(triggered()),this,SLOT(tab_note_list_edit()));
 
     connect(action_noreview,SIGNAL(triggered()),this,SLOT(tab_note_list_noreview()));
+
+}
+
+void MainWindow::tabBarInit(int index)
+{
+
+    ui->button_dict->setIcon(QIcon(":/images/dict.png"));
+    ui->button_tran->setIcon(QIcon(":/images/trans.png"));
+    ui->button_note->setIcon(QIcon(":/images/wb.png"));
+    ui->button_doc->setIcon(QIcon(":/images/doc.png"));
+    ui->button_interpret->setIcon(QIcon(":/images/tc.png"));
+    ui->button_person->setIcon(QIcon(":/images/manual-trans.png"));
+    ui->button_class->setIcon(QIcon(":/images/course.png"));
+
+    ui->button_dict->setChecked(false);
+    ui->button_tran->setChecked(false);
+    ui->button_note->setChecked(false);
+    ui->button_doc->setChecked(false);
+    ui->button_interpret->setChecked(false);
+    ui->button_person->setChecked(false);
+    ui->button_class->setChecked(false);
+
+    switch (index) {
+    case 0:
+        ui->button_dict->setIcon(QIcon(":/images/dict-hover.png"));
+        ui->button_dict->setChecked(true);
+        break;
+    case 1:
+        ui->button_tran->setIcon(QIcon(":/images/trans-hover.png"));
+        ui->button_tran->setChecked(true);
+        break;
+    case 2:
+        ui->button_note->setIcon(QIcon(":/images/wb-hover.png"));
+        ui->button_note->setChecked(true);
+        break;
+    case 3:
+        ui->button_doc->setIcon(QIcon(":/images/doc-hover.png"));
+        ui->button_doc->setChecked(true);
+        break;
+    case 4:
+        ui->button_interpret->setIcon(QIcon(":/images/tc-hover.png"));
+        ui->button_interpret->setChecked(true);
+        break;
+    case 5:
+        ui->button_person->setIcon(QIcon(":/images/manual-trans-hover.png"));
+        ui->button_person->setChecked(true);
+        break;
+    case 6:
+        ui->button_class->setIcon(QIcon(":/images/course-hover.png"));
+        ui->button_class->setChecked(true);
+        break;
+    default:
+        break;
+    }
+    ui->stackedWidget->setCurrentIndex(index);
+}
+
+void MainWindow::noteTabinit(int index)
+{
+    ui->tab_note_button_list->setChecked(false);
+    ui->tab_note_button_card->setChecked(false);
+    ui->tab_note_button_review->setChecked(false);
+
+    switch(index){
+    case 0:
+        ui->tab_note_button_list->setChecked(true);
+        break;
+    case 1:
+        ui->tab_note_button_card->setChecked(true);
+        break;
+    case 2:
+        ui->tab_note_button_review->setChecked(true);
+        break;
+
+    }
+}
+
+void MainWindow::initKey()
+{
+    //别忘了头文件<QShortcut>
+    QShortcut *temp = new QShortcut(this);
+    //设置键值，也就是设置快捷键.
+    temp->setKey(tr("ctrl+alt+e"));
+    //这个成员函数挺关键的，设置是否会自动反复按键.也就是说，当你一直按住键盘ctrl+r时，会一直不停的调用对应的槽函数.
+    temp->setAutoRepeat(false);
+
+    //连接信号与槽，showSlot()是自定义的槽函数!
+    connect(temp, SIGNAL(activated()), this, SLOT(hideOrshow()));
 
 }
 
@@ -217,6 +326,69 @@ void MainWindow::updateTran(tranBean bean)
 
 }
 
+bool MainWindow::eventFilter(QObject *watched, QEvent *e)
+{
+    if (watched == ui->button_dict) {
+            if (e->type() == QEvent::Enter)
+                ui->button_dict->setIcon(QIcon(":/images/dict-hover.png"));
+            else if(e->type()==QEvent::Leave&&!ui->button_dict->isChecked())
+                ui->button_dict->setIcon(QIcon(":/images/dict.png"));
+
+    }else if(watched==ui->button_tran){
+        if(e->type()==QEvent::Enter)
+            ui->button_tran->setIcon(QIcon(":/images/trans-hover.png"));
+        else if(e->type()==QEvent::Leave&&!ui->button_tran->isChecked())
+            ui->button_tran->setIcon(QIcon(":/images/trans.png"));
+
+    }else if(watched==ui->button_note){
+        if(e->type()==QEvent::Enter)
+            ui->button_note->setIcon(QIcon(":/images/wb-hover.png"));
+        else if(e->type()==QEvent::Leave&&!ui->button_note->isChecked())
+            ui->button_note->setIcon(QIcon(":/images/wb.png"));
+    }else if(watched==ui->button_doc){
+        if(e->type()==QEvent::Enter)
+            ui->button_doc->setIcon(QIcon(":/images/doc-hover.png"));
+        else if(e->type()==QEvent::Leave&&!ui->button_doc->isChecked())
+            ui->button_doc->setIcon(QIcon(":/images/doc.png"));
+    }else if(watched==ui->button_interpret){
+        if(e->type()==QEvent::Enter)
+            ui->button_interpret->setIcon(QIcon(":/images/tc-hover.png"));
+        else if(e->type()==QEvent::Leave&&!ui->button_interpret->isChecked())
+            ui->button_interpret->setIcon(QIcon(":/images/tc.png"));
+
+    }else if(watched==ui->button_person){
+        if(e->type()==QEvent::Enter)
+            ui->button_person->setIcon(QIcon(":/images/manual-trans-hover.png"));
+        else if(e->type()==QEvent::Leave&&!ui->button_person->isChecked())
+            ui->button_person->setIcon(QIcon(":/images/manual-trans.png"));
+
+    }else if(watched==ui->button_class){
+        if(e->type()==QEvent::Enter)
+            ui->button_class->setIcon(QIcon(":/images/course-hover.png"));
+        else if(e->type()==QEvent::Leave&&!ui->button_class->isChecked())
+            ui->button_class->setIcon(QIcon(":/images/course.png"));
+    }else if(watched==ui->dict_doc){
+        if(e->type()==QEvent::Enter)
+            ui->dict_doc->setIcon(QIcon(":/images/doc-trans-hover.png"));
+        else if(e->type()==QEvent::Leave)
+            ui->dict_doc->setIcon(QIcon(":/images/doc-trans.png"));
+    }else if(watched==ui->dict_shot){
+        if(e->type()==QEvent::Enter)
+            ui->dict_shot->setIcon(QIcon(":/images/shot-trans-hover.png"));
+        else if(e->type()==QEvent::Leave)
+            ui->dict_shot->setIcon(QIcon(":/images/shot-trans.png"));
+
+    }else if(watched==ui->tab_note_list_button_setting){
+        if(e->type()==QEvent::Enter)
+            ui->tab_note_list_button_setting->setIcon(QIcon(":/images/wb-setting-hover.png"));
+        else if(e->type()==QEvent::Leave)
+            ui->tab_note_list_button_setting->setIcon(QIcon(":/images/wb-setting-normal.png"));
+
+    }
+
+        return QWidget::eventFilter(watched, e);
+}
+
 //在输入框无内容时隐藏组件
 void MainWindow::hideTranWidget()
 {
@@ -255,7 +427,7 @@ QMap<QString, QString> MainWindow::packUrlTran(QString)
     return QMap<QString,QString>();
 }
 
-QList<newWordBean> MainWindow::getNoteList(int index)
+QList<newWordBean> MainWindow::getNoteList(int index,QString keyword)
 {
     QSqlDatabase database=ConnectPool::openConnection();
     QString group=ui->tab_note_combox_group->currentText();
@@ -271,25 +443,25 @@ QList<newWordBean> MainWindow::getNoteList(int index)
 
     switch (index) {
     case 0:
-        list_newWord=controller.getListOrderDatedesc(param);
+        list_newWord=controller.getListOrderDatedesc(param,keyword);
         break;
     case 1:
-        list_newWord=controller.getListOrderDateasc(param);
+        list_newWord=controller.getListOrderDateasc(param,keyword);
         break;
     case 2:
-        list_newWord=controller.getListOrderWordAZ(param);
+        list_newWord=controller.getListOrderWordAZ(param,keyword);
         break;
     case 3:
-        list_newWord=controller.getListOrderWordZA(param);
+        list_newWord=controller.getListOrderWordZA(param,keyword);
         break;
     case 4:
-        list_newWord=controller.getListOrderReviewFS(param);
+        list_newWord=controller.getListOrderReviewFS(param,keyword);
         break;
     case 5:
-        list_newWord=controller.getListOrderReviewSF(param);
+        list_newWord=controller.getListOrderReviewSF(param,keyword);
         break;
     case 6:
-        list_newWord=controller.getListOrderRandom(param);
+        list_newWord=controller.getListOrderRandom(param,keyword);
         break;
     default:
         break;
@@ -341,7 +513,7 @@ void MainWindow::updateNoteCard(int index)
     QList<newWordBean>list=getNoteList();
     int size=list.size();
     if(index<0||index>=size)
-        return;
+        index=0;
     newWordBean bean=list.at(index);
     ui->tab_note_card_count->setText(QString::number(index+1)+"/"+QString::number(size));
     ui->tab_note_card_title->setText(bean.getName());
@@ -368,7 +540,7 @@ void MainWindow::updateNoteReview(int index)
     QList<newWordBean>list=getNoteList();
     int size=list.size();
     if(index<0||index>=size)
-        return;
+        index=0;
     newWordBean bean=list.at(index);
     ui->tab_note_review_count->setText(QString::number(index+1)+"/"+QString::number(size));
     ui->tab_note_review_title->setText(bean.getName());
@@ -460,6 +632,46 @@ void MainWindow::tab_note_list_setting_setting()
     window->show();
 }
 
+void MainWindow::hideOrshow()
+{
+    this->hide();
+    QSystemTrayIcon* systemIcon=new QSystemTrayIcon(this);
+    QIcon icon=QIcon("C:/Users/hzh17/Desktop/logo-shink.png");
+    systemIcon->setIcon(icon);
+    systemIcon->setToolTip("test测试");
+    connect(systemIcon,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(systemIconEvent(QSystemTrayIcon::ActivationReason)));
+    systemIcon->show();
+
+
+    QMenu* menu=new QMenu(this);
+    QAction*action_show=new QAction("显示主页面");
+    QAction*action_exit=new QAction("退出");
+    menu->addAction(action_exit);
+    menu->addAction(action_show);
+    systemIcon->setContextMenu(menu);
+}
+
+void MainWindow::systemIconEvent(QSystemTrayIcon::ActivationReason reason)
+{
+
+
+
+    switch (reason) {
+    case QSystemTrayIcon::Trigger:
+
+        show();
+        break;
+    case QSystemTrayIcon::DoubleClick:
+
+        break;
+    case QSystemTrayIcon::Context:
+
+        break;
+    default:
+        break;
+    }
+}
+
 void MainWindow::playAudio(QNetworkReply *reply)
 {
 
@@ -502,7 +714,15 @@ void MainWindow::tranFind(QNetworkReply *reply)
 
 void MainWindow::updateList()
 {
-    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
+    int index=ui->dict_stackedWidget->currentIndex();
+    if(index==0)
+        updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
+    else if(index==1){
+        int i=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+        updateNoteCard(i);
+    }
+    else if(index==2)
+        updateNoteReview(ui->tab_note_review_count->text().left(ui->tab_note_review_count->text().indexOf('/')).toInt()-1);
 }
 
 
@@ -654,21 +874,13 @@ void MainWindow::on_dict_button_add_clicked()
     ConnectPool::closeConnection(database);
 }
 
-void MainWindow::on_tabWidget_main_tabBarClicked(int index)
-{
-    //点击单词本
-    if(index==2){
-        noteInit();
 
-
-    }
-}
 
 void MainWindow::on_tab_note_button_list_clicked()
 {
     ui->dict_stackedWidget->setCurrentIndex(0);
     showNoteTabbar(0);
-
+    noteTabinit(0);
     updateNoteList(getNoteList());
 }
 
@@ -677,6 +889,7 @@ void MainWindow::on_tab_note_button_card_clicked()
 {
     ui->dict_stackedWidget->setCurrentIndex(1);
     showNoteTabbar(1);
+    noteTabinit(1);
     //进行数据的获取
     updateNoteCard(0);
 
@@ -687,6 +900,7 @@ void MainWindow::on_tab_note_button_review_clicked()
 {
     ui->dict_stackedWidget->setCurrentIndex(2);
     showNoteTabbar(2);
+    noteTabinit(2);
     updateNoteReview(0);
 }
 
@@ -783,7 +997,7 @@ void MainWindow::on_tab_note_list_button_sort_currentIndexChanged(int index)
     QSqlDatabase database=ConnectPool::openConnection();
     databaseController controller=databaseController::getInstance(database);
 
-    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
+    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex(),ui->tab_note_list_edit_find->text()));
     ConnectPool::closeConnection(database);
 }
 
@@ -793,7 +1007,7 @@ void MainWindow::on_tab_note_combox_group_currentIndexChanged(const QString &arg
     databaseController controller=databaseController::getInstance(database);
     int index=ui->dict_stackedWidget->currentIndex();
     if(index==0)
-        updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex()));
+        updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex(),ui->tab_note_list_edit_find->text()));
     else if(index==1)
         updateNoteCard();
     ConnectPool::closeConnection(database);
@@ -840,4 +1054,62 @@ void MainWindow::on_tab_note_review_edit_clicked()
     dict_edit* bean=new dict_edit(this,obj.getName());
 
     bean->show();
+}
+
+void MainWindow::on_tab_note_list_edit_find_textChanged(const QString &value)
+{
+
+    updateNoteList(getNoteList(ui->tab_note_list_button_sort->currentIndex(),value));
+}
+
+void MainWindow::on_tab_note_combox_group_currentIndexChanged(int index)
+{
+
+}
+
+void MainWindow::on_button_dict_clicked()
+{
+    tabBarInit(0);
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_button_tran_clicked()
+{
+    tabBarInit(1);
+
+}
+
+void MainWindow::on_button_note_clicked()
+{
+    tabBarInit(2);
+
+    noteInit();
+
+    noteTabinit(0);
+}
+
+void MainWindow::on_button_doc_clicked()
+{
+    tabBarInit(3);
+
+}
+
+void MainWindow::on_button_interpret_clicked()
+{
+    tabBarInit(4);
+
+}
+
+void MainWindow::on_button_person_clicked()
+{
+    tabBarInit(5);
+
+}
+
+
+
+void MainWindow::on_button_class_clicked()
+{
+    tabBarInit(6);
+
 }

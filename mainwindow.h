@@ -14,6 +14,8 @@
 #include <QVBoxLayout>
 #include <QMediaPlayer>
 #include <QMessageBox>
+#include <QShortcut>
+#include <QSystemTrayIcon>
 #include "NetworkController.h"
 #include "capture.h"
 #include "dictbean.h"
@@ -44,12 +46,19 @@ public:
     ~MainWindow();
 
     void noteInit();//初始化
+    void tabBarInit(int);//tabbar初始化
+    void noteTabinit(int index);
+    void initKey();//初始化键盘事件
     void updateDict(dictBean bean);
     void updateTran(tranBean bean);
+
+    bool eventFilter(QObject *watched, QEvent *e);
 
     void hideTranWidget();
     void showTranWidget();
     void showNoteTabbar(int);
+
+
 
     QString packUrlDict(QString);
     QMap<QString,QString> packUrlTran(QString);
@@ -60,7 +69,7 @@ private:
     QList<newWordBean>list_newWord;
 
 
-    QList<newWordBean>getNoteList(int index=0);
+    QList<newWordBean>getNoteList(int index=0,QString keyword="");
     void updateNoteList(QList<newWordBean>);
 
     void updateNoteCard(int index=0);
@@ -76,6 +85,8 @@ private slots:
     void tab_note_list_setting_group();//添加组别
     void tab_note_list_setting_add();//添加单词
     void tab_note_list_setting_setting();//偏好设置
+    void hideOrshow();//将窗口隐藏
+    void systemIconEvent(QSystemTrayIcon::ActivationReason reason);
 
     void playAudio(QNetworkReply*reply);
     void dictFind(QNetworkReply*reply);
@@ -93,7 +104,7 @@ private slots:
     void on_tran_checkbox_clicked(bool checked);
     void on_tran_button_pron_clicked();
     void on_dict_button_add_clicked();
-    void on_tabWidget_main_tabBarClicked(int index);
+
     void on_tab_note_button_card_clicked();
     void on_tab_note_button_list_clicked();
     void on_tab_note_button_review_clicked();
@@ -113,6 +124,15 @@ private slots:
     void on_tab_note_card_edit_clicked();
     void on_tab_note_review_more_clicked();
     void on_tab_note_review_edit_clicked();
+    void on_tab_note_list_edit_find_textChanged(const QString &arg1);
+    void on_tab_note_combox_group_currentIndexChanged(int index);
+    void on_button_dict_clicked();
+    void on_button_tran_clicked();
+    void on_button_note_clicked();
+    void on_button_doc_clicked();
+    void on_button_interpret_clicked();
+    void on_button_person_clicked();
+    void on_button_class_clicked();
 };
 
 #endif // MAINWINDOW_H

@@ -5,6 +5,7 @@ QMutex settings::mutex;
 settings::settings()
 {
 
+    Config config;
     QString path="dict";
     setFrom(config.get(path,"from").toString());
     setTo(config.get(path,"to").toString());
@@ -52,6 +53,7 @@ settings* settings::getInstance()
 
 void settings::writeTo(settings *s)
 {
+    static Config config;
     QString path="dict";
     config.set(path,"from",s->getFrom());
     config.set(path,"to",s->getTo());

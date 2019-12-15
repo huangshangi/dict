@@ -12,6 +12,8 @@ public:
 
     static settings* getInstance();
 
+    static void writeTo(settings*);//将内容写回
+
     static void update();
 
     QString getFrom() const;

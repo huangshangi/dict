@@ -1,0 +1,13 @@
+QPushButton#pushButton_sure{
+        background-color: rgb(242, 58, 58);
+        color:#fff;
+        border:none;
+        border-radius:5px;
+}
+
+QPushButton#pushButton_sure::hover{
+        background-color: rgb(247, 84, 84);
+        color:#fff;
+        border:none;
+        border-radius:5px;
+        }

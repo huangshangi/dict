@@ -84,3 +84,6 @@ FORMS += \
     dict_note_add_window.ui \
     dict_preference_window.ui \
     languagewindow.ui
+
+RESOURCES += \
+    resource/res.qrc

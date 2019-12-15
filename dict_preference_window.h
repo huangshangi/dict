@@ -5,6 +5,7 @@
 #include "config.h"
 #include "settings.h"
 #include <QIntValidator>
+#include <QDebug>
 namespace Ui {
 class dict_preference_window;
 }

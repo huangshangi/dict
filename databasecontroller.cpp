@@ -197,71 +197,82 @@ QList<QString> databaseController::getGroups()
     return list;
 }
 
-QList<newWordBean> databaseController::getListOrderDatedesc(QString group)
+QList<newWordBean> databaseController::getListOrderDatedesc(QString group,QString keyword)
 { 
     QString add="";
-    if(!group.isEmpty())
-        add="where groupName='"+group+"'";
-    else if(!group.isNull())
-        add="where groupName is null or groupName==''";
+    if(!group.isEmpty())//group 为null ""
+        add="where name like '%"+keyword+"%'"+" and groupName='"+group+"'";
+    else if(!group.isNull())//group不为null
+        add="where name like '%"+keyword+"%'"+" and groupName is null or groupName==''";
+    else
+        add="where name like '%"+keyword+"%'";
     QString sql=QString("select *from newWord %1 order by dateAdd desc;").arg(add);
+
     return getList(sql);
 }
 
-QList<newWordBean> databaseController::getListOrderDateasc(QString group)
+QList<newWordBean> databaseController::getListOrderDateasc(QString group,QString keyword)
 {
 
     QString add="";
-    if(!group.isEmpty())
-        add="where groupName='"+group+"'";
-    else if(!group.isNull())
-        add="where groupName is null or groupName==''";
+    if(!group.isEmpty())//group 为null ""
+        add="where name like '%"+keyword+"%'"+" and groupName='"+group+"'";
+    else if(!group.isNull())//group不为null
+        add="where name like '%"+keyword+"%'"+" and groupName is null or groupName==''";
+    else
+        add="where name like '%"+keyword+"%'";
     QString sql=QString("select *from newWord %1 order by dateAdd asc;").arg(add);
-
+    qDebug()<<sql;
     return getList(sql);
 }
 
-QList<newWordBean> databaseController::getListOrderWordAZ(QString group)
+QList<newWordBean> databaseController::getListOrderWordAZ(QString group,QString keyword)
 {
 
     QString add="";
-    if(!group.isEmpty())
-        add="where groupName='"+group+"'";
-    else if(!group.isNull())
-        add="where groupName is null or groupName==''";
+    if(!group.isEmpty())//group 为null ""
+        add="where name like '%"+keyword+"%'"+" and groupName='"+group+"'";
+    else if(!group.isNull())//group不为null
+        add="where name like '%"+keyword+"%'"+" and groupName is null or groupName==''";
+    else
+        add="where name like '%"+keyword+"%'";
     QString sql=QString("select *from newWord %1 order by name asc;").arg(add);
     return getList(sql);
 }
 
-QList<newWordBean> databaseController::getListOrderWordZA(QString group)
+QList<newWordBean> databaseController::getListOrderWordZA(QString group,QString keyword)
 {
 
     QString add="";
-    if(!group.isEmpty())
-        add="where groupName='"+group+"'";
-    else if(!group.isNull())
-        add="where groupName is null or groupName==''";
+    if(!group.isEmpty())//group 为null ""
+        add="where name like '%"+keyword+"%'"+" and groupName='"+group+"'";
+    else if(!group.isNull())//group不为null
+        add="where name like '%"+keyword+"%'"+" and groupName is null or groupName==''";
+    else
+        add="where name like '%"+keyword+"%'";
     QString sql=QString("select *from newWord %1 order by name desc;").arg(add);
     return getList(sql);
 }
 
-QList<newWordBean> databaseController::getListOrderReviewFS(QString group)
+QList<newWordBean> databaseController::getListOrderReviewFS(QString group,QString keyword)
 {
 
 }
 
-QList<newWordBean> databaseController::getListOrderReviewSF(QString group)
+QList<newWordBean> databaseController::getListOrderReviewSF(QString group,QString keyword)
 {
 
 }
 
-QList<newWordBean> databaseController::getListOrderRandom(QString group)
+QList<newWordBean> databaseController::getListOrderRandom(QString group,QString keyword)
 {
     QString add="";
-    if(!group.isEmpty())
-        add="where groupName='"+group+"'";
-    else if(!group.isNull())
-        add="where groupName is null or groupName==''";
+    if(!group.isEmpty())//group 为null ""
+        add="where name like '%"+keyword+"%'"+" and groupName='"+group+"'";
+    else if(!group.isNull())//group不为null
+        add="where name like '%"+keyword+"%'"+" and groupName is null or groupName==''";
+    else
+        add="where name like '%"+keyword+"%'";
     QString sql=QString("select *from newWord %1 order by random();").arg(add);
 
 

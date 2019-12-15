@@ -6,7 +6,18 @@ dict_preference_window::dict_preference_window(QWidget *parent) :
     ui(new Ui::dict_preference_window)
 {
     ui->setupUi(this);
+    QFile file(":/qss/qss/preference.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = tr(file.readAll());
+    this->setStyleSheet(styleSheet);
+    file.close();
+
+    this->setWindowTitle("单词本设置");
+    this->setWindowFlags(Qt::WindowCloseButtonHint);
+    this->setWindowIcon(QIcon());
     ui->lineEdit->setValidator(new QIntValidator(1,1000,this));
+
+
 }
 
 dict_preference_window::~dict_preference_window()

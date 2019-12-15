@@ -43,19 +43,19 @@ public:
     QList<QString> getGroups();
 
     //按照时间降序排列
-    QList<newWordBean> getListOrderDatedesc(QString group=NULL);
+    QList<newWordBean> getListOrderDatedesc(QString group=NULL,QString keyword="");
     //按照时间升序排序
-    QList<newWordBean> getListOrderDateasc(QString group=NULL);
+    QList<newWordBean> getListOrderDateasc(QString group=NULL,QString keyword="");
     //按照字母A-Z排序
-    QList<newWordBean> getListOrderWordAZ(QString group=NULL);
+    QList<newWordBean> getListOrderWordAZ(QString group=NULL,QString keyword="");
     //按照字母Z-A排序
-    QList<newWordBean> getListOrderWordZA(QString group=NULL);
+    QList<newWordBean> getListOrderWordZA(QString group=NULL,QString keyword="");
     //按照复习进度快-慢
-    QList<newWordBean> getListOrderReviewFS(QString group=NULL);
+    QList<newWordBean> getListOrderReviewFS(QString group=NULL,QString keyword="");
     //按照复习进度慢-快
-    QList<newWordBean> getListOrderReviewSF(QString group=NULL);
+    QList<newWordBean> getListOrderReviewSF(QString group=NULL,QString keyword="");
     //随机排序
-    QList<newWordBean> getListOrderRandom(QString group=NULL);
+    QList<newWordBean> getListOrderRandom(QString group=NULL,QString keyword="");
 
 private:
     static QMutex mutex;

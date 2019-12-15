@@ -31,6 +31,11 @@ settingWindow::~settingWindow()
     delete ui;
 }
 
+void settingWindow::closeEvent(QCloseEvent *event)
+{
+    settings::writeTo(setting);
+}
+
 
 
 
@@ -44,12 +49,39 @@ void settingWindow::on_radioButton_normal_clicked()
     setting->setFont(true);
 }
 
-void settingWindow::on_tab_normal_startup_bootup_clicked()
-{
 
-}
 
 void settingWindow::on_tab_normal_startup_bootup_toggled(bool checked)
 {
-    qDebug()<<checked;
+    setting->setStartup_bootup(checked);
+}
+
+void settingWindow::on_tab_normal_startup_min_toggled(bool checked)
+{
+    setting->setStartup_min(checked);
+}
+
+void settingWindow::on_tab_normal_mainwindow_first_toggled(bool checked)
+{
+    setting->setMainwindow_first(checked);
+}
+
+void settingWindow::on_tab_normal_mainwindow_min_toggled(bool checked)
+{
+    setting->setMainwindow_min(checked);
+}
+
+void settingWindow::on_tab_normal_rightClick_add_toggled(bool checked)
+{
+    setting->setRightClick_add(checked);
+}
+
+void settingWindow::on_tab_content_audio_toggled(bool checked)
+{
+    setting->setBrowse_audio(checked);
+}
+
+void settingWindow::on_tab_content_history_count_valueChanged(int arg1)
+{
+    setting->setHistory(arg1);
 }
