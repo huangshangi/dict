@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QCloseEvent>
+#include <QMouseEvent>
 #include "settings.h"
 #include "config.h"
 #include "customtabstyle.cpp"
@@ -22,6 +23,10 @@ public:
     void closeEvent(QCloseEvent *event);
 
     void tarbarInit(int index);
+
+    void mousePressEvent(QMouseEvent *event);    //鼠标点击事件
+    void mouseMoveEvent(QMouseEvent *event);     //鼠标移动事件
+    void mouseReleaseEvent(QMouseEvent *event);  //鼠标释放事件
 
 public slots:
         void selectedTar();
@@ -59,12 +64,18 @@ private slots:
 
     void on_button_about_clicked();
 
+    void on_button_close_clicked();
+
 private:
     Ui::settingWindow *ui;
 
     Config config;
 
     settings* setting;
+
+    bool is_press;
+    QPoint startP;
+    QPoint windowP;
 };
 
 #endif // SETTINGWINDOW_H

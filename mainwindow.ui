@@ -2263,47 +2263,6 @@ QPushButton#doc_button::hover{
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="button_close">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>10</y>
-      <width>20</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="toolTip">
-     <string>关闭</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#button_close{
-	
-	border-image: url(:/images/close.png);
-	border:none;
-}
-
-#button_close::hover{
-	
-	border-image: url(:/images/close-hover.png);
-	border:none;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QStackedWidget" name="stackedWidget_maxmin">
     <property name="geometry">
      <rect>
@@ -2456,6 +2415,47 @@ border:none;</string>
      <iconset>
       <selectedoff>:/images/minimum.png</selectedoff>
      </iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_close">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>关闭</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#button_close{
+	
+	border-image: url(:/images/close.png);
+	border:none;
+}
+
+#button_close::hover{
+	
+	border-image: url(:/images/close-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

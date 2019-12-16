@@ -456,7 +456,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    if(event->buttons()&Qt::LeftButton)
+    if(is_press&&Qt::LeftButton)
         this->move(windowP+event->globalPos()-startP);
 
 

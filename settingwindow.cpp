@@ -6,7 +6,7 @@ settingWindow::settingWindow(QWidget *parent) :
     ui(new Ui::settingWindow)
 {
     ui->setupUi(this);
-
+    setWindowFlags(Qt::FramelessWindowHint);
     tarbarInit(0);
 
     //初始化设置界面
@@ -149,4 +149,26 @@ void settingWindow::on_button_about_clicked()
 void settingWindow::on_button_close_clicked()
 {
     close();
+}
+
+void settingWindow::mousePressEvent(QMouseEvent *event)
+{
+
+    is_press=true;
+    startP=event->globalPos();
+    windowP=this->frameGeometry().topLeft();
+}
+
+void settingWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if(is_press&&Qt::LeftButton)
+        this->move(windowP+event->globalPos()-startP);
+
+
+}
+
+void settingWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(event->button()==Qt::LeftButton)
+        is_press=false;
 }
