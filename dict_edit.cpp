@@ -74,8 +74,7 @@ void dict_edit::on_dict_edit_button_sure_clicked()
     databaseController controller=databaseController::getInstance();
     int r=controller.updateNewword(newWordBean(ui->dict_edit_edit_dict->text(),ui->dict_edit_combox_group->currentText(),
     ui->dict_edit_edit_mask->text(),ui->dict_edit_edit_explain->toPlainText()));
-    qDebug()<<ui->dict_edit_edit_mask->text();
-    qDebug()<<r;
+
     ConnectPool::closeConnection(database);
     this->close();
 }

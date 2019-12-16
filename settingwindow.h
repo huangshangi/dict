@@ -5,6 +5,7 @@
 #include <QCloseEvent>
 #include "settings.h"
 #include "config.h"
+#include "customtabstyle.cpp"
 namespace Ui {
 class settingWindow;
 }
@@ -13,11 +14,17 @@ class settingWindow : public QMainWindow
 {
     Q_OBJECT
 
+
 public:
     explicit settingWindow(QWidget *parent = 0);
     ~settingWindow();
 
     void closeEvent(QCloseEvent *event);
+
+    void tarbarInit(int index);
+
+public slots:
+        void selectedTar();
 private slots:
 
 
@@ -39,6 +46,18 @@ private slots:
     void on_tab_content_audio_toggled(bool checked);
 
     void on_tab_content_history_count_valueChanged(int arg1);
+
+    void on_button_person_clicked();
+
+    void on_button_vip_clicked();
+
+    void on_button_setting_clicked();
+
+    void on_button_manyi_clicked();
+
+    void on_button_feedback_clicked();
+
+    void on_button_about_clicked();
 
 private:
     Ui::settingWindow *ui;

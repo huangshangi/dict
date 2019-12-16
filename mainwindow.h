@@ -16,6 +16,8 @@
 #include <QMessageBox>
 #include <QShortcut>
 #include <QSystemTrayIcon>
+#include <QMouseEvent>
+#include <QMenu>
 #include "NetworkController.h"
 #include "capture.h"
 #include "dictbean.h"
@@ -46,8 +48,9 @@ public:
     ~MainWindow();
 
     void noteInit();//初始化
-    void tabBarInit(int);//tabbar初始化
+    void tabBarInit(int);//左边tabbar初始化
     void noteTabinit(int index);
+    void tabwidgetInit(int index);//上方tabbar初始化
     void initKey();//初始化键盘事件
     void updateDict(dictBean bean);
     void updateTran(tranBean bean);
@@ -58,6 +61,13 @@ public:
     void showTranWidget();
     void showNoteTabbar(int);
 
+    //鼠标移动事件
+
+    void mousePressEvent(QMouseEvent *event);    //鼠标点击事件
+    void mouseMoveEvent(QMouseEvent *event);     //鼠标移动事件
+    void mouseReleaseEvent(QMouseEvent *event);  //鼠标释放事件
+
+    void changeEvent(QEvent*event);
 
 
     QString packUrlDict(QString);
@@ -68,6 +78,10 @@ private:
     dictBean dictbean;
     QList<newWordBean>list_newWord;
 
+    //一下变量用于窗口拖动
+    bool is_press;
+    QPoint startP;//鼠标点击坐标
+    QPoint windowP;//窗口坐标
 
     QList<newWordBean>getNoteList(int index=0,QString keyword="");
     void updateNoteList(QList<newWordBean>);
@@ -133,6 +147,11 @@ private slots:
     void on_button_person_clicked();
     void on_button_class_clicked();
     void on_button_logo_clicked();
+    void on_button_close_clicked();
+    void on_button_max_clicked();
+    void on_button_min_clicked();
+    void on_button_restore_clicked();
+    void on_button_setting_clicked();
 };
 
 #endif // MAINWINDOW_H

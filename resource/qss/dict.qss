@@ -78,7 +78,6 @@ QPushButton#button_dict::unchecked{
 
 QPushButton#button_dict::hover{
     color:#f00;
-
     border:none;
     }
 

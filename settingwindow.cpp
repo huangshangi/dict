@@ -7,6 +7,7 @@ settingWindow::settingWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    tarbarInit(0);
 
     //初始化设置界面
     setting=settings::getInstance();
@@ -36,6 +37,28 @@ void settingWindow::closeEvent(QCloseEvent *event)
     settings::writeTo(setting);
 }
 
+void settingWindow::tarbarInit(int index)
+{
+    ui->button_about->setChecked(false);
+    ui->button_feedback->setChecked(false);
+    ui->button_manyi->setChecked(false);
+    ui->button_person->setChecked(false);
+    ui->button_setting->setChecked(false);
+    ui->button_vip->setChecked(false);
+
+    switch(index){
+    case 0:ui->button_person->setChecked(true);break;
+    case 1:ui->button_vip->setChecked(true);break;
+    case 2:ui->button_setting->setChecked(true);break;
+    case 3:ui->button_manyi->setChecked(true);break;
+    case 4:ui->button_feedback->setChecked(true);break;
+    case 5:ui->button_about->setChecked(true);break;
+
+    }
+
+    ui->stackedWidget->setCurrentIndex(index);
+}
+
 
 
 
@@ -47,6 +70,13 @@ void settingWindow::on_radioButton_big_clicked()
 void settingWindow::on_radioButton_normal_clicked()
 {
     setting->setFont(true);
+}
+
+void settingWindow::selectedTar()
+{
+    int index=((QAction*)sender())->data().toInt();
+    ui->stackedWidget->setCurrentIndex(index);
+    show();
 }
 
 
@@ -84,4 +114,39 @@ void settingWindow::on_tab_content_audio_toggled(bool checked)
 void settingWindow::on_tab_content_history_count_valueChanged(int arg1)
 {
     setting->setHistory(arg1);
+}
+
+void settingWindow::on_button_person_clicked()
+{
+    tarbarInit(0);
+}
+
+void settingWindow::on_button_vip_clicked()
+{
+    tarbarInit(1);
+}
+
+void settingWindow::on_button_setting_clicked()
+{
+    tarbarInit(2);
+}
+
+void settingWindow::on_button_manyi_clicked()
+{
+    tarbarInit(3);
+}
+
+void settingWindow::on_button_feedback_clicked()
+{
+    tarbarInit(4);
+}
+
+void settingWindow::on_button_about_clicked()
+{
+    tarbarInit(5);
+}
+
+void settingWindow::on_button_close_clicked()
+{
+    close();
 }

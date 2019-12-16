@@ -14,30 +14,251 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
-      <width>801</width>
-      <height>581</height>
+      <y>60</y>
+      <width>160</width>
+      <height>360</height>
      </rect>
     </property>
-    <property name="tabPosition">
-     <enum>QTabWidget::West</enum>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="button_person">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>160</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#button_person::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_person{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_person::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
+     </property>
+     <property name="text">
+      <string>个人信息</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_vip">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>60</y>
+       <width>160</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#button_vip::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_vip{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_vip::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
+     </property>
+     <property name="text">
+      <string>会员中心</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_setting">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>120</y>
+       <width>160</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#button_setting::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_setting{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_setting::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
+     </property>
+     <property name="text">
+      <string>设置</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_manyi">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>180</y>
+       <width>160</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#button_manyi::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_manyi{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_manyi::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
+     </property>
+     <property name="text">
+      <string>满意度调查</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_feedback">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>240</y>
+       <width>160</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#button_feedback::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_feedback{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_feedback::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
+     </property>
+     <property name="text">
+      <string>意见反馈</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_about">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>300</y>
+       <width>160</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#button_about::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+QPushButton#button_about{
+    color:#000;
+    border:none;
+    }
+QPushButton#button_about::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
+     </property>
+     <property name="text">
+      <string>关于</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>40</y>
+      <width>631</width>
+      <height>501</height>
+     </rect>
     </property>
     <property name="currentIndex">
      <number>2</number>
     </property>
-    <widget class="QWidget" name="tab_person">
-     <attribute name="title">
-      <string>个人信息</string>
-     </attribute>
-     <widget class="QPushButton" name="pushButton_5">
+    <widget class="QWidget" name="page_person">
+     <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>390</y>
+        <x>130</x>
+        <y>140</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>QQ</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_7">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>400</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -46,102 +267,11 @@
        <string>修改信息</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>230</y>
-        <width>72</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>生    日:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>280</y>
-        <width>72</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>介    绍:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>280</y>
-        <width>481</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>这家伙很懒,什么也没留下</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>180</y>
-        <width>72</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>昵    称:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>80</y>
-        <width>72</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>头    像:</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_6">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>70</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>头像地址</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_7">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>390</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>取消</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_8">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>70</y>
+        <x>260</x>
+        <y>80</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -153,8 +283,57 @@
      <widget class="QComboBox" name="comboBox_4">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>230</y>
+        <x>130</x>
+        <y>240</y>
+        <width>150</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>240</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>生    日:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>290</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>介    绍:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>登录方式:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_6">
+      <property name="geometry">
+       <rect>
+        <x>295</x>
+        <y>240</y>
         <width>150</width>
         <height>22</height>
        </rect>
@@ -163,28 +342,57 @@
      <widget class="QComboBox" name="comboBox_5">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>230</y>
+        <x>460</x>
+        <y>240</y>
         <width>150</width>
         <height>22</height>
        </rect>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_6">
+     <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>305</x>
-        <y>230</y>
-        <width>150</width>
-        <height>22</height>
+        <x>20</x>
+        <y>190</y>
+        <width>72</width>
+        <height>15</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>昵    称:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>290</y>
+        <width>481</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>这家伙很懒,什么也没留下</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>头    像:</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>10</y>
+        <x>20</x>
+        <y>20</y>
         <width>101</width>
         <height>31</height>
        </rect>
@@ -202,8 +410,8 @@
      <widget class="QLineEdit" name="lineEdit_4">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>180</y>
+        <x>130</x>
+        <y>190</y>
         <width>480</width>
         <height>21</height>
        </rect>
@@ -212,53 +420,64 @@
        <string>crush</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_13">
+     <widget class="QPushButton" name="pushButton_9">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>130</y>
-        <width>72</width>
-        <height>15</height>
+        <x>130</x>
+        <y>80</y>
+        <width>93</width>
+        <height>28</height>
        </rect>
       </property>
       <property name="text">
-       <string>登录方式:</string>
+       <string>头像地址</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_14">
+     <widget class="QPushButton" name="pushButton_10">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>130</y>
-        <width>72</width>
-        <height>15</height>
+        <x>490</x>
+        <y>400</y>
+        <width>93</width>
+        <height>28</height>
        </rect>
       </property>
       <property name="text">
-       <string>QQ</string>
+       <string>取消</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_center">
-     <attribute name="title">
-      <string>会员中心</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_setting">
-     <attribute name="title">
-      <string>设置</string>
-     </attribute>
+    <widget class="QWidget" name="page_vip"/>
+    <widget class="QWidget" name="page_setting">
      <widget class="QTabWidget" name="tabWidget_2">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>781</width>
-        <height>581</height>
+        <width>631</width>
+        <height>501</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::pane{
+    border:none;
+    
+}
+
+QTabBar::tab{
+	background:transparent;
+	color:#000;
+ 
+}
+
+QTabBar::tab:selected{
+	color:#f00;
+	
+
+}</string>
+      </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_setting_normal">
        <attribute name="title">
@@ -690,21 +909,50 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_satisfied">
-     <attribute name="title">
-      <string>满意度调查</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_feddback">
-     <attribute name="title">
-      <string>意见反馈</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_about">
-     <attribute name="title">
-      <string>关于</string>
-     </attribute>
-    </widget>
+    <widget class="QWidget" name="page_manyi"/>
+    <widget class="QWidget" name="page_feedback"/>
+    <widget class="QWidget" name="page_about"/>
+   </widget>
+   <widget class="QPushButton" name="button_close">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>关闭</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#button_close{
+	
+	border-image: url(:/images/close.png);
+	border:none;
+}
+
+#button_close::hover{
+	
+	border-image: url(:/images/close-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

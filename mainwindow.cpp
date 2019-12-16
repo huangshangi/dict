@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QTextCodec* codec = QTextCodec::codecForName("GB2312");
     ui->setupUi(this);
+    setWindowFlags(Qt::FramelessWindowHint);
     //ui->tabWidget_main->tabBar()->setStyle(new CustomTabStyle);
     ui->tabWidget_dict->tabBar()->hide();
 
@@ -22,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab_note_list_listwidget->setContextMenuPolicy(Qt::CustomContextMenu);
 
     initKey();
-
+    ui->stackedWidget_maxmin->setCurrentIndex(0);
     tabBarInit(0);
     ui->button_dict->installEventFilter(this);
     ui->button_class->installEventFilter(this);
@@ -35,6 +36,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dict_shot->installEventFilter(this);
     ui->tab_note_list_button_setting->installEventFilter(this);
     ui->button_min->installEventFilter(this);
+    ui->button_max->installEventFilter(this);
+    ui->button_restore->installEventFilter(this);
+
+    ui->stackwidget_title->hide();
 }
 
 MainWindow::~MainWindow()
@@ -165,6 +170,14 @@ void MainWindow::noteTabinit(int index)
         break;
 
     }
+}
+
+void MainWindow::tabwidgetInit(int index)
+{
+    ui->stackwidget_title->show();
+
+    ui->stackwidget_title->setCurrentIndex(index);
+
 }
 
 void MainWindow::initKey()
@@ -391,6 +404,16 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *e)
         else if(e->type()==QEvent::Leave)
             ui->button_min->setIcon(QIcon(":/images/minimum.png"));
 
+    }else if(watched==ui->button_max){
+        if(e->type()==QEvent::Enter)
+            ui->button_max->setIcon(QIcon(":/images/maximum-hover.png"));
+        else if(e->type()==QEvent::Leave)
+            ui->button_max->setIcon(QIcon(":/images/maximum.png"));
+    }else if(watched==ui->button_restore){
+        if(e->type()==QEvent::Enter)
+            ui->button_restore->setIcon(QIcon(":/images/restore-hover.png"));
+        else if(e->type()==QEvent::Leave)
+            ui->button_restore->setIcon(QIcon(":/images/restore.png"));
     }
 
         return QWidget::eventFilter(watched, e);
@@ -421,6 +444,42 @@ void MainWindow::showNoteTabbar(int index)
     //隐藏所有布局
     ui->dict_tarbar_widgetedWidget->setCurrentIndex(index);
 
+
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    is_press=true;
+    startP=event->globalPos();
+    windowP=this->frameGeometry().topLeft();
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if(event->buttons()&Qt::LeftButton)
+        this->move(windowP+event->globalPos()-startP);
+
+
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(event->button()==Qt::LeftButton)
+        is_press=false;
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if(event->type()!=QEvent::WindowStateChange)
+        return;
+
+    ui->button_max->setIcon(QIcon(":/images/maximum.png"));
+    ui->button_restore->setIcon(QIcon(":/images/restore.png"));
+    if(windowState()==Qt::WindowMaximized)
+        //点击最大化
+        ui->stackedWidget_maxmin->setCurrentIndex(1);
+   else
+        ui->stackedWidget_maxmin->setCurrentIndex(0);
 
 }
 
@@ -1074,11 +1133,13 @@ void MainWindow::on_button_dict_clicked()
 {
     tabBarInit(0);
     ui->stackedWidget->setCurrentIndex(0);
+    ui->stackwidget_title->hide();
 }
 
 void MainWindow::on_button_tran_clicked()
 {
     tabBarInit(1);
+    tabwidgetInit(0);
 
 }
 
@@ -1089,12 +1150,13 @@ void MainWindow::on_button_note_clicked()
     noteInit();
 
     noteTabinit(0);
+    tabwidgetInit(1);
 }
 
 void MainWindow::on_button_doc_clicked()
 {
     tabBarInit(3);
-
+    tabwidgetInit(2);
 }
 
 void MainWindow::on_button_interpret_clicked()
@@ -1106,7 +1168,7 @@ void MainWindow::on_button_interpret_clicked()
 void MainWindow::on_button_person_clicked()
 {
     tabBarInit(5);
-
+    tabwidgetInit(1);
 }
 
 
@@ -1114,10 +1176,65 @@ void MainWindow::on_button_person_clicked()
 void MainWindow::on_button_class_clicked()
 {
     tabBarInit(6);
-
+    tabwidgetInit(1);
 }
 
 void MainWindow::on_button_logo_clicked()
 {
     tabBarInit(0);
+}
+
+void MainWindow::on_button_close_clicked()
+{
+    close();
+}
+
+void MainWindow::on_button_max_clicked()
+{
+    showMaximized();
+}
+
+void MainWindow::on_button_min_clicked()
+{
+    showMinimized();
+
+}
+
+void MainWindow::on_button_restore_clicked()
+{
+    showNormal();
+}
+
+void MainWindow::on_button_setting_clicked()
+{
+    QMenu*menu=new QMenu(this);
+    QAction*action_vip=new QAction("开通VIP",this);
+    action_vip->setData(QVariant(0));
+    QAction*action_person=new QAction("个人信息",this);
+    action_person->setData(QVariant(1));
+    QAction*action_setting=new QAction("设置",this);
+    action_setting->setData(QVariant(2));
+    QAction*action_feedback=new QAction("意见反馈",this);
+    action_feedback->setData(QVariant(3));
+    QAction*action_manyi=new QAction("满意度调查",this);
+    action_manyi->setData(QVariant(4));
+    QAction*action_exit=new QAction("注销登录",this);
+    action_exit->setData(QVariant(5));
+    settingWindow *settingwindow=new settingWindow;
+    connect(action_vip,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+    connect(action_person,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+    connect(action_setting,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+    connect(action_feedback,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+    connect(action_manyi,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+    connect(action_exit,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+
+    menu->addAction(action_vip);
+    menu->addAction(action_person);
+    menu->addSeparator();
+    menu->addAction(action_setting);
+    menu->addAction(action_feedback);
+    menu->addAction(action_manyi);
+    menu->addSeparator();
+    menu->addAction(action_exit);
+    menu->exec(ui->button_setting->mapToGlobal(ui->button_setting->mapFromParent(ui->button_setting->pos())));
 }
