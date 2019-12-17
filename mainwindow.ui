@@ -36,6 +36,9 @@
 	border:none;
 }</string>
     </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
     <widget class="QWidget" name="page_dict">
      <widget class="QTabWidget" name="tabWidget_dict">
       <property name="geometry">
@@ -694,17 +697,7 @@ background-color: transparent;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#tarbar_button_shot{
-	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
-
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
-}</string>
+       <string notr="true"/>
       </property>
       <property name="insertPolicy">
        <enum>QComboBox::InsertAtTop</enum>
@@ -751,17 +744,7 @@ background-color: transparent;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string>#tarbar_button_shot{
-	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
-
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
-}</string>
+         <string notr="true"/>
         </property>
        </widget>
       </widget>
@@ -1267,15 +1250,21 @@ QPushButton#tab_note_review_noremember::hover{
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#tarbar_button_shot{
+       <string notr="true">#tab_note_button_review{
 	
-	border-image: url(:/images/shot-trans.png);
+	border-image: url(:/images/wb-review.png);
 	border:none;
 }
 
-#tarbar_button_shot::hover{
+#tab_note_button_review::hover{
 	
-	border-image: url(:/images/shot-trans-hover.png);
+	border-image: url(:/images/wb-review-hover.png);
+	border:none;
+}
+
+#tab_note_button_review::checked{
+	
+	border-image: url(:/images/wb-review-hover.png);
 	border:none;
 }</string>
       </property>
@@ -1362,17 +1351,7 @@ QPushButton#tab_note_review_noremember::hover{
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">#tarbar_button_shot{
-	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
-
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
-}</string>
+            <string notr="true"/>
            </property>
            <item>
             <property name="text">
@@ -1419,13 +1398,13 @@ QPushButton#tab_note_review_noremember::hover{
            <property name="styleSheet">
             <string notr="true">#tarbar_button_shot{
 	
-	border-image: url(:/images/shot-trans.png);
+	border-image: url(:/images/wb-setting-normal.png);
 	border:none;
 }
 
 #tarbar_button_shot::hover{
 	
-	border-image: url(:/images/shot-trans-hover.png);
+	border-image: url(:/images/wb-setting-hover.png);
 	border:none;
 }</string>
            </property>
@@ -1445,17 +1424,7 @@ QPushButton#tab_note_review_noremember::hover{
          <item>
           <widget class="QLineEdit" name="tab_note_list_edit_find">
            <property name="styleSheet">
-            <string>#tarbar_button_shot{
-	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
-
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
-}</string>
+            <string notr="true"/>
            </property>
           </widget>
          </item>
@@ -1591,15 +1560,22 @@ QPushButton#tab_note_review_noremember::hover{
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#tarbar_button_shot{
+       <string notr="true">#tab_note_button_card{
 	
-	border-image: url(:/images/shot-trans.png);
+	border-image: url(:/images/wb-card-normal.png);
 	border:none;
 }
 
-#tarbar_button_shot::hover{
+#tab_note_button_card::hover{
 	
-	border-image: url(:/images/shot-trans-hover.png);
+	border-image: url(:/images/wb-card-hover.png);
+	border:none;
+}
+
+
+#tab_note_button_card::checked{
+	
+	border-image: url(:/images/wb-card-hover.png);
 	border:none;
 }</string>
       </property>
@@ -1623,15 +1599,21 @@ QPushButton#tab_note_review_noremember::hover{
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#tarbar_button_shot{
+       <string notr="true">#tab_note_button_list{
 	
-	border-image: url(:/images/shot-trans.png);
+	border-image: url(:/images/wb-list-normal.png);
 	border:none;
 }
 
-#tarbar_button_shot::hover{
+#tab_note_button_list::hover{
 	
-	border-image: url(:/images/shot-trans-hover.png);
+	border-image: url(:/images/wb-list-hover.png);
+	border:none;
+}
+
+#tab_note_button_list::checked{
+	
+	border-image: url(:/images/wb-list-hover.png);
 	border:none;
 }</string>
       </property>
@@ -1995,7 +1977,7 @@ QPushButton#doc_button::hover{
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tarbar_page1">
      <widget class="QComboBox" name="dict_from">
@@ -2273,18 +2255,14 @@ QPushButton#doc_button::hover{
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#stackedWidget_maxmin{
-background-color: transparent;
-}</string>
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
      <number>1</number>
     </property>
     <widget class="QWidget" name="page_max">
      <property name="styleSheet">
-      <string notr="true">#page_max{
-background-color: transparent;
-}</string>
+      <string notr="true"/>
      </property>
      <widget class="QPushButton" name="button_max">
       <property name="geometry">
@@ -2311,8 +2289,10 @@ background-color: transparent;
        <string>最大化</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: transparent;
-border:none;</string>
+       <string notr="true">#button_max{
+background-color: transparent;
+border:none;
+}</string>
       </property>
       <property name="text">
        <string/>
@@ -2329,9 +2309,7 @@ border:none;</string>
     </widget>
     <widget class="QWidget" name="page_restore">
      <property name="styleSheet">
-      <string notr="true">#page_restore{
-background-color: transparent;
-}</string>
+      <string notr="true"/>
      </property>
      <widget class="QPushButton" name="button_restore">
       <property name="geometry">
@@ -2358,8 +2336,10 @@ background-color: transparent;
        <string>还原</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: transparent;
-border:none;</string>
+       <string notr="true">#button_restore{
+background-color: transparent;
+border:none;
+}</string>
       </property>
       <property name="text">
        <string/>

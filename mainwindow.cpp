@@ -8,8 +8,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QTextCodec* codec = QTextCodec::codecForName("GB2312");
     ui->setupUi(this);
-    setWindowFlags(Qt::FramelessWindowHint);
+    setWindowFlags(Qt::Window|Qt::FramelessWindowHint |Qt::WindowSystemMenuHint|Qt::WindowMinimizeButtonHint|Qt::WindowMaximizeButtonHint);
     //ui->tabWidget_main->tabBar()->setStyle(new CustomTabStyle);
+    createSystemTray();
     ui->tabWidget_dict->tabBar()->hide();
 
    QFile file(":/qss/qss/dict.qss");
@@ -620,6 +621,92 @@ void MainWindow::updateNoteReview(int index)
     ui->tab_note_review_button->show();
     ui->tab_note_review_expalin->hide();
 
+}
+
+void MainWindow::createSystemTray()
+{
+    //需判断托盘是否可用
+    QMenu*menu=new QMenu;
+    menu->setStyleSheet("QMenu::item{width:120px;height:40px;padding-left:50px;}"
+                        "QMenu::item:selected {background-color: rgb(242, 150,150);color:#f00;}");
+    QSystemTrayIcon* systemTray=new QSystemTrayIcon(QIcon(":/images/pop-logo.png"));
+
+    QAction*action_screen=createWidgetAction(menu,"屏幕取词");
+    QAction*action_delimit=createWidgetAction(menu,"划词翻译");
+    QAction*action_shot=new QAction("截屏翻译");
+    QAction*action_show=new QAction("显示主窗口");
+    QAction*action_first=createWidgetAction(menu,"总在最前");
+    QAction*action_feedback=new QAction("意见反馈");
+    QAction*action_setting=new QAction("设置");
+    QAction*action_exit=new QAction("退出");
+
+    connect(action_shot,SIGNAL(triggered(bool)),this,SLOT(systemtray_shot()));
+    connect(action_show,SIGNAL(triggered(bool)),this,SLOT(systemtray_show()));
+    connect(action_feedback,SIGNAL(triggered(bool)),this,SLOT(systemtray_feedback()));
+    connect(action_setting,SIGNAL(triggered(bool)),this,SLOT(systemtray_setting()));
+    connect(action_exit,SIGNAL(triggered(bool)),this,SLOT(systemtray_exit()));
+
+
+    menu->addAction(action_screen);
+    menu->addAction(action_delimit);
+    menu->addAction(action_show);
+    menu->addAction(action_first);
+    menu->addAction(action_feedback);
+    menu->addAction(action_setting);
+    menu->addAction(action_exit);
+    systemTray->setContextMenu(menu);
+    systemTray->show();
+
+}
+
+QWidgetAction* MainWindow::createWidgetAction(QWidget*parent,QString s)
+{
+    QWidgetAction*action_shot=new QWidgetAction(parent);
+    QCheckBox *checkbox=new QCheckBox;
+    checkbox->setText(s);
+    checkbox->setStyleSheet("QCheckBox::indicator::unchecked {padding-left:5px;image: url(:/images/switch-off.png);width:35px;height:35px;}"
+                        "QCheckBox::indicator::checked {padding-left:5px;image: url(:/images/switch-on.png);width:35px;height:35px;color:#f00;}"
+                            "QCheckBox{width:120px;height:40px;spacing:10px;color:#000;}"
+                            "QCheckBox::hover{background-color:rgb(242, 150, 150);width:120px;height:40px;color:#f00;}");
+    action_shot->setDefaultWidget(checkbox);
+    connect(checkbox,SIGNAL(clicked()),this,SLOT(systemtray_checkbox()));
+
+    return action_shot;
+}
+
+void MainWindow::systemtray_shot()
+{
+
+}
+
+void MainWindow::systemtray_show()
+{
+
+    showNormal();
+}
+
+void MainWindow::systemtray_feedback()
+{
+
+}
+
+void MainWindow::systemtray_setting()
+{
+
+}
+
+void MainWindow::systemtray_exit()
+{
+    close();
+}
+
+void MainWindow::systemtray_checkbox()
+{
+
+
+    QCheckBox*checkBox=(QCheckBox*)sender();
+
+    qDebug()<<checkBox->text();
 }
 
 void MainWindow::tab_note_list_delete()

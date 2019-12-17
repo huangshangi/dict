@@ -18,6 +18,8 @@
 #include <QSystemTrayIcon>
 #include <QMouseEvent>
 #include <QMenu>
+#include <QSystemTrayIcon>
+#include <QWidgetAction>
 #include "NetworkController.h"
 #include "capture.h"
 #include "dictbean.h"
@@ -33,6 +35,7 @@
 #include "dict_note_add_window.h"
 #include "settingwindow.h"
 #include "dict_preference_window.h"
+
 #define TRAN_FROM_MAX_LENGTH 5000
 
 namespace Ui {
@@ -88,10 +91,22 @@ private:
 
     void updateNoteCard(int index=0);
     void updateNoteReview(int index=0);
+
+    void createSystemTray();//创建系统托盘
+    QWidgetAction* createWidgetAction(QWidget*parent,QString);//创建自定义菜单项
+
 public slots:
 
 
 private slots:
+    //系统托盘系列函数
+    void systemtray_shot();
+    void systemtray_show();
+    void systemtray_feedback();
+    void systemtray_setting();
+    void systemtray_exit();
+    void systemtray_checkbox();
+
     void tab_note_list_delete();//弹出菜单删除
     void tab_note_list_edit();//弹出菜单编辑
     void tab_note_list_move();//弹出菜单移动
