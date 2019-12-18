@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1122</width>
-    <height>809</height>
+    <width>1007</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,20 +24,14 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#tarbar_button_shot{
-	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
+     <string notr="true">QStackedWidget{
 
-#tarbar_button_shot::hover{
 	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
+	background-color: rgb(255, 255, 255);
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page_dict">
      <widget class="QTabWidget" name="tabWidget_dict">
@@ -69,7 +63,9 @@
          <string>截屏 翻译</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: transparent</string>
+         <string notr="true">QPushButton{
+	background-color: transparent
+}</string>
         </property>
         <property name="text">
          <string>截屏翻译</string>
@@ -104,7 +100,7 @@
        <widget class="QPushButton" name="dict_find">
         <property name="geometry">
          <rect>
-          <x>790</x>
+          <x>710</x>
           <y>280</y>
           <width>93</width>
           <height>28</height>
@@ -143,7 +139,9 @@
          <string>支持10M以内 中英互译</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color: transparent</string>
+         <string notr="true">QPushButton{
+	background-color: transparent
+}</string>
         </property>
         <property name="text">
          <string>文档翻译</string>
@@ -170,7 +168,7 @@
          <rect>
           <x>20</x>
           <y>40</y>
-          <width>860</width>
+          <width>780</width>
           <height>221</height>
          </rect>
         </property>
@@ -201,19 +199,6 @@ border-radius:5px;</string>
          <string>日期</string>
         </property>
        </widget>
-       <widget class="QLabel" name="dict_label">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>72</width>
-          <height>15</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>日汉互译</string>
-        </property>
-       </widget>
        <widget class="QWidget" name="widget_title" native="true">
         <property name="geometry">
          <rect>
@@ -228,6 +213,104 @@ border-radius:5px;</string>
           <width>16777215</width>
           <height>16777215</height>
          </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="tab_dict_transfer">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>10</y>
+          <width>30</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#tab_dict_transfer{
+	
+	border-image: url(:/images/transfer.png);
+	border:none;
+}
+
+#tab_dict_transfer::hover{
+	
+	border-image: url(:/images/transfer-hover.png);
+	border:none;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="tab_dict_to">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>10</y>
+          <width>120</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	background-color:transparent;
+	border:none;
+}</string>
+        </property>
+        <property name="text">
+         <string>自动选择语言</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <selectedoff>:/images/lang-drop.png</selectedoff>
+         </iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>10</width>
+          <height>10</height>
+         </size>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="tab_dict_from">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>120</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	background-color:transparent;
+	border:none;
+}</string>
+        </property>
+        <property name="text">
+         <string>自动选择语言</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <selectedoff>:/images/lang-drop.png</selectedoff>
+         </iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>10</width>
+          <height>10</height>
+         </size>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -538,7 +621,7 @@ background-color: transparent;</string>
        <rect>
         <x>20</x>
         <y>30</y>
-        <width>860</width>
+        <width>782</width>
         <height>311</height>
        </rect>
       </property>
@@ -568,7 +651,7 @@ background-color: transparent;</string>
      <widget class="QPushButton" name="tran_button_person">
       <property name="geometry">
        <rect>
-        <x>780</x>
+        <x>690</x>
         <y>300</y>
         <width>93</width>
         <height>28</height>
@@ -584,7 +667,7 @@ background-color: transparent;</string>
      <widget class="QPushButton" name="tran_button_clear">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>460</x>
         <y>300</y>
         <width>93</width>
         <height>28</height>
@@ -640,7 +723,7 @@ background-color: transparent;</string>
        <rect>
         <x>20</x>
         <y>380</y>
-        <width>860</width>
+        <width>782</width>
         <height>311</height>
        </rect>
       </property>
@@ -654,7 +737,7 @@ background-color: transparent;</string>
      <widget class="QPushButton" name="tran_button_tran">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>580</x>
         <y>300</y>
         <width>93</width>
         <height>28</height>
@@ -697,7 +780,43 @@ background-color: transparent;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QComboBox{
+	background-color:transparent;
+	selection-background-color: white;
+	selection-color:black;
+}
+QComboBox::editable{
+
+    background-color: white;
+}
+
+QComboBox QAbstractItemView
+ 
+{
+	width:160px;
+	height:40px;
+ 	outline:0px;
+   
+ 
+}
+
+QComboBox QAbstractItemView::item
+ 
+{
+	width:160px;
+	height:40px;
+ 	outline:0px;
+    border:none;
+ 
+}
+QComboBox QAbstractItemView::item:selected
+ 
+{
+ 	border:none;
+	color:#f00;
+    background-color:rgb(242, 150,150);
+ 
+}</string>
       </property>
       <property name="insertPolicy">
        <enum>QComboBox::InsertAtTop</enum>
@@ -713,21 +832,13 @@ background-color: transparent;</string>
        <rect>
         <x>0</x>
         <y>60</y>
-        <width>901</width>
+        <width>811</width>
         <height>691</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string>#tarbar_button_shot{
-	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
-
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
+       <string notr="true">QStackWidget{
+	background-color:transparent;
 }</string>
       </property>
       <property name="currentIndex">
@@ -739,7 +850,7 @@ background-color: transparent;</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1091</width>
+          <width>807</width>
           <height>671</height>
          </rect>
         </property>
@@ -752,7 +863,7 @@ background-color: transparent;</string>
        <property name="styleSheet">
         <string notr="true">#tab_note_card{
 	
-	background-color: rgb(191, 191, 191);
+	background-color: rgb(247,247,247);
 
 }</string>
        </property>
@@ -1019,7 +1130,7 @@ background-color: transparent;</string>
        <property name="styleSheet">
         <string notr="true">#tab_note_review{
 	
-	background-color: rgb(191, 191, 191);
+	background-color: rgb(247,247,247);
 
 }</string>
        </property>
@@ -1243,7 +1354,7 @@ QPushButton#tab_note_review_noremember::hover{
      <widget class="QPushButton" name="tab_note_button_review">
       <property name="geometry">
        <rect>
-        <x>820</x>
+        <x>720</x>
         <y>20</y>
         <width>93</width>
         <height>28</height>
@@ -1281,23 +1392,16 @@ QPushButton#tab_note_review_noremember::hover{
      <widget class="QStackedWidget" name="dict_tarbar_widgetedWidget">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>10</y>
-        <width>461</width>
-        <height>51</height>
+        <x>130</x>
+        <y>5</y>
+        <width>360</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string>#tarbar_button_shot{
-	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
+       <string notr="true">QStackedWidget{
 
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
+	background-color:transparent;
 }</string>
       </property>
       <property name="currentIndex">
@@ -1309,7 +1413,7 @@ QPushButton#tab_note_review_noremember::hover{
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>461</width>
+          <width>351</width>
           <height>51</height>
          </rect>
         </property>
@@ -1326,7 +1430,7 @@ QPushButton#tab_note_review_noremember::hover{
 	border:none;
 }</string>
         </property>
-        <layout class="QHBoxLayout" name="tab_note_list_horizontalLayout">
+        <layout class="QHBoxLayout" name="tab_note_list_horizontalLayout" stretch="0,0,0">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -1351,7 +1455,45 @@ QPushButton#tab_note_review_noremember::hover{
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">QComboBox{
+	background-color:transparent;
+	selection-background-color: white;
+	selection-color:black;
+	
+}
+QComboBox::editable {
+
+    background-color: transparent;
+}
+
+
+QComboBox QAbstractItemView
+ 
+{
+	width:160px;
+	height:40px;
+ 	outline:0px;
+   
+ 
+}
+
+QComboBox QAbstractItemView::item
+ 
+{
+	width:160px;
+	height:40px;
+
+    border:none;
+ 
+}
+QComboBox QAbstractItemView::item:selected
+ 
+{
+ 	border:none;
+	color:#f00;
+    background-color:rgb(242, 150,150);
+ 
+}</string>
            </property>
            <item>
             <property name="text">
@@ -1396,16 +1538,8 @@ QPushButton#tab_note_review_noremember::hover{
             <string>更多功能</string>
            </property>
            <property name="styleSheet">
-            <string notr="true">#tarbar_button_shot{
-	
-	border-image: url(:/images/wb-setting-normal.png);
-	border:none;
-}
-
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/wb-setting-hover.png);
-	border:none;
+            <string notr="true">QPushButton{
+	background-color:transparent;
 }</string>
            </property>
            <property name="text">
@@ -1553,7 +1687,7 @@ QPushButton#tab_note_review_noremember::hover{
      <widget class="QPushButton" name="tab_note_button_card">
       <property name="geometry">
        <rect>
-        <x>720</x>
+        <x>620</x>
         <y>20</y>
         <width>93</width>
         <height>28</height>
@@ -1592,7 +1726,7 @@ QPushButton#tab_note_review_noremember::hover{
      <widget class="QPushButton" name="tab_note_button_list">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>510</x>
         <y>20</y>
         <width>93</width>
         <height>28</height>
@@ -1638,7 +1772,7 @@ QPushButton#tab_note_review_noremember::hover{
      <widget class="QLabel" name="doc_label">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>270</x>
         <y>90</y>
         <width>321</width>
         <height>16</height>
@@ -1651,7 +1785,7 @@ QPushButton#tab_note_review_noremember::hover{
      <widget class="QPushButton" name="doc_button">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>350</x>
         <y>150</y>
         <width>93</width>
         <height>28</height>
@@ -1684,7 +1818,7 @@ QPushButton#doc_button::hover{
      <widget class="QLabel" name="doc_label2">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>380</x>
         <y>120</y>
         <width>72</width>
         <height>15</height>
@@ -1695,13 +1829,19 @@ QPushButton#doc_button::hover{
       </property>
      </widget>
      <widget class="QTextEdit" name="doc_edit">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>911</width>
+        <width>771</width>
         <height>241</height>
        </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
      <zorder>doc_edit</zorder>
@@ -1723,16 +1863,11 @@ QPushButton#doc_button::hover{
      </rect>
     </property>
     <property name="styleSheet">
-     <string>#tarbar_button_shot{
+     <string notr="true">QGroupBox{
 	
-	border-image: url(:/images/shot-trans.png);
+	background-color: transparent;
 	border:none;
-}
 
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
 }</string>
     </property>
     <property name="title">
@@ -1748,10 +1883,15 @@ QPushButton#doc_button::hover{
       </rect>
      </property>
      <property name="autoFillBackground">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QPushButton{
+	
+	background-color: transparent;
+	border:none;
+
+}</string>
      </property>
      <property name="text">
       <string>词典</string>
@@ -1781,7 +1921,12 @@ QPushButton#doc_button::hover{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QPushButton{
+	
+	background-color: transparent;
+	border:none;
+
+}</string>
      </property>
      <property name="text">
       <string>同传</string>
@@ -1806,7 +1951,12 @@ QPushButton#doc_button::hover{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QPushButton{
+	
+	background-color: transparent;
+	border:none;
+
+}</string>
      </property>
      <property name="text">
       <string>文档翻译</string>
@@ -1831,7 +1981,12 @@ QPushButton#doc_button::hover{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QPushButton{
+	
+	background-color: transparent;
+	border:none;
+
+}</string>
      </property>
      <property name="text">
       <string>翻译</string>
@@ -1856,7 +2011,12 @@ QPushButton#doc_button::hover{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QPushButton{
+	
+	background-color: transparent;
+	border:none;
+
+}</string>
      </property>
      <property name="text">
       <string>人工翻译</string>
@@ -1881,7 +2041,12 @@ QPushButton#doc_button::hover{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QPushButton{
+	
+	background-color: transparent;
+	border:none;
+
+}</string>
      </property>
      <property name="text">
       <string>单词本</string>
@@ -1906,7 +2071,12 @@ QPushButton#doc_button::hover{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">QPushButton{
+	
+	background-color: transparent;
+	border:none;
+
+}</string>
      </property>
      <property name="text">
       <string>精品课</string>
@@ -1935,7 +2105,12 @@ QPushButton#doc_button::hover{
      <string>返回 首页</string>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">QPushButton{
+	
+	background-color: transparent;
+	border:none;
+
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -1954,43 +2129,32 @@ QPushButton#doc_button::hover{
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QStackedWidget" name="stackwidget_title">
+   <widget class="QWidget" name="widgetTitle" native="true">
     <property name="geometry">
      <rect>
       <x>200</x>
       <y>0</y>
-      <width>471</width>
-      <height>41</height>
+      <width>921</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string>#tarbar_button_shot{
+     <string notr="true">QWidget{
 	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
-
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
+	background-color: rgb(255, 255, 255);
 }</string>
     </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="tarbar_page1">
-     <widget class="QComboBox" name="dict_from">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>10</y>
-        <width>87</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string>#tarbar_button_shot{
+    <widget class="QStackedWidget" name="stackwidget_title">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>0</y>
+       <width>471</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>#tarbar_button_shot{
 	
 	border-image: url(:/images/shot-trans.png);
 	border:none;
@@ -2001,42 +2165,22 @@ QPushButton#doc_button::hover{
 	border-image: url(:/images/shot-trans-hover.png);
 	border:none;
 }</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="dict_to">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>10</y>
-        <width>87</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string>#tarbar_button_shot{
-	
-	border-image: url(:/images/shot-trans.png);
-	border:none;
-}
-
-#tarbar_button_shot::hover{
-	
-	border-image: url(:/images/shot-trans-hover.png);
-	border:none;
-}</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tarbar_button_transfer">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>10</y>
-        <width>30</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#tarbar_button_transfer{
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tarbar_page1">
+      <widget class="QPushButton" name="tarbar_button_transfer">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>30</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#tarbar_button_transfer{
 	
 	border-image: url(:/images/transfer.png);
 	border:none;
@@ -2047,22 +2191,22 @@ QPushButton#doc_button::hover{
 	border-image: url(:/images/transfer-hover.png);
 	border:none;
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tarbar_button_doc">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>10</y>
-        <width>20</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#tarbar_button_doc{
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="tarbar_button_doc">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>10</y>
+         <width>20</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#tarbar_button_doc{
 	
 	border-image: url(:/images/doc-trans.png);
 	border:none;
@@ -2073,22 +2217,22 @@ QPushButton#doc_button::hover{
 	border-image: url(:/images/doc-trans-hover.png);
 	border:none;
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tarbar_button_shot">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>10</y>
-        <width>20</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#tarbar_button_shot{
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="tarbar_button_shot">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>10</y>
+         <width>20</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#tarbar_button_shot{
 	
 	border-image: url(:/images/shot-trans.png);
 	border:none;
@@ -2099,24 +2243,96 @@ QPushButton#doc_button::hover{
 	border-image: url(:/images/shot-trans-hover.png);
 	border:none;
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="tarbar_button_to">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>10</y>
+         <width>120</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color:transparent;
+	border:none;
+}</string>
+       </property>
+       <property name="text">
+        <string>自动选择语言</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <selectedoff>:/images/lang-drop.png</selectedoff>
+        </iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>10</width>
+         <height>10</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="tarbar_button_from">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>10</y>
+         <width>120</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color:transparent;
+	border:none;
+}</string>
+       </property>
+       <property name="text">
+        <string>自动选择语言</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <selectedoff>:/images/lang-drop.png</selectedoff>
+        </iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>10</width>
+         <height>10</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tarbar_page2">
-     <widget class="QPushButton" name="tarbar_button_doc_2">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>20</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#tarbar_button_doc_2{
+     <widget class="QWidget" name="tarbar_page2">
+      <widget class="QPushButton" name="tarbar_button_doc_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>10</y>
+         <width>20</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#tarbar_button_doc_2{
 	
 	border-image: url(:/images/doc-trans.png);
 	border:none;
@@ -2127,22 +2343,22 @@ QPushButton#doc_button::hover{
 	border-image: url(:/images/doc-trans-hover.png);
 	border:none;
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tarbar_button_shot_2">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>10</y>
-        <width>20</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#tarbar_button_shot_2{
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="tarbar_button_shot_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>10</y>
+         <width>20</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#tarbar_button_shot_2{
 	
 	border-image: url(:/images/shot-trans.png);
 	border:none;
@@ -2153,27 +2369,27 @@ QPushButton#doc_button::hover{
 	border-image: url(:/images/shot-trans-hover.png);
 	border:none;
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tabbar_page3">
-     <widget class="QPushButton" name="tabbar_button_contact">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>10</y>
-        <width>20</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>联系客服</string>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#tabbar_button_contact{
+     <widget class="QWidget" name="tabbar_page3">
+      <widget class="QPushButton" name="tabbar_button_contact">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>10</y>
+         <width>20</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>联系客服</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#tabbar_button_contact{
 	
 	border-image: url(:/images/doctab-contact.png);
 	border:none;
@@ -2184,245 +2400,39 @@ QPushButton#doc_button::hover{
 	border-image: url(:/images/doctab-contact-hover.png);
 	border:none;
 }</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="button_mini">
-    <property name="geometry">
-     <rect>
-      <x>970</x>
-      <y>10</y>
-      <width>20</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>MINI 模式</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#button_mini{
-	
-	border-image: url(:/images/mini.png);
-	border:none;
-}
-
-#button_mini::hover{
-	
-	border-image: url(:/images/mini-hover.png);
-	border:none;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="button_setting">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>20</y>
-      <width>15</width>
-      <height>15</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#button_setting{
-	border:none;
-	background-color:transparent;
-	border-image: url(:/images/login-drop.png);
-}
-#button_setting::hover{
-	border:none;
-	background-color:transparent;
-	border-image: url(:/images/login-drop-hover.png);
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QStackedWidget" name="stackedWidget_maxmin">
-    <property name="geometry">
-     <rect>
-      <x>1049</x>
-      <y>10</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="page_max">
-     <property name="styleSheet">
-      <string notr="true"/>
+    <widget class="QPushButton" name="button_close">
+     <property name="geometry">
+      <rect>
+       <x>780</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
      </property>
-     <widget class="QPushButton" name="button_max">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>20</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="toolTip">
-       <string>最大化</string>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#button_max{
-background-color: transparent;
-border:none;
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normalon>:/images/maximum.png</normalon>
-       </iconset>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="page_restore">
-     <property name="styleSheet">
-      <string notr="true"/>
+     <property name="minimumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
      </property>
-     <widget class="QPushButton" name="button_restore">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>20</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-      <property name="toolTip">
-       <string>还原</string>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#button_restore{
-background-color: transparent;
-border:none;
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normalon>:/images/restore.png</normalon>
-       </iconset>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="button_min">
-    <property name="geometry">
-     <rect>
-      <x>1010</x>
-      <y>10</y>
-      <width>20</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="toolTip">
-     <string>最小化</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#button_min{
-	background-color:transparent;
-	border:none;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <selectedoff>:/images/minimum.png</selectedoff>
-     </iconset>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="button_close">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>10</y>
-      <width>20</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="toolTip">
-     <string>关闭</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#button_close{
+     <property name="maximumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>关闭</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#button_close{
 	
 	border-image: url(:/images/close.png);
 	border:none;
@@ -2433,10 +2443,230 @@ border:none;
 	border-image: url(:/images/close-hover.png);
 	border:none;
 }</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_mini">
+     <property name="geometry">
+      <rect>
+       <x>660</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>MINI 模式</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#button_mini{
+	
+	background-color: transparent;
+	border-image: url(:/images/mini.png);
+	border:none;
+}
+
+#button_mini::hover{
+	
+	border-image: url(:/images/mini-hover.png);
+	border:none;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QStackedWidget" name="stackedWidget_maxmin">
+     <property name="geometry">
+      <rect>
+       <x>740</x>
+       <y>10</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="page_max">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <widget class="QPushButton" name="button_max">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>20</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>最大化</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#button_max{
+background-color: transparent;
+border:none;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normalon>:/images/maximum.png</normalon>
+        </iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_restore">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <widget class="QPushButton" name="button_restore">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>20</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>还原</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#button_restore{
+background-color: transparent;
+border:none;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normalon>:/images/restore.png</normalon>
+        </iconset>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="button_min">
+     <property name="geometry">
+      <rect>
+       <x>700</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>最小化</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#button_min{
+	background-color:transparent;
+	border:none;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <selectedoff>:/images/minimum.png</selectedoff>
+      </iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button_setting">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>20</y>
+       <width>10</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#button_setting{
+	border:none;
+	background-color:transparent;
+	border-image: url(:/images/login-drop.png);
+}
+#button_setting::hover{
+	border:none;
+	background-color:transparent;
+	border-image: url(:/images/login-drop-hover.png);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>10</width>
+       <height>10</height>
+      </size>
+     </property>
+    </widget>
+    <zorder>stackwidget_title</zorder>
+    <zorder>button_mini</zorder>
+    <zorder>stackedWidget_maxmin</zorder>
+    <zorder>button_min</zorder>
+    <zorder>button_setting</zorder>
+    <zorder>button_close</zorder>
    </widget>
   </widget>
  </widget>

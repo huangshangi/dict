@@ -20,6 +20,7 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 #include <QWidgetAction>
+#include <QListView>
 #include "NetworkController.h"
 #include "capture.h"
 #include "dictbean.h"
@@ -167,6 +168,8 @@ private slots:
     void on_button_min_clicked();
     void on_button_restore_clicked();
     void on_button_setting_clicked();
+    void on_tab_note_review_remember_clicked();
+    void on_tab_note_review_noremember_clicked();
 };
 
 #endif // MAINWINDOW_H

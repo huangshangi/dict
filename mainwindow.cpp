@@ -39,8 +39,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->button_min->installEventFilter(this);
     ui->button_max->installEventFilter(this);
     ui->button_restore->installEventFilter(this);
-
+    ui->tab_dict_from->installEventFilter(this);
+    ui->tab_dict_to->installEventFilter(this);
     ui->stackwidget_title->hide();
+
+
+    ui->tab_note_combox_group->setView(new QListView());
+    ui->tab_note_list_button_sort->setView(new QListView());
 }
 
 MainWindow::~MainWindow()
@@ -415,6 +420,16 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *e)
             ui->button_restore->setIcon(QIcon(":/images/restore-hover.png"));
         else if(e->type()==QEvent::Leave)
             ui->button_restore->setIcon(QIcon(":/images/restore.png"));
+    }else if(watched==ui->tab_dict_from){
+        if(e->type()==QEvent::Enter)
+            ui->tab_dict_from->setIcon(QIcon(":/images/lang-drop-hover.png"));
+        else if(e->type()==QEvent::Leave)
+            ui->tab_dict_from->setIcon(QIcon(":/images/lang-drop.png"));
+    }else if(watched==ui->tab_dict_to){
+        if(e->type()==QEvent::Enter)
+            ui->tab_dict_to->setIcon(QIcon(":/images/lang-drop-hover.png"));
+        else if(e->type()==QEvent::Leave)
+            ui->tab_dict_to->setIcon(QIcon(":/images/lang-drop.png"));
     }
 
         return QWidget::eventFilter(watched, e);
@@ -1233,11 +1248,13 @@ void MainWindow::on_button_tran_clicked()
 void MainWindow::on_button_note_clicked()
 {
     tabBarInit(2);
-
     noteInit();
-
-    noteTabinit(0);
     tabwidgetInit(1);
+
+    ui->dict_stackedWidget->setCurrentIndex(0);
+    showNoteTabbar(0);
+    noteTabinit(0);
+    updateNoteList(getNoteList());
 }
 
 void MainWindow::on_button_doc_clicked()
@@ -1324,4 +1341,22 @@ void MainWindow::on_button_setting_clicked()
     menu->addSeparator();
     menu->addAction(action_exit);
     menu->exec(ui->button_setting->mapToGlobal(ui->button_setting->mapFromParent(ui->button_setting->pos())));
+}
+
+void MainWindow::on_tab_note_review_remember_clicked()
+{
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+
+
+    //判断未实现
+    updateNoteReview(index+1);
+}
+
+void MainWindow::on_tab_note_review_noremember_clicked()
+{
+    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+
+
+    //判断未实现
+    updateNoteReview(index+1);
 }
