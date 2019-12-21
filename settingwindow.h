@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QCloseEvent>
 #include <QMouseEvent>
+#include <qDebug>
 #include "settings.h"
 #include "config.h"
 #include "customtabstyle.cpp"
@@ -21,6 +22,7 @@ public:
     ~settingWindow();
 
     void closeEvent(QCloseEvent *event);
+    void paintEvent(QPaintEvent*event);
 
     void tarbarInit(int index);
 
@@ -30,6 +32,7 @@ public:
 
 public slots:
         void selectedTar();
+        void selectedTar(int index);
 private slots:
 
 

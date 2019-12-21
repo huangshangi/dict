@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>279</width>
+    <height>342</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,21 +17,46 @@
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>30</y>
+      <x>10</x>
+      <y>70</y>
       <width>251</width>
       <height>191</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListWidget::item:hover{
+    background-color:#F1E7E6;
+	color:red;
+    outline:0px;
+}
+
+QListWidget::item{
+    background-color:white;
+	color:black;
+    outline:0px;
+}
+
+QListWidget{
+    background-color:white;
+	color:black;
+    outline:0px;
+}</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>230</y>
+      <x>10</x>
+      <y>270</y>
       <width>251</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	border:1px solid gray;
+	border-radius:2px;
+}</string>
     </property>
     <property name="placeholderText">
      <string>创建新分组,按回车键保存</string>
@@ -41,7 +66,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>50</y>
       <width>241</width>
       <height>16</height>
      </rect>
@@ -50,18 +75,67 @@
      <string>双击分组名称重命名</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="button_close">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>关闭</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#button_close{
+	
+	border-image: url(:/images/close.png);
+	border:none;
+}
+
+#button_close::hover{
+	
+	border-image: url(:/images/close-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>分组管理</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

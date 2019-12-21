@@ -7,7 +7,7 @@ settingWindow::settingWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::FramelessWindowHint);
-    tarbarInit(0);
+
 
     //初始化设置界面
     setting=settings::getInstance();
@@ -35,6 +35,19 @@ settingWindow::~settingWindow()
 void settingWindow::closeEvent(QCloseEvent *event)
 {
     settings::writeTo(setting);
+}
+
+void settingWindow::paintEvent(QPaintEvent *event)
+{
+    QPainterPath path;
+    QColor color(0, 0, 0, 70);
+    path.setFillRule(Qt::WindingFill);
+    path.addRect(2, 2, this->width()-4, this->height()-4);
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.fillPath(path, QBrush(Qt::white));
+    painter.setPen(color);
+    painter.drawPath(path);
 }
 
 void settingWindow::tarbarInit(int index)
@@ -74,11 +87,20 @@ void settingWindow::on_radioButton_normal_clicked()
 
 void settingWindow::selectedTar()
 {
+
+    setParent((QWidget*)sender()->parent());
     int index=((QAction*)sender())->data().toInt();
-    ui->stackedWidget->setCurrentIndex(index);
+    tarbarInit(index);
     show();
 }
 
+void settingWindow::selectedTar(int index)
+{
+    setParent((QWidget*)sender()->parent());
+    ui->stackedWidget->setCurrentIndex(index);
+    tarbarInit(index);
+    show();
+}
 
 
 void settingWindow::on_tab_normal_startup_bootup_toggled(bool checked)

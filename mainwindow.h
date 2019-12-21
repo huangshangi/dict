@@ -47,9 +47,13 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+signals:
+    void settingChange(int);
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void paintEvent(QPaintEvent*event);
 
     void noteInit();//初始化
     void tabBarInit(int);//左边tabbar初始化
@@ -58,7 +62,11 @@ public:
     void initKey();//初始化键盘事件
     void updateDict(dictBean bean);
     void updateTran(tranBean bean);
+    void installEventFilter();
 
+    void initQss();
+    void popSettingMenu();
+    void initSettingMenu();
     bool eventFilter(QObject *watched, QEvent *e);
 
     void hideTranWidget();
@@ -81,6 +89,11 @@ private:
     tranBean tranbean;
     dictBean dictbean;
     QList<newWordBean>list_newWord;
+
+    settingWindow *settingwindow=NULL;//设置界面
+    QMenu*setting_menu=NULL;//设置界面菜单
+
+    QSystemTrayIcon* systemTrayIcon=NULL;//系统托盘
 
     //一下变量用于窗口拖动
     bool is_press;
@@ -170,6 +183,8 @@ private slots:
     void on_button_setting_clicked();
     void on_tab_note_review_remember_clicked();
     void on_tab_note_review_noremember_clicked();
+    void on_pushButton_clicked();
+    void on_tab_dict_from_clicked();
 };
 
 #endif // MAINWINDOW_H

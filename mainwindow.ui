@@ -6,20 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1007</width>
+    <width>1017</width>
     <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow#MainWindow{
+	border:10px solid black;
+
+
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
       <x>200</x>
       <y>50</y>
-      <width>921</width>
+      <width>800</width>
       <height>681</height>
      </rect>
     </property>
@@ -31,7 +44,7 @@
 }</string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_dict">
      <widget class="QTabWidget" name="tabWidget_dict">
@@ -100,14 +113,31 @@
        <widget class="QPushButton" name="dict_find">
         <property name="geometry">
          <rect>
-          <x>710</x>
+          <x>700</x>
           <y>280</y>
           <width>93</width>
           <height>28</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">QPushButton#dict_find{
+        background-color: rgb(242, 58, 58);
+        color:#fff;
+		
+        border-radius:5px;
+}
+
+QPushButton#dict_find::hover{
+        background-color: rgb(247, 84, 84);
+        color:#fff;
+        border-radius:5px;
+        }
+
+
+
+
+
+</string>
         </property>
         <property name="text">
          <string>查询</string>
@@ -168,7 +198,7 @@
          <rect>
           <x>20</x>
           <y>40</y>
-          <width>780</width>
+          <width>770</width>
           <height>221</height>
          </rect>
         </property>
@@ -326,12 +356,12 @@ border-radius:5px;</string>
          <rect>
           <x>20</x>
           <y>230</y>
-          <width>911</width>
+          <width>760</width>
           <height>451</height>
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="tab_dict_simp">
          <attribute name="title">
@@ -342,8 +372,8 @@ border-radius:5px;</string>
            <rect>
             <x>0</x>
             <y>60</y>
-            <width>911</width>
-            <height>371</height>
+            <width>752</width>
+            <height>340</height>
            </rect>
           </property>
           <property name="widgetResizable">
@@ -354,8 +384,8 @@ border-radius:5px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>909</width>
-             <height>369</height>
+             <width>750</width>
+             <height>338</height>
             </rect>
            </property>
           </widget>
@@ -410,8 +440,8 @@ border-radius:5px;</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>901</width>
-            <height>421</height>
+            <width>752</width>
+            <height>400</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -431,8 +461,8 @@ border-radius:5px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>899</width>
-             <height>419</height>
+             <width>750</width>
+             <height>398</height>
             </rect>
            </property>
           </widget>
@@ -447,8 +477,8 @@ border-radius:5px;</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>901</width>
-            <height>421</height>
+            <width>752</width>
+            <height>400</height>
            </rect>
           </property>
           <property name="widgetResizable">
@@ -459,8 +489,8 @@ border-radius:5px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>899</width>
-             <height>419</height>
+             <width>750</width>
+             <height>398</height>
             </rect>
            </property>
           </widget>
@@ -475,8 +505,8 @@ border-radius:5px;</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>901</width>
-            <height>421</height>
+            <width>752</width>
+            <height>400</height>
            </rect>
           </property>
           <property name="widgetResizable">
@@ -487,8 +517,8 @@ border-radius:5px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>899</width>
-             <height>419</height>
+             <width>750</width>
+             <height>398</height>
             </rect>
            </property>
           </widget>
@@ -571,7 +601,7 @@ border-radius:5px;</string>
          <rect>
           <x>20</x>
           <y>60</y>
-          <width>911</width>
+          <width>770</width>
           <height>41</height>
          </rect>
         </property>
@@ -600,7 +630,7 @@ border-radius:5px;</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>650</y>
+        <y>630</y>
         <width>51</width>
         <height>28</height>
        </rect>
@@ -621,8 +651,8 @@ background-color: transparent;</string>
        <rect>
         <x>20</x>
         <y>30</y>
-        <width>782</width>
-        <height>311</height>
+        <width>770</width>
+        <height>300</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -636,7 +666,7 @@ background-color: transparent;</string>
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>650</y>
+        <y>630</y>
         <width>91</width>
         <height>31</height>
        </rect>
@@ -651,8 +681,8 @@ background-color: transparent;</string>
      <widget class="QPushButton" name="tran_button_person">
       <property name="geometry">
        <rect>
-        <x>690</x>
-        <y>300</y>
+        <x>680</x>
+        <y>290</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -667,8 +697,8 @@ background-color: transparent;</string>
      <widget class="QPushButton" name="tran_button_clear">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>300</y>
+        <x>440</x>
+        <y>290</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -685,8 +715,8 @@ image: url(:/images/clear.png);
      <widget class="QLabel" name="tran_label_word">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>310</y>
+        <x>40</x>
+        <y>300</y>
         <width>72</width>
         <height>15</height>
        </rect>
@@ -702,7 +732,7 @@ image: url(:/images/clear.png);
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>650</y>
+        <y>630</y>
         <width>51</width>
         <height>28</height>
        </rect>
@@ -722,8 +752,8 @@ background-color: transparent;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>380</y>
-        <width>782</width>
+        <y>360</y>
+        <width>770</width>
         <height>311</height>
        </rect>
       </property>
@@ -737,14 +767,31 @@ background-color: transparent;</string>
      <widget class="QPushButton" name="tran_button_tran">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>300</y>
+        <x>560</x>
+        <y>290</y>
         <width>93</width>
         <height>28</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QPushButton#tran_button_tran{
+        background-color: rgb(242, 58, 58);
+        color:#fff;
+		
+        border-radius:5px;
+}
+
+QPushButton#tran_button_tran::hover{
+        background-color: rgb(247, 84, 84);
+        color:#fff;
+        border-radius:5px;
+        }
+
+
+
+
+
+</string>
       </property>
       <property name="text">
        <string>翻译</string>
@@ -832,8 +879,8 @@ QComboBox QAbstractItemView::item:selected
        <rect>
         <x>0</x>
         <y>60</y>
-        <width>811</width>
-        <height>691</height>
+        <width>790</width>
+        <height>615</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -842,7 +889,7 @@ QComboBox QAbstractItemView::item:selected
 }</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab_note_list">
        <widget class="QListWidget" name="tab_note_list_listwidget">
@@ -850,8 +897,8 @@ QComboBox QAbstractItemView::item:selected
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>807</width>
-          <height>671</height>
+          <width>790</width>
+          <height>615</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -872,19 +919,22 @@ QComboBox QAbstractItemView::item:selected
          <rect>
           <x>20</x>
           <y>217</y>
-          <width>51</width>
-          <height>51</height>
+          <width>50</width>
+          <height>50</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">#tab_note_card_pre{
+         <string notr="true">QPushButton{
 	border-image: url(:/images/wb-no-details-pre.png);
 	border-radius:25px;
 }
-#tab_note_card_pre::hover{
+
+QPushButton:hover{
 	border-image: url(:/images/wb-no-details-pre-hover.png);
 	border-radius:25px;
-}</string>
+}
+
+</string>
         </property>
         <property name="text">
          <string/>
@@ -896,22 +946,24 @@ QComboBox QAbstractItemView::item:selected
        <widget class="QPushButton" name="tab_note_card_next">
         <property name="geometry">
          <rect>
-          <x>740</x>
+          <x>710</x>
           <y>220</y>
-          <width>51</width>
-          <height>51</height>
+          <width>50</width>
+          <height>50</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">#tab_note_card_next{
-	
+         <string notr="true">QPushButton{
 	border-image: url(:/images/wb-no-detail.png);
 	border-radius:25px;
 }
-#tab_note_card_next::hover{
+
+QPushButton:hover{
 	border-image: url(:/images/wb-no-detail-hover.png);
 	border-radius:25px;
-}</string>
+}
+
+</string>
         </property>
         <property name="text">
          <string/>
@@ -920,7 +972,7 @@ QComboBox QAbstractItemView::item:selected
        <widget class="QWidget" name="widget" native="true">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>85</x>
           <y>60</y>
           <width>611</width>
           <height>461</height>
@@ -965,7 +1017,8 @@ QComboBox QAbstractItemView::item:selected
               <property name="styleSheet">
                <string notr="true">#tab_note_card_more{
 	background-color: transparent;
-	color:#dfdfdf;
+	color:rgb(120,120,120);
+	border:none;
 }
 
 #tab_note_card_more::hover{
@@ -1137,7 +1190,7 @@ QComboBox QAbstractItemView::item:selected
        <widget class="QPushButton" name="tab_note_review_remember">
         <property name="geometry">
          <rect>
-          <x>310</x>
+          <x>290</x>
           <y>540</y>
           <width>93</width>
           <height>28</height>
@@ -1173,7 +1226,7 @@ QPushButton#tab_note_review_remember::hover{
        <widget class="QPushButton" name="tab_note_review_noremember">
         <property name="geometry">
          <rect>
-          <x>450</x>
+          <x>430</x>
           <y>540</y>
           <width>93</width>
           <height>28</height>
@@ -1203,7 +1256,7 @@ QPushButton#tab_note_review_noremember::hover{
        <widget class="QWidget" name="widget_2" native="true">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>85</x>
           <y>60</y>
           <width>611</width>
           <height>461</height>
@@ -1255,7 +1308,8 @@ QPushButton#tab_note_review_noremember::hover{
               <property name="styleSheet">
                <string notr="true">#tab_note_review_more{
 	background-color: transparent;
-	color:#dfdfdf;
+	border:none;
+	color:rgb(120,120,120);
 }
 
 #tab_note_review_more::hover{
@@ -1350,11 +1404,134 @@ QPushButton#tab_note_review_noremember::hover{
         </widget>
        </widget>
       </widget>
+      <widget class="QWidget" name="tab_note_no_dict">
+       <property name="styleSheet">
+        <string notr="true">#tab_note_no{
+	
+	background-color: rgb(247,247,247);
+	
+	
+
+}</string>
+       </property>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>220</y>
+          <width>271</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background-color:transparent;
+	border-image: url(:/images/pic3.png);
+}	</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>380</y>
+          <width>321</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>您的单词本中还没有单词哦</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>440</y>
+          <width>351</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>可以通过查询时点击收藏按钮将单词添加至单词本</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_note_no_review_dict">
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>380</y>
+          <width>321</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>您没有单词在复习计划中哦</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>440</y>
+          <width>351</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>单词列表中右键-加入复习即可将单词加入复习计划</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>220</y>
+          <width>271</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel{
+	background-color:transparent;
+	border-image: url(:/images/noword.png);
+}	</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
      </widget>
      <widget class="QPushButton" name="tab_note_button_review">
       <property name="geometry">
        <rect>
-        <x>720</x>
+        <x>700</x>
         <y>20</y>
         <width>93</width>
         <height>28</height>
@@ -1389,12 +1566,89 @@ QPushButton#tab_note_review_noremember::hover{
        <bool>false</bool>
       </property>
      </widget>
+     <widget class="QPushButton" name="tab_note_button_card">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>20</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tab_note_button_card{
+	
+	border-image: url(:/images/wb-card-normal.png);
+	border:none;
+}
+
+#tab_note_button_card::hover{
+	
+	border-image: url(:/images/wb-card-hover.png);
+	border:none;
+}
+
+
+#tab_note_button_card::checked{
+	
+	border-image: url(:/images/wb-card-hover.png);
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string>  卡片</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="tab_note_button_list">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>20</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#tab_note_button_list{
+	
+	border-image: url(:/images/wb-list-normal.png);
+	border:none;
+}
+
+#tab_note_button_list::hover{
+	
+	border-image: url(:/images/wb-list-hover.png);
+	border:none;
+}
+
+#tab_note_button_list::checked{
+	
+	border-image: url(:/images/wb-list-hover.png);
+	border:none;
+}</string>
+      </property>
+      <property name="text">
+       <string>   列表</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
      <widget class="QStackedWidget" name="dict_tarbar_widgetedWidget">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>120</x>
         <y>5</y>
-        <width>360</width>
+        <width>320</width>
         <height>50</height>
        </rect>
       </property>
@@ -1405,7 +1659,7 @@ QPushButton#tab_note_review_noremember::hover{
 }</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_4">
        <widget class="QWidget" name="horizontalLayoutWidget_4">
@@ -1413,7 +1667,7 @@ QPushButton#tab_note_review_noremember::hover{
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>351</width>
+          <width>301</width>
           <height>51</height>
          </rect>
         </property>
@@ -1571,7 +1825,7 @@ QComboBox QAbstractItemView::item:selected
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>91</width>
+          <width>113</width>
           <height>51</height>
          </rect>
         </property>
@@ -1684,89 +1938,12 @@ QComboBox QAbstractItemView::item:selected
        </widget>
       </widget>
      </widget>
-     <widget class="QPushButton" name="tab_note_button_card">
-      <property name="geometry">
-       <rect>
-        <x>620</x>
-        <y>20</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#tab_note_button_card{
-	
-	border-image: url(:/images/wb-card-normal.png);
-	border:none;
-}
-
-#tab_note_button_card::hover{
-	
-	border-image: url(:/images/wb-card-hover.png);
-	border:none;
-}
-
-
-#tab_note_button_card::checked{
-	
-	border-image: url(:/images/wb-card-hover.png);
-	border:none;
-}</string>
-      </property>
-      <property name="text">
-       <string>  卡片</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tab_note_button_list">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>20</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#tab_note_button_list{
-	
-	border-image: url(:/images/wb-list-normal.png);
-	border:none;
-}
-
-#tab_note_button_list::hover{
-	
-	border-image: url(:/images/wb-list-hover.png);
-	border:none;
-}
-
-#tab_note_button_list::checked{
-	
-	border-image: url(:/images/wb-list-hover.png);
-	border:none;
-}</string>
-      </property>
-      <property name="text">
-       <string>   列表</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="checked">
-       <bool>false</bool>
-      </property>
-     </widget>
      <zorder>dict_stackedWidget</zorder>
      <zorder>tab_note_button_review</zorder>
-     <zorder>dict_tarbar_widgetedWidget</zorder>
      <zorder>tab_note_combox_group</zorder>
      <zorder>tab_note_button_list</zorder>
      <zorder>tab_note_button_card</zorder>
+     <zorder>dict_tarbar_widgetedWidget</zorder>
     </widget>
     <widget class="QWidget" name="page_doc">
      <widget class="QLabel" name="doc_label">
@@ -1834,9 +2011,9 @@ QPushButton#doc_button::hover{
       </property>
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>20</y>
-        <width>771</width>
+        <width>780</width>
         <height>241</height>
        </rect>
       </property>
@@ -1876,7 +2053,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_dict">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>2</x>
        <y>0</y>
        <width>200</width>
        <height>52</height>
@@ -1887,11 +2064,25 @@ QPushButton#doc_button::hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	
+	padding-left:45px;
+	text-align:left;
 	background-color: transparent;
 	border:none;
 
-}</string>
+}
+
+QPushButton::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+QPushButton::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
      </property>
      <property name="text">
       <string>词典</string>
@@ -1914,7 +2105,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_interpret">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>2</x>
        <y>300</y>
        <width>200</width>
        <height>52</height>
@@ -1922,11 +2113,25 @@ QPushButton#doc_button::hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	
+	padding-left:45px;
+	text-align:left;
 	background-color: transparent;
 	border:none;
 
-}</string>
+}
+
+QPushButton::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+QPushButton::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
      </property>
      <property name="text">
       <string>同传</string>
@@ -1944,7 +2149,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_doc">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>2</x>
        <y>150</y>
        <width>200</width>
        <height>52</height>
@@ -1952,11 +2157,25 @@ QPushButton#doc_button::hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	
+	padding-left:45px;
+	text-align:left;
 	background-color: transparent;
 	border:none;
 
-}</string>
+}
+
+QPushButton::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+QPushButton::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
      </property>
      <property name="text">
       <string>文档翻译</string>
@@ -1974,7 +2193,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_tran">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>2</x>
        <y>50</y>
        <width>200</width>
        <height>52</height>
@@ -1982,11 +2201,25 @@ QPushButton#doc_button::hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	
+	padding-left:45px;
+	text-align:left;
 	background-color: transparent;
 	border:none;
 
-}</string>
+}
+
+QPushButton::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+QPushButton::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
      </property>
      <property name="text">
       <string>翻译</string>
@@ -2004,7 +2237,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_person">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>2</x>
        <y>350</y>
        <width>200</width>
        <height>52</height>
@@ -2012,11 +2245,25 @@ QPushButton#doc_button::hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	
+	padding-left:45px;
+	text-align:left;
 	background-color: transparent;
 	border:none;
 
-}</string>
+}
+
+QPushButton::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+QPushButton::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
      </property>
      <property name="text">
       <string>人工翻译</string>
@@ -2034,7 +2281,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_note">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>2</x>
        <y>100</y>
        <width>200</width>
        <height>52</height>
@@ -2042,11 +2289,25 @@ QPushButton#doc_button::hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	
+	padding-left:45px;
+	text-align:left;
 	background-color: transparent;
 	border:none;
 
-}</string>
+}
+
+QPushButton::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+QPushButton::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
      </property>
      <property name="text">
       <string>单词本</string>
@@ -2064,7 +2325,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_class">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>2</x>
        <y>400</y>
        <width>200</width>
        <height>52</height>
@@ -2072,11 +2333,25 @@ QPushButton#doc_button::hover{
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	
+	padding-left:45px;
+	text-align:left;
 	background-color: transparent;
 	border:none;
 
-}</string>
+}
+
+QPushButton::checked{
+    color:#f00;
+    background-color:#F1E7E6;
+    border:none;
+}
+
+
+QPushButton::hover{
+    color:#f00;
+	
+    border:none;
+    }</string>
      </property>
      <property name="text">
       <string>精品课</string>
@@ -2133,8 +2408,8 @@ QPushButton#doc_button::hover{
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>0</y>
-      <width>921</width>
+      <y>15</y>
+      <width>800</width>
       <height>51</height>
      </rect>
     </property>
@@ -2147,8 +2422,8 @@ QPushButton#doc_button::hover{
     <widget class="QStackedWidget" name="stackwidget_title">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>0</y>
+       <x>10</x>
+       <y>10</y>
        <width>471</width>
        <height>41</height>
       </rect>
@@ -2410,7 +2685,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_close">
      <property name="geometry">
       <rect>
-       <x>780</x>
+       <x>770</x>
        <y>10</y>
        <width>20</width>
        <height>20</height>
@@ -2451,7 +2726,7 @@ QPushButton#doc_button::hover{
     <widget class="QPushButton" name="button_mini">
      <property name="geometry">
       <rect>
-       <x>660</x>
+       <x>650</x>
        <y>10</y>
        <width>20</width>
        <height>20</height>
@@ -2481,7 +2756,7 @@ QPushButton#doc_button::hover{
     <widget class="QStackedWidget" name="stackedWidget_maxmin">
      <property name="geometry">
       <rect>
-       <x>740</x>
+       <x>730</x>
        <y>10</y>
        <width>21</width>
        <height>21</height>
@@ -2491,7 +2766,7 @@ QPushButton#doc_button::hover{
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_max">
       <property name="styleSheet">
@@ -2594,7 +2869,7 @@ border:none;
     <widget class="QPushButton" name="button_min">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>690</x>
        <y>10</y>
        <width>20</width>
        <height>20</height>
@@ -2633,10 +2908,10 @@ border:none;
     <widget class="QPushButton" name="button_setting">
      <property name="geometry">
       <rect>
-       <x>630</x>
+       <x>620</x>
        <y>20</y>
-       <width>10</width>
-       <height>10</height>
+       <width>8</width>
+       <height>8</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2661,12 +2936,70 @@ border:none;
       </size>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>10</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	border-radius:15px;
+	border-image: url(:/images/person.jpg);
+	border:1px solid transparent;
+	background-color:transparent;
+	
+}
+
+QPushButton:hover{
+	border-radius:15px;
+	border-image: url(:/images/person.jpg);
+	border:1px solid gray;
+	background-color:transparent;
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
     <zorder>stackwidget_title</zorder>
     <zorder>button_mini</zorder>
     <zorder>stackedWidget_maxmin</zorder>
     <zorder>button_min</zorder>
     <zorder>button_setting</zorder>
     <zorder>button_close</zorder>
+    <zorder>pushButton</zorder>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_takeword">
+    <property name="geometry">
+     <rect>
+      <x>45</x>
+      <y>620</y>
+      <width>91</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>取词</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_underline">
+    <property name="geometry">
+     <rect>
+      <x>45</x>
+      <y>660</y>
+      <width>91</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>划词</string>
+    </property>
    </widget>
   </widget>
  </widget>

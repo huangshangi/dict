@@ -6,51 +6,49 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
 
-    QTextCodec* codec = QTextCodec::codecForName("GB2312");
+    //QTextCodec* codec = QTextCodec::codecForName("GB2312");
     ui->setupUi(this);
     setWindowFlags(Qt::Window|Qt::FramelessWindowHint |Qt::WindowSystemMenuHint|Qt::WindowMinimizeButtonHint|Qt::WindowMaximizeButtonHint);
-    //ui->tabWidget_main->tabBar()->setStyle(new CustomTabStyle);
+
+    initQss();
     createSystemTray();
-    ui->tabWidget_dict->tabBar()->hide();
-
-   QFile file(":/qss/qss/dict.qss");
-   file.open(QFile::ReadOnly);
-   QString styleSheet = tr(file.readAll());
-   this->setStyleSheet(styleSheet);
-
-    file.close();
+    initSettingMenu();
     hideTranWidget();
     showNoteTabbar(0);
-    ui->tab_note_list_listwidget->setContextMenuPolicy(Qt::CustomContextMenu);
-
-    initKey();
-    ui->stackedWidget_maxmin->setCurrentIndex(0);
+    initKey();//快捷键初始化
     tabBarInit(0);
-    ui->button_dict->installEventFilter(this);
-    ui->button_class->installEventFilter(this);
-    ui->button_doc->installEventFilter(this);
-    ui->button_interpret->installEventFilter(this);
-    ui->button_note->installEventFilter(this);
-    ui->button_person->installEventFilter(this);
-    ui->button_tran->installEventFilter(this);
-    ui->dict_doc->installEventFilter(this);
-    ui->dict_shot->installEventFilter(this);
-    ui->tab_note_list_button_setting->installEventFilter(this);
-    ui->button_min->installEventFilter(this);
-    ui->button_max->installEventFilter(this);
-    ui->button_restore->installEventFilter(this);
-    ui->tab_dict_from->installEventFilter(this);
-    ui->tab_dict_to->installEventFilter(this);
+    installEventFilter();
+
+    ui->tabWidget_dict->tabBar()->hide();
+    ui->tab_note_list_listwidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->stackedWidget_maxmin->setCurrentIndex(0);
     ui->stackwidget_title->hide();
-
-
     ui->tab_note_combox_group->setView(new QListView());
     ui->tab_note_list_button_sort->setView(new QListView());
 }
 
 MainWindow::~MainWindow()
 {
+    delete settingwindow;
+    delete setting_menu;
+    delete systemTrayIcon;
+
     delete ui;
+}
+
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+    QPainterPath path;
+    QColor color(0, 0, 0, 70);
+    path.setFillRule(Qt::WindingFill);
+    path.addRect(2, 2, this->width()-4, this->height()-4);
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.fillPath(path, QBrush(Qt::white));
+    painter.setPen(color);
+    painter.drawPath(path);
+
+
 }
 
 //待优化  只需要初始化一次
@@ -346,6 +344,82 @@ void MainWindow::updateTran(tranBean bean)
 
 }
 
+void MainWindow::installEventFilter()
+{
+    ui->button_dict->installEventFilter(this);
+    ui->button_class->installEventFilter(this);
+    ui->button_doc->installEventFilter(this);
+    ui->button_interpret->installEventFilter(this);
+    ui->button_note->installEventFilter(this);
+    ui->button_person->installEventFilter(this);
+    ui->button_tran->installEventFilter(this);
+    ui->dict_doc->installEventFilter(this);
+    ui->dict_shot->installEventFilter(this);
+    ui->tab_note_list_button_setting->installEventFilter(this);
+    ui->button_min->installEventFilter(this);
+    ui->button_max->installEventFilter(this);
+    ui->button_restore->installEventFilter(this);
+    ui->tab_dict_from->installEventFilter(this);
+    ui->tab_dict_to->installEventFilter(this);
+}
+
+void MainWindow::initQss()
+{
+    QFile file(":/qss/qss/dict.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = tr(file.readAll());
+    this->setStyleSheet(styleSheet);
+
+    file.close();
+}
+
+void MainWindow::popSettingMenu()
+{
+
+    setting_menu->exec(ui->button_setting->mapToGlobal(ui->button_setting->mapFromParent(QPoint(ui->button_setting->pos().x(),
+                                                                                                ui->button_setting->pos().y()+20))));
+}
+
+void MainWindow::initSettingMenu()
+{
+    if(settingwindow==NULL){
+
+        setting_menu=new QMenu(this);
+        setting_menu->setStyleSheet("QMenu::item{background-color:#fff;width:120px;height:40px;padding-left:50px;}"
+                                                        "QMenu::item:selected {background-color: rgb(242, 150,150);color:#f00;}");
+        QAction*action_vip=new QAction("开通VIP",this);
+        action_vip->setData(QVariant(1));
+        QAction*action_person=new QAction("个人信息",this);
+        action_person->setData(QVariant(0));
+        QAction*action_setting=new QAction("设置",this);
+        action_setting->setData(QVariant(2));
+        QAction*action_feedback=new QAction("意见反馈",this);
+        action_feedback->setData(QVariant(4));
+        QAction*action_manyi=new QAction("满意度调查",this);
+        action_manyi->setData(QVariant(3));
+        QAction*action_exit=new QAction("注销登录",this);
+        action_exit->setData(QVariant(5));
+        settingwindow=new settingWindow;
+
+        connect(this,SIGNAL(settingChange(int)),settingwindow,SLOT(selectedTar(int)));
+        connect(action_vip,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+        connect(action_person,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+        connect(action_setting,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+        connect(action_feedback,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+        connect(action_manyi,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+        connect(action_exit,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
+
+        setting_menu->addAction(action_vip);
+        setting_menu->addAction(action_person);
+
+        setting_menu->addAction(action_setting);
+        setting_menu->addAction(action_feedback);
+        setting_menu->addAction(action_manyi);
+
+        setting_menu->addAction(action_exit);
+    }
+}
+
 bool MainWindow::eventFilter(QObject *watched, QEvent *e)
 {
     if (watched == ui->button_dict) {
@@ -558,6 +632,11 @@ void MainWindow::updateNoteList(QList<newWordBean>list)
 {
     ui->tab_note_list_listwidget->clear();
 
+    if(list.size()==0){
+        ui->dict_stackedWidget->setCurrentIndex(3);
+        return;
+    }
+    ui->dict_stackedWidget->setCurrentIndex(0);
     for(int i=0;i<list.size();i++){
         QListWidgetItem *item=new QListWidgetItem;
 
@@ -594,8 +673,12 @@ void MainWindow::updateNoteCard(int index)
 
     QList<newWordBean>list=getNoteList();
     int size=list.size();
-    if(size==0)
+    if(size==0){
+        ui->dict_stackedWidget->setCurrentIndex(3);
         return;
+
+    }
+    ui->dict_stackedWidget->setCurrentIndex(1);
     if(index<0||index>=size)
         index=0;
     newWordBean bean=list.at(index);
@@ -623,8 +706,11 @@ void MainWindow::updateNoteReview(int index)
     //获取应该被复习的单词
     QList<newWordBean>list=getNoteList();
     int size=list.size();
-    if(size==0)
+    if(size==0){
+        ui->dict_stackedWidget->setCurrentIndex(4);
         return;
+    }
+    ui->dict_stackedWidget->setCurrentIndex(2);
     if(index<0||index>=size)
         index=0;
     newWordBean bean=list.at(index);
@@ -641,36 +727,39 @@ void MainWindow::updateNoteReview(int index)
 void MainWindow::createSystemTray()
 {
     //需判断托盘是否可用
-    QMenu*menu=new QMenu;
-    menu->setStyleSheet("QMenu::item{width:120px;height:40px;padding-left:50px;}"
-                        "QMenu::item:selected {background-color: rgb(242, 150,150);color:#f00;}");
-    QSystemTrayIcon* systemTray=new QSystemTrayIcon(QIcon(":/images/pop-logo.png"));
+    if(systemTrayIcon==NULL){
+        QMenu*menu=new QMenu;
+        menu->setStyleSheet("QMenu::item{width:120px;height:40px;padding-left:50px;}"
+                            "QMenu::item:selected {background-color: rgb(242, 150,150);color:#f00;}");
+        systemTrayIcon=new QSystemTrayIcon(QIcon(":/images/logo-shink.png"));
 
-    QAction*action_screen=createWidgetAction(menu,"屏幕取词");
-    QAction*action_delimit=createWidgetAction(menu,"划词翻译");
-    QAction*action_shot=new QAction("截屏翻译");
-    QAction*action_show=new QAction("显示主窗口");
-    QAction*action_first=createWidgetAction(menu,"总在最前");
-    QAction*action_feedback=new QAction("意见反馈");
-    QAction*action_setting=new QAction("设置");
-    QAction*action_exit=new QAction("退出");
+        QAction*action_screen=createWidgetAction(menu,"屏幕取词");
+        QAction*action_delimit=createWidgetAction(menu,"划词翻译");
+        QAction*action_shot=new QAction("截屏翻译");
+        QAction*action_show=new QAction("显示主窗口");
+        QAction*action_first=createWidgetAction(menu,"总在最前");
+        QAction*action_feedback=new QAction("意见反馈");
+        QAction*action_setting=new QAction("设置");
+        QAction*action_exit=new QAction("退出");
 
-    connect(action_shot,SIGNAL(triggered(bool)),this,SLOT(systemtray_shot()));
-    connect(action_show,SIGNAL(triggered(bool)),this,SLOT(systemtray_show()));
-    connect(action_feedback,SIGNAL(triggered(bool)),this,SLOT(systemtray_feedback()));
-    connect(action_setting,SIGNAL(triggered(bool)),this,SLOT(systemtray_setting()));
-    connect(action_exit,SIGNAL(triggered(bool)),this,SLOT(systemtray_exit()));
+        connect(action_shot,SIGNAL(triggered(bool)),this,SLOT(systemtray_shot()));
+        connect(action_show,SIGNAL(triggered(bool)),this,SLOT(systemtray_show()));
+        connect(action_feedback,SIGNAL(triggered(bool)),this,SLOT(systemtray_feedback()));
+        connect(action_setting,SIGNAL(triggered(bool)),this,SLOT(systemtray_setting()));
+        connect(action_exit,SIGNAL(triggered(bool)),this,SLOT(systemtray_exit()));
 
 
-    menu->addAction(action_screen);
-    menu->addAction(action_delimit);
-    menu->addAction(action_show);
-    menu->addAction(action_first);
-    menu->addAction(action_feedback);
-    menu->addAction(action_setting);
-    menu->addAction(action_exit);
-    systemTray->setContextMenu(menu);
-    systemTray->show();
+        menu->addAction(action_screen);
+        menu->addAction(action_delimit);
+        menu->addAction(action_show);
+        menu->addAction(action_first);
+        menu->addAction(action_feedback);
+        menu->addAction(action_setting);
+        menu->addAction(action_exit);
+        systemTrayIcon->setContextMenu(menu);
+    }
+
+    systemTrayIcon->show();
 
 }
 
@@ -698,16 +787,18 @@ void MainWindow::systemtray_show()
 {
 
     showNormal();
+    raise();
+    activateWindow();
 }
 
 void MainWindow::systemtray_feedback()
 {
-
+    emit settingChange(4);
 }
 
 void MainWindow::systemtray_setting()
 {
-
+    emit settingChange(2);
 }
 
 void MainWindow::systemtray_exit()
@@ -721,7 +812,19 @@ void MainWindow::systemtray_checkbox()
 
     QCheckBox*checkBox=(QCheckBox*)sender();
 
-    qDebug()<<checkBox->text();
+    if(!checkBox->text().compare("屏幕取词"))
+        ui->checkBox_takeword->setChecked(checkBox->isChecked());
+    else if(!checkBox->text().compare("划词翻译"))
+        ui->checkBox_underline->setChecked(checkBox->isChecked());
+    else{
+        if(checkBox->isChecked())
+            setWindowFlags(windowFlags()|Qt::WindowStaysOnTopHint);
+        else
+            setWindowFlags(windowFlags()&~Qt::WindowStaysOnTopHint);
+        show();
+    }
+
+
 }
 
 void MainWindow::tab_note_list_delete()
@@ -800,7 +903,7 @@ void MainWindow::tab_note_list_setting_add()
 
 void MainWindow::tab_note_list_setting_setting()
 {
-    dict_preference_window* window=new dict_preference_window;
+    dict_preference_window* window=new dict_preference_window(this);
     window->show();
 }
 
@@ -1285,7 +1388,10 @@ void MainWindow::on_button_class_clicked()
 
 void MainWindow::on_button_logo_clicked()
 {
+
     tabBarInit(0);
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackwidget_title->hide();
 }
 
 void MainWindow::on_button_close_clicked()
@@ -1311,37 +1417,9 @@ void MainWindow::on_button_restore_clicked()
 
 void MainWindow::on_button_setting_clicked()
 {
-    QMenu*menu=new QMenu(this);
-    QAction*action_vip=new QAction("开通VIP",this);
-    action_vip->setData(QVariant(0));
-    QAction*action_person=new QAction("个人信息",this);
-    action_person->setData(QVariant(1));
-    QAction*action_setting=new QAction("设置",this);
-    action_setting->setData(QVariant(2));
-    QAction*action_feedback=new QAction("意见反馈",this);
-    action_feedback->setData(QVariant(3));
-    QAction*action_manyi=new QAction("满意度调查",this);
-    action_manyi->setData(QVariant(4));
-    QAction*action_exit=new QAction("注销登录",this);
-    action_exit->setData(QVariant(5));
-    settingWindow *settingwindow=new settingWindow;
-    connect(action_vip,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
-    connect(action_person,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
-    connect(action_setting,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
-    connect(action_feedback,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
-    connect(action_manyi,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
-    connect(action_exit,SIGNAL(triggered()),settingwindow,SLOT(selectedTar()));
-
-    menu->addAction(action_vip);
-    menu->addAction(action_person);
-    menu->addSeparator();
-    menu->addAction(action_setting);
-    menu->addAction(action_feedback);
-    menu->addAction(action_manyi);
-    menu->addSeparator();
-    menu->addAction(action_exit);
-    menu->exec(ui->button_setting->mapToGlobal(ui->button_setting->mapFromParent(ui->button_setting->pos())));
+    popSettingMenu();
 }
+
 
 void MainWindow::on_tab_note_review_remember_clicked()
 {
@@ -1359,4 +1437,15 @@ void MainWindow::on_tab_note_review_noremember_clicked()
 
     //判断未实现
     updateNoteReview(index+1);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    popSettingMenu();
+}
+
+void MainWindow::on_tab_dict_from_clicked()
+{
+    groupmanagment*w=new groupmanagment(this);
+    w->show();
 }

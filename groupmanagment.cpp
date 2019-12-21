@@ -6,6 +6,7 @@ groupmanagment::groupmanagment(QWidget *parent) :
     ui(new Ui::groupmanagment)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window|Qt::FramelessWindowHint |Qt::WindowSystemMenuHint|Qt::WindowMinimizeButtonHint|Qt::WindowMaximizeButtonHint);
 
     updateListWidget();
 
@@ -16,6 +17,39 @@ groupmanagment::~groupmanagment()
 {
     delete ui;
 }
+
+void groupmanagment::mousePressEvent(QMouseEvent *event)
+{
+    is_press=true;
+    startP=event->globalPos();
+    windowP=this->frameGeometry().topLeft();
+}
+
+void groupmanagment::mouseMoveEvent(QMouseEvent *event)
+{
+    if(is_press&&Qt::LeftButton)
+        this->move(windowP+event->globalPos()-startP);
+}
+
+void groupmanagment::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(event->button()==Qt::LeftButton)
+        is_press=false;
+}
+
+void groupmanagment::paintEvent(QPaintEvent *event)
+{
+    QPainterPath path;
+    QColor color(0, 0, 0, 70);
+    path.setFillRule(Qt::WindingFill);
+    path.addRect(2, 2, this->width()-4, this->height()-4);
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.fillPath(path, QBrush(Qt::white));
+    painter.setPen(color);
+    painter.drawPath(path);
+}
+
 
 void groupmanagment::updateListWidget()
 {
@@ -32,9 +66,13 @@ void groupmanagment::updateListWidget()
 
         QLineEdit*lineedit=new QLineEdit;
         QPushButton*button=new QPushButton;
+        button->setIcon(QIcon(":/images/doc-delete.png"));
+        button->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+        button->setStyleSheet("QPushButton{border:none;background-color:transparent;}");
 
+        lineedit->setStyleSheet("QLineEdit{\n	background-color:transparent;\n	border:none;\n\n}");
         lineedit->setText(list.at(i));
-        button->setText("删除");
+
         lineedit->setEnabled(false);
 
         layout->addWidget(lineedit,9,Qt::AlignLeft);
@@ -126,4 +164,9 @@ void groupmanagment::on_lineEdit_returnPressed()
     ConnectPool::closeConnection(database);
     updateListWidget();
     ui->lineEdit->clear();
+}
+
+void groupmanagment::on_button_close_clicked()
+{
+    close();
 }

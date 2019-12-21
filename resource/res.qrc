@@ -276,6 +276,13 @@
         <file>images/wordbook-plan9.png</file>
         <file>images/wb-no-details-pre-hover.png</file>
         <file>images/wb-no-details-pre.png</file>
+        <file>images/note_prev .png</file>
+        <file>images/note_next.png</file>
+        <file>images/noword.png</file>
+        <file>images/overReview.png</file>
+        <file>images/pic_review.png</file>
+        <file>images/pic3.png</file>
+        <file>images/person.jpg</file>
     </qresource>
     <qresource prefix="/qss">
         <file>qss/dict.qss</file>
