@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>599</width>
-    <height>559</height>
+    <width>554</width>
+    <height>525</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>30</y>
+      <y>50</y>
       <width>491</width>
       <height>19</height>
      </rect>
@@ -34,7 +34,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>80</y>
+      <y>100</y>
       <width>491</width>
       <height>19</height>
      </rect>
@@ -47,7 +47,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>130</y>
+      <y>150</y>
       <width>491</width>
       <height>19</height>
      </rect>
@@ -60,7 +60,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>180</y>
+      <y>200</y>
       <width>491</width>
       <height>19</height>
      </rect>
@@ -73,7 +73,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>230</y>
+      <y>250</y>
       <width>491</width>
       <height>19</height>
      </rect>
@@ -86,7 +86,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>280</y>
+      <y>300</y>
       <width>491</width>
       <height>19</height>
      </rect>
@@ -105,7 +105,24 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">QPushButton#pushButton_sure{
+        background-color: rgb(242, 58, 58);
+        color:#fff;
+		
+        border-radius:5px;
+}
+
+QPushButton#pushButton_sure::hover{
+        background-color: rgb(247, 84, 84);
+        color:#fff;
+        border-radius:5px;
+        }
+
+
+
+
+
+</string>
     </property>
     <property name="text">
      <string>保存设置</string>
@@ -123,7 +140,7 @@
     <property name="styleSheet">
      <string notr="true">background-color: transparent;
 border:1px solid black;
-border-radius:5px;</string>
+border-radius:2px;</string>
     </property>
     <property name="text">
      <string>取消</string>
@@ -150,6 +167,15 @@ border-radius:5px;</string>
       <width>301</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox{
+	background-color:white;
+	border:1px solid gray;
+
+}
+
+</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -187,25 +213,74 @@ border-radius:5px;</string>
       <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	border-radius:2px;
+	border:1px solid gray;
+
+}</string>
+    </property>
    </widget>
-  </widget>
-  <widget class="QStatusBar" name="statusbar">
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>599</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>单词本设置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_close">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>关闭</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#button_close{
+	
+	border-image: url(:/images/close.png);
+	border:none;
+}
+
+#button_close::hover{
+	
+	border-image: url(:/images/close-hover.png);
+	border:none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

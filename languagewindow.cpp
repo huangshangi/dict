@@ -2,7 +2,7 @@
 #include "ui_languagewindow.h"
 
 languagewindow::languagewindow(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::languagewindow)
 {
     ui->setupUi(this);
@@ -11,12 +11,13 @@ languagewindow::languagewindow(QWidget *parent) :
     initList();
     initUi();
 
-    setWindowFlags(Qt::FramelessWindowHint);
+    setWindowFlags(Qt::FramelessWindowHint|Qt::Popup);
     fromButton=new QPushButton;
     fromButton->setText("");
 
     toButton=new QPushButton;
     toButton->setText("");
+
 
 }
 
@@ -46,6 +47,8 @@ bool languagewindow::eventFilter(QObject *watched, QEvent *e)
 
 bool languagewindow::event(QEvent *event)
 {
+
+
     if (event->type() == QEvent::ActivationChange)
         {
             if(QApplication::activeWindow() != this)
@@ -132,6 +135,11 @@ void languagewindow::button_to_click()
     if(fromButton->text()!="")
         fromButton->setStyleSheet("QPushButton{color:#dfdfdf;text-align:left;background-color:transparent;border:none;}");
 
+
+}
+
+void languagewindow::closeEvent(QCloseEvent *event)
+{
 
 }
 

@@ -6,6 +6,8 @@ dict_edit::dict_edit(QWidget *parent) :
     ui(new Ui::dict_edit)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window|Qt::FramelessWindowHint |Qt::WindowSystemMenuHint|Qt::WindowMinimizeButtonHint|Qt::WindowMaximizeButtonHint);
+
 
 }
 
@@ -28,6 +30,38 @@ void dict_edit::closeEvent(QCloseEvent *closeEvent)
 {
 
     emit updateList();
+}
+
+void dict_edit::paintEvent(QPaintEvent *event)
+{
+    QPainterPath path;
+    QColor color(0, 0, 0, 70);
+    path.setFillRule(Qt::WindingFill);
+    path.addRect(2, 2, this->width()-4, this->height()-4);
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.fillPath(path, QBrush(Qt::white));
+    painter.setPen(color);
+    painter.drawPath(path);
+}
+
+void dict_edit::mousePressEvent(QMouseEvent *event)
+{
+    is_press=true;
+    startP=event->globalPos();
+    windowP=this->frameGeometry().topLeft();
+}
+
+void dict_edit::mouseMoveEvent(QMouseEvent *event)
+{
+    if(is_press&&Qt::LeftButton)
+        this->move(windowP+event->globalPos()-startP);
+}
+
+void dict_edit::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(event->button()==Qt::LeftButton)
+        is_press=false;
 }
 
 dict_edit::dict_edit(QWidget *parent, QString name):
@@ -83,4 +117,9 @@ void dict_edit::on_dict_edit_button_cancel_clicked()
 {
     //关闭窗体
     this->close();
+}
+
+void dict_edit::on_button_close_clicked()
+{
+    close();
 }

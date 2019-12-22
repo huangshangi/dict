@@ -48,9 +48,9 @@ SOURCES += \
     dict_note_add_window.cpp \
     dict_preference_window.cpp \
     config.cpp \
-    languagewindow.cpp \
     settings.cpp \
-    languagelabel.cpp
+    languagelabel.cpp \
+    languagewindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -73,9 +73,9 @@ HEADERS += \
     dict_note_add_window.h \
     dict_preference_window.h \
     config.h \
-    languagewindow.h \
     settings.h \
-    languagelabel.h
+    languagelabel.h \
+    languagewindow.h
 
 FORMS += \
         mainwindow.ui \
@@ -85,7 +85,7 @@ FORMS += \
     groupmanagment.ui \
     dict_note_add_window.ui \
     dict_preference_window.ui \
-    languagewindow.ui \
+    languagewindow.ui
 
 RESOURCES += \
     resource/res.qrc

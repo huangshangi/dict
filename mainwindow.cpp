@@ -422,6 +422,9 @@ void MainWindow::initSettingMenu()
 
 bool MainWindow::eventFilter(QObject *watched, QEvent *e)
 {
+
+
+
     if (watched == ui->button_dict) {
             if (e->type() == QEvent::Enter)
                 ui->button_dict->setIcon(QIcon(":/images/dict-hover.png"));
@@ -1446,6 +1449,11 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_tab_dict_from_clicked()
 {
-    groupmanagment*w=new groupmanagment(this);
-    w->show();
+    if(languagewindow_dict==NULL)
+        languagewindow_dict=new languagewindow(this);
+    QPoint p=mapToParent(ui->tab_dict_from->pos());
+
+    languagewindow_dict->setGeometry(200+p.x(),p.y()+80,510,208);
+
+    languagewindow_dict->show();
 }

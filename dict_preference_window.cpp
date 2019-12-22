@@ -6,15 +6,14 @@ dict_preference_window::dict_preference_window(QWidget *parent) :
     ui(new Ui::dict_preference_window)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window|Qt::FramelessWindowHint |Qt::WindowSystemMenuHint|Qt::WindowMinimizeButtonHint|Qt::WindowMaximizeButtonHint);
+
     QFile file(":/qss/qss/preference.qss");
     file.open(QFile::ReadOnly);
     QString styleSheet = tr(file.readAll());
     this->setStyleSheet(styleSheet);
     file.close();
 
-    this->setWindowTitle("单词本设置");
-    this->setWindowFlags(Qt::WindowCloseButtonHint);
-    this->setWindowIcon(QIcon());
     ui->lineEdit->setValidator(new QIntValidator(1,1000,this));
 
 
@@ -42,6 +41,43 @@ void dict_preference_window::on_pushButton_sure_clicked()
 }
 
 void dict_preference_window::on_pushButton_cancel_clicked()
+{
+    close();
+}
+
+void dict_preference_window::paintEvent(QPaintEvent *event)
+{
+    QPainterPath path;
+    QColor color(0, 0, 0, 70);
+    path.setFillRule(Qt::WindingFill);
+    path.addRect(2, 2, this->width()-4, this->height()-4);
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.fillPath(path, QBrush(Qt::white));
+    painter.setPen(color);
+    painter.drawPath(path);
+}
+
+void dict_preference_window::mousePressEvent(QMouseEvent *event)
+{
+    is_press=true;
+    startP=event->globalPos();
+    windowP=this->frameGeometry().topLeft();
+}
+
+void dict_preference_window::mouseMoveEvent(QMouseEvent *event)
+{
+    if(is_press&&Qt::LeftButton)
+        this->move(windowP+event->globalPos()-startP);
+}
+
+void dict_preference_window::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(event->button()==Qt::LeftButton)
+        is_press=false;
+}
+
+void dict_preference_window::on_button_close_clicked()
 {
     close();
 }

@@ -36,7 +36,7 @@
 #include "dict_note_add_window.h"
 #include "settingwindow.h"
 #include "dict_preference_window.h"
-
+#include "languagewindow.h"
 #define TRAN_FROM_MAX_LENGTH 5000
 
 namespace Ui {
@@ -93,9 +93,11 @@ private:
     settingWindow *settingwindow=NULL;//设置界面
     QMenu*setting_menu=NULL;//设置界面菜单
 
+    languagewindow*languagewindow_dict=NULL;//字典的语言选择
+
     QSystemTrayIcon* systemTrayIcon=NULL;//系统托盘
 
-    //一下变量用于窗口拖动
+    //以下变量用于窗口拖动
     bool is_press;
     QPoint startP;//鼠标点击坐标
     QPoint windowP;//窗口坐标

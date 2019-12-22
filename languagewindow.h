@@ -2,6 +2,7 @@
 #define LANGUAGEWINDOW_H
 
 #include <QWidget>
+#include <QMainWindow>
 #include "languagelabel.h"
 #include <QDebug>
 #include <QMouseEvent>
@@ -9,13 +10,19 @@
 #include <QStringList>
 #include <QTableWidgetItem>
 #include <QEvent>
+#include <QCloseEvent>
 namespace Ui {
 class languagewindow;
 }
 
-class languagewindow : public QWidget
+class languagewindow : public QMainWindow
 {
     Q_OBJECT
+
+signals:
+    void sendLanguage(QString from,QString to);
+
+    void sendLanguage(QString language);
 
 public:
     explicit languagewindow(QWidget *parent = 0);
@@ -31,6 +38,8 @@ public:
     void button_from_click();
 
     void button_to_click();
+
+    void closeEvent(QCloseEvent *event);
 private slots:
     void common_click();
 
