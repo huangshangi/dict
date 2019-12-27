@@ -7,6 +7,7 @@ Config::Config(QString fileName)
         this->fileName=QCoreApplication::applicationDirPath()+"/config.ini";
     else
         this->fileName=fileName;
+
     setting=new QSettings(this->fileName,QSettings::IniFormat);
 }
 

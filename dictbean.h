@@ -11,7 +11,7 @@
 #include "dict_webbean.h"
 #include "dict_phrasebean.h"
 #include "dict_examplebean.h"
-
+#include <QDebug>
 class dictBean
 {
 public:

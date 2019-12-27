@@ -9,6 +9,7 @@ dictBean dictBean::fromJson(QString &json)
 {
 
     QByteArray data=json.toUtf8();
+    qDebug()<<json;
     QJsonParseError parseError;
     dictBean bean;
     QJsonDocument document=QJsonDocument::fromJson(data,&parseError);

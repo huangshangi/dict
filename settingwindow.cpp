@@ -88,7 +88,7 @@ void settingWindow::on_radioButton_normal_clicked()
 void settingWindow::selectedTar()
 {
 
-    setParent((QWidget*)sender()->parent());
+    //setParent((QWidget*)sender()->parent());
     int index=((QAction*)sender())->data().toInt();
     tarbarInit(index);
     show();
@@ -96,7 +96,7 @@ void settingWindow::selectedTar()
 
 void settingWindow::selectedTar(int index)
 {
-    setParent((QWidget*)sender()->parent());
+    //setParent((QWidget*)sender()->parent());
     ui->stackedWidget->setCurrentIndex(index);
     tarbarInit(index);
     show();

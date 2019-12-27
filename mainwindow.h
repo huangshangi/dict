@@ -37,6 +37,7 @@
 #include "settingwindow.h"
 #include "dict_preference_window.h"
 #include "languagewindow.h"
+#include "networkget.h"
 #define TRAN_FROM_MAX_LENGTH 5000
 
 namespace Ui {
@@ -83,7 +84,7 @@ public:
 
 
     QString packUrlDict(QString);
-    QMap<QString,QString> packUrlTran(QString);
+    QString packUrlTran(QString);
 private:
     Ui::MainWindow *ui;
     tranBean tranbean;
@@ -96,6 +97,8 @@ private:
     languagewindow*languagewindow_dict=NULL;//字典的语言选择
 
     QSystemTrayIcon* systemTrayIcon=NULL;//系统托盘
+
+    settings*s;//设置
 
     //以下变量用于窗口拖动
     bool is_press;
@@ -110,6 +113,8 @@ private:
 
     void createSystemTray();//创建系统托盘
     QWidgetAction* createWidgetAction(QWidget*parent,QString);//创建自定义菜单项
+
+    void clearLayout(QLayout*layout);
 
 public slots:
 
@@ -187,6 +192,7 @@ private slots:
     void on_tab_note_review_noremember_clicked();
     void on_pushButton_clicked();
     void on_tab_dict_from_clicked();
+    void on_dict_edit_find_textEdited(const QString &arg1);
 };
 
 #endif // MAINWINDOW_H

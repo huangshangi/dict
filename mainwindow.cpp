@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     tabBarInit(0);
     installEventFilter();
 
+    s=settings::getInstance();
+
     ui->tabWidget_dict->tabBar()->hide();
     ui->tab_note_list_listwidget->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->stackedWidget_maxmin->setCurrentIndex(0);
@@ -203,9 +205,10 @@ void MainWindow::updateDict(dictBean bean)
 
     ui->dict_label_keyword->setText(bean.getKeyword());
     ui->dict_label_title->setText(bean.getTitle());
-
+    ui->dict_edit_find->setText(bean.getKeyword());
 
    //对简明翻译进行更新
+
     QVBoxLayout *layout=new QVBoxLayout;
     QList<dict_simpBean>list=bean.getList();
     for(int i=0;i<list.size();i++){
@@ -223,7 +226,7 @@ void MainWindow::updateDict(dictBean bean)
 
             if(iteratorTitle!=map.end()){
                 QString s=iteratorTitle.value();
-                labelTitle->setText(s);
+                labelTitle->setText(QString::number(j+1)+"."+s);
                 layout->addWidget(labelTitle);
             }
 
@@ -241,6 +244,8 @@ void MainWindow::updateDict(dictBean bean)
         }
     }
     layout->addStretch();
+
+    clearLayout(ui->scrollArea_simp->widget()->layout());
     ui->scrollArea_simp->widget()->setLayout(layout);
 
     //对网络释义进行更新
@@ -254,9 +259,12 @@ void MainWindow::updateDict(dictBean bean)
         QMap<QString,QString>::const_iterator iteratorContent=map.find("content");
         QLabel *labelTitle=new QLabel;
         QLabel *labelContent=new QLabel;
-
+        labelTitle->setWordWrap(true);
+        labelTitle->adjustSize();
+        labelContent->setWordWrap(true);
+        labelContent->adjustSize();
         if(iteratorTitle!=map.end()){
-            labelTitle->setText(iteratorTitle.value());
+            labelTitle->setText(QString::number(i+1)+"."+iteratorTitle.value());
             layout_web->addWidget(labelTitle);
         }
 
@@ -268,6 +276,7 @@ void MainWindow::updateDict(dictBean bean)
 
     }
     layout_web->addStretch();
+    clearLayout(ui->scrollArea_web->widget()->layout());
     ui->scrollArea_web->widget()->setLayout(layout_web);
 
 
@@ -283,9 +292,12 @@ void MainWindow::updateDict(dictBean bean)
         QMap<QString,QString>::const_iterator iteratorContent=map.find("content");
         QLabel *labelTitle=new QLabel;
         QLabel *labelContent=new QLabel;
-
+        labelTitle->setWordWrap(true);
+        labelTitle->adjustSize();
+        labelContent->setWordWrap(true);
+        labelContent->adjustSize();
         if(iteratorTitle!=map.end()){
-            labelTitle->setText(iteratorTitle.value());
+            labelTitle->setText(QString::number(i+1)+"."+iteratorTitle.value());
 
             layout_phrase->addWidget(labelTitle);
         }
@@ -297,6 +309,7 @@ void MainWindow::updateDict(dictBean bean)
 
     }
     layout_phrase->addStretch();
+    clearLayout(ui->scrollArea_phrase->widget()->layout());
     ui->scrollArea_phrase->widget()->setLayout(layout_phrase);
 
 
@@ -312,9 +325,12 @@ void MainWindow::updateDict(dictBean bean)
         QMap<QString,QString>::const_iterator iteratorContent=map.find("content");
         QLabel *labelTitle=new QLabel;
         QLabel *labelContent=new QLabel;
-
+        labelTitle->setWordWrap(true);
+        labelTitle->adjustSize();
+        labelContent->setWordWrap(true);
+        labelContent->adjustSize();
         if(iteratorTitle!=map.end()){
-            labelTitle->setText(iteratorTitle.value());
+            labelTitle->setText(QString::number(i+1)+"."+iteratorTitle.value());
             labelTitle->setGeometry(10,10,91,31);
             layout_example->addWidget(labelTitle);
         }
@@ -328,7 +344,8 @@ void MainWindow::updateDict(dictBean bean)
 
     }
     layout_example->addStretch();
-   ui->scrollArea_example->widget()->setLayout(layout_example);
+    clearLayout(ui->scrollArea_example->widget()->layout());
+    ui->scrollArea_example->widget()->setLayout(layout_example);
 
 }
 
@@ -578,12 +595,27 @@ void MainWindow::changeEvent(QEvent *event)
 
 QString MainWindow::packUrlDict(QString k)
 {
+    s->update();
+    QString source=s->getSource();
+    QString from=s->getFrom();
+    QString to=s->getTo();
+    QString url=QString("http://localhost:8080/dict?from=%1&to=%2&source=%3&key=%4")
+            .arg(from).arg(to).arg(source).arg(k);
+
+    return url;
 
 }
 
-QMap<QString, QString> MainWindow::packUrlTran(QString)
+QString MainWindow::packUrlTran(QString k)
 {
-    return QMap<QString,QString>();
+    s->update();
+    QString source=s->getSource();
+    QString from=s->getFrom();
+    QString to=s->getTo();
+    QString url=QString("http://localhost:8080/tran?from=%1&to=%2&source=%3&key=%4")
+            .arg(from).arg(to).arg(source).arg(k);
+
+    return url;
 }
 
 QList<newWordBean> MainWindow::getNoteList(int index,QString keyword)
@@ -781,6 +813,25 @@ QWidgetAction* MainWindow::createWidgetAction(QWidget*parent,QString s)
     return action_shot;
 }
 
+void MainWindow::clearLayout(QLayout *layout)
+{
+
+    if(layout==0)
+        return;
+    int itemCount=layout->count();
+
+    for(int i=itemCount-1;i>=0;i--){
+        QLayoutItem*item=layout->takeAt(i);
+            if(item!=0) {
+                 layout->removeWidget(item->widget());
+                 delete item->widget();
+            }
+
+
+    }
+    delete layout;
+}
+
 void MainWindow::systemtray_shot()
 {
 
@@ -964,9 +1015,8 @@ void MainWindow::playAudio(QNetworkReply *reply)
 
     file.close();
     QMediaPlayer* player = new QMediaPlayer;
-
     player->setMedia(QUrl::fromLocalFile(file.fileName()));
-    player->setVolume(30);
+    player->setVolume(100);
     player->play();
 
     
@@ -977,17 +1027,23 @@ void MainWindow::dictFind(QNetworkReply *reply)
     //进行网络操作,查询到数据
     QByteArray data=reply->readAll();
     QString s=data;
+    if(s.isEmpty())
+        return;
     dictbean=dictBean::fromJson(s);
     updateDict(dictbean);
 
+    ui->tabWidget_dict->setCurrentIndex(1);
 }
 
 void MainWindow::tranFind(QNetworkReply *reply)
 {
     QByteArray data=reply->readAll();
     QString s=data;
+
     tranbean=tranBean::fromJson(s);
+
     updateTran(tranbean);
+
 }
 
 void MainWindow::updateList()
@@ -1016,10 +1072,12 @@ void MainWindow::on_dict_find_clicked()
 {
     if(ui->dict_edit->toPlainText().isEmpty())
         return;
-    ui->tabWidget_dict->setCurrentIndex(1);
+
     NetworkController *networkController=new NetworkController;
-    QString url=packUrlDict(ui->dict_edit->toPlainText());
-    QNetworkAccessManager*manger=networkController->getUrl(url.toUtf8().data());
+
+    if(!ui->dict_edit->toPlainText().compare(""))
+        return;
+    QNetworkAccessManager*manger=networkController->getUrl(packUrlDict(ui->dict_edit->toPlainText()).toUtf8().data());
 
     connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
 
@@ -1054,13 +1112,7 @@ void MainWindow::on_dict_button_pron_clicked()
 //dict界面tab2
 void MainWindow::on_dict_button_find_clicked()
 {
-    if(ui->dict_edit_find->text().isEmpty())
-        return;
-    NetworkController *networkController=new NetworkController;
-    QString url=packUrlDict(ui->dict_edit_find->text());
-    QNetworkAccessManager*manger=networkController->getUrl(url.toUtf8().data());
 
-    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
 
 }
 
@@ -1094,18 +1146,18 @@ void MainWindow::on_tran_button_clear_clicked()
 {
     //清空翻译框
     ui->tran_edit_from->setText("");
+    ui->tran_edit_to->setText("");
 }
 
 void MainWindow::on_tran_button_tran_clicked()
 {
     //进行翻译
     QString value=ui->tran_edit_from->toPlainText();
-    //将翻译内容进行翻译
-    //QString res="{\"src\": \"私は七瀬です\", \"content\": \"我是七濑\", \"audio\": \"https://dict.youdao.com/dictvoice?audio=私は七瀬です&le=jap\"}";
-    //connect(updateTran())
+
 
     NetworkController* controller=new NetworkController;
-    QNetworkAccessManager*manger=controller->postUrl("",packUrlTran(ui->tran_edit_from->toPlainText()));
+    QNetworkAccessManager*manger=controller->getUrl(packUrlTran(value).toUtf8().data());
+
     connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(tranFind(QNetworkReply*)));
 
 
@@ -1240,20 +1292,20 @@ void MainWindow::on_tab_note_review_button_clicked()
 
 void MainWindow::on_dict_edit_textChanged()
 {
-    if(ui->dict_edit->toPlainText().isEmpty())
+    /*if(ui->dict_edit->toPlainText().isEmpty())
         return;
     ui->tabWidget_dict->setCurrentIndex(1);
     NetworkController *networkController=new NetworkController;
     QString url=packUrlDict(ui->dict_edit->toPlainText());
     QNetworkAccessManager*manger=networkController->getUrl(url.toUtf8().data());
 
-    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
+    connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));*/
 }
 
 void MainWindow::on_dict_edit_find_textChanged(const QString &arg)
 {
-    if(!strcmp(arg.toUtf8().data(),""))
-        ui->tabWidget_dict->setCurrentIndex(0);
+
+
 }
 
 void MainWindow::on_tab_note_card_button_setting_clicked()
@@ -1426,7 +1478,7 @@ void MainWindow::on_button_setting_clicked()
 
 void MainWindow::on_tab_note_review_remember_clicked()
 {
-    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+    int index=ui->tab_note_review_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
 
 
     //判断未实现
@@ -1435,7 +1487,7 @@ void MainWindow::on_tab_note_review_remember_clicked()
 
 void MainWindow::on_tab_note_review_noremember_clicked()
 {
-    int index=ui->tab_note_card_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
+    int index=ui->tab_note_review_count->text().left(ui->tab_note_card_count->text().indexOf('/')).toInt()-1;
 
 
     //判断未实现
@@ -1456,4 +1508,21 @@ void MainWindow::on_tab_dict_from_clicked()
     languagewindow_dict->setGeometry(200+p.x(),p.y()+80,510,208);
 
     languagewindow_dict->show();
+}
+
+void MainWindow::on_dict_edit_find_textEdited(const QString &arg)
+{
+    if(!strcmp(arg.toUtf8().data(),"")){
+        ui->tabWidget_dict->setCurrentIndex(0);
+        ui->dict_edit->setText("");
+    }else if(strcmp(arg.toUtf8().data(),"")){
+        //执行查询操作
+        NetworkController *networkController=new NetworkController;
+
+        QNetworkAccessManager*manger=networkController->getUrl(packUrlDict(arg).toUtf8().data());
+
+        connect(manger,SIGNAL(finished(QNetworkReply*)), this, SLOT(dictFind(QNetworkReply*)));
+
+
+    }
 }

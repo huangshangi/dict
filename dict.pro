@@ -50,7 +50,8 @@ SOURCES += \
     config.cpp \
     settings.cpp \
     languagelabel.cpp \
-    languagewindow.cpp
+    languagewindow.cpp \
+    networkget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -75,7 +76,8 @@ HEADERS += \
     config.h \
     settings.h \
     languagelabel.h \
-    languagewindow.h
+    languagewindow.h \
+    networkget.h
 
 FORMS += \
         mainwindow.ui \

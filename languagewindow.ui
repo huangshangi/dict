@@ -220,6 +220,7 @@
     </property>
     <property name="icon">
      <iconset>
+      <disabledoff>:/images/lang-drop.png</disabledoff>
       <disabledon>:/images/lang-drop-red.png</disabledon>
       <selectedoff>:/images/lang-drop.png</selectedoff>
       <selectedon>:/images/lang-drop-red.png</selectedon>
@@ -290,6 +291,7 @@
     </property>
     <property name="icon">
      <iconset>
+      <disabledoff>:/images/lang-drop.png</disabledoff>
       <disabledon>:/images/lang-drop-red.png</disabledon>
       <selectedoff>:/images/lang-drop.png</selectedoff>
       <selectedon>:/images/lang-drop-red.png</selectedon>

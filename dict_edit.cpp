@@ -69,6 +69,8 @@ dict_edit::dict_edit(QWidget *parent, QString name):
     ui(new Ui::dict_edit)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::Window|Qt::FramelessWindowHint |Qt::WindowSystemMenuHint|Qt::WindowMinimizeButtonHint|Qt::WindowMaximizeButtonHint);
+
     this->name=name;
     if(!name.isEmpty())
         ui->dict_edit_edit_dict->setText(name);

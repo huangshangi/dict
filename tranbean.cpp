@@ -8,12 +8,15 @@ tranBean::tranBean()
 tranBean tranBean::fromJson(QString &json)
 {
     QByteArray data=json.toUtf8();
+    qDebug()<<json;
     QJsonParseError parseError;
     tranBean bean;
+
     QJsonDocument document=QJsonDocument::fromJson(data,&parseError);
+
     if(parseError.error==QJsonParseError::NoError&&document.isObject()){
         QJsonObject obj=document.object();
-
+        qDebug()<<"22";
         if(obj.contains("src"))
             bean.setSrc(obj.value("src").toString());
 

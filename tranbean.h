@@ -5,6 +5,7 @@
 #include <QJsonParseError>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QDebug>
 class tranBean
 {
 public:

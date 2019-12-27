@@ -22,6 +22,7 @@ class languagewindow : public QMainWindow
 signals:
     void sendLanguage(QString from,QString to);
 
+
     void sendLanguage(QString language);
 
 public:

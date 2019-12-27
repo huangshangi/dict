@@ -29,10 +29,11 @@ languagewindow::~languagewindow()
 bool languagewindow::eventFilter(QObject *watched, QEvent *e)
 {
     if (watched == ui->button_from) {
-            if (e->type() == QEvent::Enter)
-                ui->button_from->setIcon(QIcon(":/images/lang-drop-red.png"));
-            else if(e->type()==QEvent::Leave&&!ui->button_from->isChecked())
-                ui->button_from->setIcon(QIcon(":/images/lang-drop.png"));
+
+        if (e->type() == QEvent::Enter)
+            ui->button_from->setIcon(QIcon(":/images/lang-drop-red.png"));
+        else if(e->type()==QEvent::Leave&&!ui->button_from->isChecked())
+            ui->button_from->setIcon(QIcon(":/images/lang-drop.png"));
 
     }else if (watched == ui->button_to) {
         if (e->type() == QEvent::Enter)
@@ -111,6 +112,7 @@ void languagewindow::initUi()
 void languagewindow::button_from_click()
 {
 
+
     if(fromButton->text()!=""&&state==1)
         fromButton->setStyleSheet("QPushButton{text-align:left;background-color:transparent;border:none;}"
                              "QPushButton:hover{text-align:left;color:#f00;background-color:transparent;}");
@@ -125,6 +127,7 @@ void languagewindow::button_from_click()
 
 void languagewindow::button_to_click()
 {
+
 
     if(toButton->text()!=""&&state==2)
         toButton->setStyleSheet("QPushButton{text-align:left;background-color:transparent;border:none;}"
@@ -149,6 +152,8 @@ void languagewindow::common_click()
 {
     QPushButton *button=(QPushButton*)sender();
 
+    close();
+    emit sendLanguage(button->text());
 }
 
 void languagewindow::assign_click()
@@ -169,6 +174,8 @@ void languagewindow::assign_click()
         button_to_click();
         toButton=button;
         ui->button_to->setText(button->text());
+        emit sendLanguage(ui->button_from->text(),ui->button_to->text());
+        close();
     }
 
 }
@@ -177,9 +184,11 @@ void languagewindow::assign_click()
 void languagewindow::on_button_from_clicked()
 {
     strechWindow();
-    ui->button_to->setChecked(false);
+
 
     button_from_click();
+    ui->button_to->setChecked(false);
+    ui->button_to->setIcon(QIcon(":/images/lang-drop.png"));
     state=1;
 }
 
@@ -199,10 +208,14 @@ int languagewindow::findInList(QString value, QStringList list)
 
 void languagewindow::on_button_to_clicked()
 {
-    ui->button_from->setChecked(false);
+
     strechWindow();
     button_to_click();
+     ui->button_from->setChecked(false);
+     ui->button_from->setIcon(QIcon(":/images/lang-drop.png"));
     state=2;
+
+
 }
 
 void languagewindow::strechWindow()
