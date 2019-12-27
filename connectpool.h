@@ -9,6 +9,7 @@
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
 #include <QDebug>
+#include <QCoreApplication>
 class ConnectPool
 {
 public:

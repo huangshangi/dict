@@ -2,7 +2,7 @@
 #define MAXCOUNT 50
 #define TIMEINTERVAL 200
 #define MAXWAITTIME 1000
-#define DATABASENAME "C:\\Users\\hzh17\\Desktop\\dict.db";
+#define DATABASENAME QCoreApplication::applicationDirPath()+"/dict.db";
 
 
 

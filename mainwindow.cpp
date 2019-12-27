@@ -1304,8 +1304,8 @@ void MainWindow::on_dict_edit_textChanged()
 
 void MainWindow::on_dict_edit_find_textChanged(const QString &arg)
 {
-
-
+    if(!arg.compare(""))
+        ui->tabWidget_dict->setCurrentIndex(0);
 }
 
 void MainWindow::on_tab_note_card_button_setting_clicked()

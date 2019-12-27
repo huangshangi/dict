@@ -7,11 +7,16 @@ databaseController* databaseController::instance=NULL;
 databaseController::databaseController()
 {
 
+
 }
 
 databaseController::databaseController(QSqlDatabase &database)
 {
     this->database=database;
+
+    if(!IsTableExist("groups")||!IsTableExist("newWord"))
+        initTable();
+
 }
 
 databaseController &databaseController::getInstance(QSqlDatabase &database)
@@ -36,6 +41,33 @@ databaseController &databaseController::getInstance()
 
     }
     return *instance;
+}
+
+void databaseController::initTable()
+{
+
+     QSqlQuery sqlQuery(database);
+
+    sqlQuery.exec("create table groups (groupName varchar(50));");
+    sqlQuery.exec("create table newWord(name varchar(50) not null,groupName varchar(50),soundMask varchar(50),explain varchar(250),"
+                  "dateAdd date not null);");
+
+
+}
+
+bool databaseController::IsTableExist(QString table)
+{
+
+    QSqlQuery sqlQuery(database);
+
+    QString sql = QString("select count(*) from sqlite_master where type = 'table' and name='%1'").arg(table);
+    sqlQuery.exec(sql);
+    sqlQuery.next();
+    int a=sqlQuery.value(0).toInt();
+
+    return sqlQuery.value(0).toInt();
+
+
 }
 
 int databaseController::insertNewWord(newWordBean bean)
@@ -222,7 +254,7 @@ QList<newWordBean> databaseController::getListOrderDateasc(QString group,QString
     else
         add="where name like '%"+keyword+"%'";
     QString sql=QString("select *from newWord %1 order by dateAdd asc;").arg(add);
-    qDebug()<<sql;
+
     return getList(sql);
 }
 
@@ -281,7 +313,9 @@ QList<newWordBean> databaseController::getListOrderRandom(QString group,QString 
 
 QSqlQuery databaseController::getSqlQuery()
 {
+
     databaseController obj=databaseController::getInstance();
+
     QSqlQuery sqlQuery(obj.database);
 
     return sqlQuery;

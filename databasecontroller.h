@@ -19,6 +19,12 @@ public:
 
     static databaseController& getInstance();
 
+    void initTable();
+
+    bool IsTableExist(QString table);
+
+
+
     int insertNewWord(newWordBean bean);
 
     int deleteNewWord(QString&name);
