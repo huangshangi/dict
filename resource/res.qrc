@@ -283,6 +283,13 @@
         <file>images/pic_review.png</file>
         <file>images/pic3.png</file>
         <file>images/person.jpg</file>
+        <file>appimages/1.png</file>
+        <file>appimages/2.png</file>
+        <file>appimages/3.png</file>
+        <file>appimages/4.png</file>
+        <file>appimages/5.png</file>
+        <file>appimages/6.png</file>
+        <file>appimages/7.png</file>
     </qresource>
     <qresource prefix="/qss">
         <file>qss/dict.qss</file>
