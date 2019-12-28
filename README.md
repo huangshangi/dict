@@ -6,25 +6,25 @@ dict是用qt编写的 模仿有道词典实现的查单词应用
 
 # ui
 
-![Image text](https://raw.githubusercontent.com/huangshangi/dict/master/resource/appimages/1.png)
+![Image text](resource/appimages/1.png)
 
 
-![Image text](https://raw.githubusercontent.com/huangshangi/dict/master/resource/appimages/2.png)
+![Image text](resource/appimages/2.png)
 
 
-![Image text](https://raw.githubusercontent.com/huangshangi/dict/master/resource/appimages/3.png)
+![Image text](resource/appimages/3.png)
 
 
-![Image text](https://raw.githubusercontent.com/huangshangi/dict/master/resource/appimages/4.png)
+![Image text](resource/appimages/4.png)
 
 
-![Image text](https://raw.githubusercontent.com/huangshangi/dict/master/resource/appimages/5.png)
+![Image text](resource/appimages/5.png)
 
 
-![Image text](https://raw.githubusercontent.com/huangshangi/dict/master/resource/appimages/6.png)
+![Image text](resource/appimages/6.png)
 
 
-![Image text](https://raw.githubusercontent.com/huangshangi/dict/master/resource/appimages/7.png)
+![Image text](resource/appimages/7.png)
 
 
 
